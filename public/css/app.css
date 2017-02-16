@@ -1,0 +1,351 @@
+@font-face {
+	font-family: 'icomoon';
+	src:	url('../fonts/icons.eot?jgwfkg');
+	src:	url('../fonts/icons.eot?jgwfkg#iefix') format('embedded-opentype'),
+		url('../fonts/icons.ttf?jgwfkg') format('truetype'),
+		url('../fonts/icons.woff?jgwfkg') format('woff'),
+		url('../fonts/icons.svg?jgwfkg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+::selection {
+	background: #7fb72a; /* WebKit/Blink Browsers */
+	color: #000;
+}
+::-moz-selection {
+	background: #7fb72a; /* Gecko Browsers */
+	color: #000;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100%;
+	font-family: Helvetica, Arial, sans-serif;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	
+	font-size: 14px;
+	line-height: 1.42857143;
+	
+	color: #333333;
+}
+html {
+	background: #57a528 url(../img/background.png) no-repeat center bottom;
+	background-size: cover;
+	background-attachment: fixed;
+}
+body {
+	position: relative;
+	margin-top: 100px;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+a:hover,
+a:focus {
+	color: #000;
+	outline: 0;
+}
+img {
+	border:none;
+}
+.clear {
+	clear: both;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+
+h1,
+h2,
+h3 {
+	font-family: 'Myriad Pro', Myriad, 'PT Sans', sans-serif;
+	font-weight: normal;
+}
+
+.header {
+	font-family: 'Myriad Pro', Myriad, 'PT Sans', sans-serif;
+	position: absolute;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	
+	-webkit-transition: top 1s, padding-top 1s, padding-bottom 1s; /* Safari */
+	transition: top 1s, padding-top 1s, padding-bottom 1s;
+}
+
+.header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.header > ul {
+    background: #333;
+}
+.header li {
+    list-style-type: none;
+	position: relative;
+}
+.header li a {
+	position: relative;
+    color: #fff;
+    padding: 14px 16px;
+    text-decoration: none;
+	overflow: hidden;
+	font-size: 16px;
+}
+.header li a,
+.header li a em {
+	display: block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.header li.has-sub:hover,
+.header li a:hover {
+    background: #111;
+}
+.header li.has-sub::after {
+	color: #fff;
+	content: '\f0d7';
+	position: absolute;
+	top: 21px;
+	right: 10px;
+	
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.header a.icon {
+	padding-left: 40px;
+}
+.header a.icon:before {
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	
+	position: absolute;
+	
+	left: 5px;
+	top: 21px;
+	text-align: center;
+	width: 20px;
+	font-size: 20px;
+	text-indent: 0;
+	line-height: 1;
+	color: #fff;
+}
+.header a.age-groups:before {
+	content: "\e91d";
+}
+.header a.scouting:before {
+	content: "\e90e";
+}
+.header a.activities:before {
+	content: "\e904";
+}
+.header a.campsite:before {
+	content: "\e908";
+}
+.header a.contact:before {
+	content: "\e91c";
+}
+@media screen and (max-width: 768px) {
+	.menu-open {
+		overflow: hidden;
+	}
+	.menu-open .header {
+		height: 100%;
+		overflow: auto;
+	}
+	.header li.has-sub > ul {
+		padding-left: 24px;
+	}
+}
+@media screen and (min-width: 769px) {
+	.scrolled .header {
+		padding: 10px 10px 75px 10px;
+		top: 0;
+		left: 0;
+	}
+	.header li.menu {
+		float: left;
+	}
+	.header li.has-sub {
+		padding-right: 20px;
+	}
+	.header li.menu > ul {
+		display: none;
+	}
+	.header li.menu:hover > ul {
+		display: block;
+		position: absolute;
+		top: 68px;
+		left: 0;
+		width: auto;
+	}
+	.header li.age-groups {
+		padding-right: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		display: table;
+		table-layout: fixed;
+	}
+	.header li.age-groups::after {
+		display: none;
+	}
+	.header li.age-groups > a {
+		display: none;
+	}
+	.header li.age-groups > ul {
+		display: table-row;
+		position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+	}
+	.header li.age-groups > ul > li {
+		display: table-cell;
+		float: none;
+		vertical-align: top;
+		text-align: center;
+	}
+	.header li.age-groups > ul > li > a {
+		padding: 14px 3px;
+	}
+}
+
+
+
+.content {
+	margin: 400px 0 0 0;
+}
+
+.footer {
+	clear: both;
+	color: #fff;
+	padding: 17px 10px 2px 10px;
+	text-align: center;
+	line-height: 16px;
+	vertical-align: middle;
+}
+.footer .social,
+.footer .memberships {
+	white-space: nowrap;
+	line-height: 45px;
+	display: inline-block;
+}
+.footer .legal {
+	display: inline-block;
+}
+.footer a {
+	display: inline-block;
+	
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	margin: -7px 5px;
+	text-indent: -9999px;
+	overflow: hidden;
+	
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	position: relative;
+}
+.footer a:hover {
+	background: #fff;
+}
+.footer a:before {
+	text-indent: 0;
+	position: absolute;
+	
+	left: 0;
+	top:5px;
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+	text-indent: 0;
+	line-height: 1;
+	color: #fff;
+}
+.footer a.web:before {
+	content: "\e9cb";
+}
+.footer a:hover:before {
+	color: #000;
+}
+.footer a.ig:before {
+	content: "\ea92";
+}
+.footer a.yt:before {
+	content: "\ea9d";
+}
+.footer a.fb:before {
+	content: "\ea90";
+}
+.footer a.tw:before {
+	content: "\ea96";
+}
+
+.footer a.ijsselgroep:before {
+	top:2px;
+	font-size: 26px;
+	content: "\e91b";
+}
+.footer a.scouting-nl:before {
+	top:2px;
+	font-size: 26px;
+	content: "\e91a";
+}
+.footer a.scout:before {
+	top:2px;
+	font-size: 26px;
+	content: "\e90f";
+}
+.footer a.wagggs:before {
+	top:2px;
+	font-size: 26px;
+	content: "\e902";
+}
