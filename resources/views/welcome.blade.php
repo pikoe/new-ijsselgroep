@@ -30,12 +30,12 @@
 			<li class="has-sub age-groups">
 				<a class="icon age-groups" href="leeftijdsgroepen">Leeftijdsgroepen <em>speltakken</em></a>
 				<ul>
-					<li><a href="leeftijdsgroepen/welpen">Welpen <em>7-11 jaar</em></a></li>
-					<li><a href="leeftijdsgroepen/scouts">Scouts <em>11-15 jaar</em></a></li>
-					<li><a href="leeftijdsgroepen/explorers">Explorers <em>16-18 jaar</em></a>
-					<li><a href="leeftijdsgroepen/roverscouts">Rovers <em>18-21 jaar</em></a>
-					<li><a href="leiding-en-bestuur">Leiding <em>&amp; bestuur</em></a>
-					<li><a href="vrienden-van-de-ijsselgroep">Vrienden <em>oud leden</em></a></li>
+					<li class="welpen"><a href="leeftijdsgroepen/welpen">Welpen <em>7-11 jaar</em></a></li>
+					<li class="scouts"><a href="leeftijdsgroepen/scouts">Scouts <em>11-15 jaar</em></a></li>
+					<li class="exporers"><a href="leeftijdsgroepen/explorers">Explorers <em>16-18 jaar</em></a>
+					<li class="roverscouts"><a href="leeftijdsgroepen/roverscouts">Rovers <em>18-21 jaar</em></a>
+					<li class="leiding-en-bestuur"><a href="leiding-en-bestuur">Leiding <em>&amp; bestuur</em></a>
+					<li class="vrienden-van-de-ijsselgroep"><a href="vrienden-van-de-ijsselgroep">Vrienden <em>oud leden</em></a></li>
 				</ul>
 			</li>
 			
