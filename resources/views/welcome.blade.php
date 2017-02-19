@@ -25,7 +25,10 @@
 <body class="menu-open">
 	<div class="header">
 		<!--<img src="img/scouting-nl-logo.png" alt="Logo">-->
-		<img src="img/ijsselgroep-logo.png" alt="Logo">
+		<div class="banner">
+			<a href="#kamp-japan" style="background: #7b746e url(img/banner-japan.jpg) no-repeat center center / auto 100%;"></a>
+		</div>
+		<a class="logo" href=""></a>
 		<ul class="clearfix">
 			<li class="has-sub age-groups">
 				<a class="icon age-groups" href="leeftijdsgroepen">Leeftijdsgroepen <em>speltakken</em></a>
