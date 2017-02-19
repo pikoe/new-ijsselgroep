@@ -244,7 +244,7 @@ h3 {
 	color: #ef8339;
 }
 .header li.age-groups li.leiding-en-bestuur a:hover {
-	color: #0042df;
+	color: #2f66e8;
 }
 .header li.age-groups li.vrienden-van-de-ijsselgroep a:hover {
 	color: #f2ca06;
@@ -286,7 +286,7 @@ h3 {
 		border-left: 4px solid #ef8339;
 	}
 	.header li.age-groups li.leiding-en-bestuur a {
-		border-left: 4px solid #0042df;
+		border-left: 4px solid #2f66e8;
 	}
 	.header li.age-groups li.vrienden-van-de-ijsselgroep a {
 		border-left: 4px solid #f2ca06;
@@ -401,7 +401,7 @@ h3 {
 		border-bottom: 5px solid #ef8339;
 	}
 	.header li.age-groups li.leiding-en-bestuur a {
-		border-bottom: 5px solid #0042df;
+		border-bottom: 5px solid #2f66e8;
 	}
 	.header li.age-groups li.vrienden-van-de-ijsselgroep a {
 		border-bottom: 5px solid #f2ca06;
