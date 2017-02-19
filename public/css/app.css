@@ -124,12 +124,8 @@ h3 {
 .header > ul {
 	-webkit-transition: padding 0.4s; /* Safari */
 	transition: padding 0.4s;
-	
-	background: #dddddd;
-	background: -moz-linear-gradient(top, #dddddd 0%, #ffffff 100%);
-	background: -webkit-linear-gradient(top, #dddddd 0%,#ffffff 100%);
-	background: linear-gradient(to bottom, #dddddd 0%,#ffffff 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#ffffff',GradientType=0 );
+	background: #fff;
+	padding: 0;
 }
 .header li {
     list-style-type: none;
@@ -183,7 +179,7 @@ h3 {
 	
 	position: absolute;
 	
-	left: 5px;
+	left: 10px;
 	top: 23px;
 	text-align: center;
 	width: 20px;
@@ -192,10 +188,10 @@ h3 {
 	line-height: 1;
 	color: #fff;
 	
-	-webkit-transition: -webkit-transform 0.7s ease;
-       -moz-transition: -moz-transform 0.7s ease;
-         -o-transition: transform 0.7s ease;
-            transition: transform 0.7s ease;
+	-webkit-transition: -webkit-transform 0.3s;
+       -moz-transition: -moz-transform 0.3s;
+         -o-transition: transform 0.3s;
+            transition: transform 0.3s;
 }
 .header li a,
 .header li a.icon::before,
@@ -207,7 +203,8 @@ h3 {
 .header li:hover > a,
 .header li:hover > a.icon::before,
 .header li.has-sub:hover::after {
-	color: #999;
+	background: #0042df;
+	color: #fff;
 }
 .header li > a:hover.icon::before,
 .header li:hover > a.icon::before {
@@ -231,7 +228,28 @@ h3 {
 .header a.contact:before {
 	content: "\e91c";
 }
-@media screen and (max-width: 804px) {
+.header li.age-groups li a:hover {
+	background: #333;
+}
+.header li.age-groups li.welpen a:hover {
+	color: #9bc459;
+}
+.header li.age-groups li.scouts a:hover {
+	color: #f6b135;
+}
+.header li.age-groups li.exporers a:hover {
+	color: #c13858;
+}
+.header li.age-groups li.roverscouts a:hover {
+	color: #ef8339;
+}
+.header li.age-groups li.leiding-en-bestuur a:hover {
+	color: #0042df;
+}
+.header li.age-groups li.vrienden-van-de-ijsselgroep a:hover {
+	color: #f2ca06;
+}
+@media screen and (max-width: 789px) {
 	.menu-open {
 		overflow: hidden;
 	}
@@ -242,9 +260,8 @@ h3 {
 	.header li.has-sub > ul {
 		padding-left: 24px;
 	}
-	.header li.has-sub:hover,
-	.header li a:hover {
-		background: #111;
+	.header li.has-sub:hover {
+		background: #eeeeee;
 	}
 	.header .banner {
 		height: 150px;
@@ -253,8 +270,29 @@ h3 {
 	.header .logo {
 		top: 54px;
 	}
+	.header li.age-groups li a {
+		padding-left: 12px;
+	}
+	.header li.age-groups li.welpen a {
+		border-left: 4px solid #9bc459;
+	}
+	.header li.age-groups li.scouts a {
+		border-left: 4px solid #f6b135;
+	}
+	.header li.age-groups li.exporers a {
+		border-left: 4px solid #c13858;
+	}
+	.header li.age-groups li.roverscouts a {
+		border-left: 4px solid #ef8339;
+	}
+	.header li.age-groups li.leiding-en-bestuur a {
+		border-left: 4px solid #0042df;
+	}
+	.header li.age-groups li.vrienden-van-de-ijsselgroep a {
+		border-left: 4px solid #f2ca06;
+	}
 }
-@media screen and (min-width: 805px) {
+@media screen and (min-width: 790px) {
 	.header .banner {
 		height: 300px;
 		overflow: hidden;
@@ -281,12 +319,8 @@ h3 {
 		height: 44px;
 		top: 57px;
 	}
-	
-	.header > ul {
-		padding: 0 15px;
-	}
 	.scrolled .header > ul {
-		padding: 0 15px 0 65px;
+		padding: 0 0 0 65px;
 	}
 	.header li.menu {
 		float: left;
@@ -295,8 +329,8 @@ h3 {
 		float: left;
 		margin: 0 0 0 10px;
 	}
-	.header li.has-sub {
-		padding-right: 20px;
+	.header li.has-sub a {
+		padding-right: 36px;
 	}
 	.header li.menu.has-sub > ul {
 		display: none;
@@ -308,6 +342,7 @@ h3 {
 		min-width: 100%;
 		border-radius: 5px;
 		border: 1px solid #999;
+		overflow: hidden;
 	}
 	.header li.menu.has-sub:hover > ul {
 		display: block;

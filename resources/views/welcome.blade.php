@@ -30,6 +30,14 @@
 		</div>
 		<a class="logo" href=""></a>
 		<ul class="clearfix">
+			<li class="menu has-sub">
+				<a class="icon scouting" href="scouting">Scouting <em>wat is scouting?</em></a>
+				<ul>
+					<li><a href="lid-worden">Lid worden <em>of eerst eens kijken</em></a></li>
+					<li><a href="kleding">Kleding <em>de scoutfit</em></a></li>
+				</ul>
+			</li>
+			
 			<li class="has-sub age-groups">
 				<a class="icon age-groups" href="leeftijdsgroepen">Leeftijdsgroepen <em>speltakken</em></a>
 				<ul>
@@ -39,14 +47,6 @@
 					<li class="roverscouts"><a href="leeftijdsgroepen/roverscouts">Rovers <em>18-21 jaar</em></a>
 					<li class="leiding-en-bestuur"><a href="leiding-en-bestuur">Leiding <em>&amp; bestuur</em></a>
 					<li class="vrienden-van-de-ijsselgroep"><a href="vrienden-van-de-ijsselgroep">Vrienden <em>oud leden</em></a></li>
-				</ul>
-			</li>
-			
-			<li class="menu has-sub">
-				<a class="icon scouting" href="scouting">Scouting <em>wat is scouting?</em></a>
-				<ul>
-					<li><a href="lid-worden">Lid worden <em>of eerst eens kijken</em></a></li>
-					<li><a href="kleding">Kleding <em>de scoutfit</em></a></li>
 				</ul>
 			</li>
 			
