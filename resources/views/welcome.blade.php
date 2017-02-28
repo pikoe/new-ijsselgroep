@@ -22,14 +22,20 @@
         ]) !!};
     </script>
 </head>
-<body class="menu-open">
+<body>
 	<div class="header">
 		<!--<img src="img/scouting-nl-logo.png" alt="Logo">-->
 		<div class="banner">
+			<a href="#paasvuur" style="background: #000000 url(img/banner-paasvuur.jpg) no-repeat center center / auto 100%;"></a>
+			<a href="#wandeling" style="background: #9cc174 url(img/banner-wandeling.jpg) no-repeat center center / auto 100%;"></a>
+			<a href="#spel" style="background: #acacac url(img/banner-spel.jpg) no-repeat center center / auto 100%;"></a>
+			<a href="#sneeuw" style="background: #a9ab74 url(img/banner-sneeuw.jpg) no-repeat center center / auto 100%;"></a>
 			<a href="#kamp-japan" style="background: #7b746e url(img/banner-japan.jpg) no-repeat center center / auto 100%;"></a>
+			<a href="#koken" style="background: #116b30 url(img/banner-koken.jpg) no-repeat center center / auto 100%;"></a>
 		</div>
 		<a class="logo" href=""></a>
-		<ul class="clearfix">
+		<div id="menu-toggle"><i></i></div>
+		<ul id="menu" class="clearfix">
 			<li class="menu has-sub">
 				<a class="icon scouting" href="scouting">Scouting <em>wat is scouting?</em></a>
 				<ul>
@@ -99,6 +105,14 @@
 				document.body.addClass('scrolled');
 			} else {
 				document.body.removeClass('scrolled');
+			}
+		});
+		
+		document.id('menu-toggle').addEvent('click', function() {
+			if(document.body.hasClass('menu-open')) {
+				document.body.removeClass('menu-open');
+			} else {
+				document.body.addClass('menu-open');
 			}
 		});
 	</script>
