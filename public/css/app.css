@@ -101,10 +101,15 @@ h3 {
 
 	-webkit-transition: height 0.4s, margin-top 0.4s; /* Safari */
 	transition: height 0.4s, margin-top 0.4s;
+	position: relative;
 }
 .header .banner > a {
 	display: block;
 	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 .header .logo {
 	display: block;

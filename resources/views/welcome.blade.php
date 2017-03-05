@@ -6,26 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<base href="{{ env('APP_URL', 'http://localhost') }}/">
 	
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
+	
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-    </script>
 </head>
 <body>
 	<div class="header">
 		<!--<img src="img/scouting-nl-logo.png" alt="Logo">-->
-		<div class="banner">
+		<div class="banner" id="header-slideshow">
 			<a href="#paasvuur" style="background: #000000 url(img/banner-paasvuur.jpg) no-repeat center center / auto 100%;"></a>
 			<a href="#wandeling" style="background: #9cc174 url(img/banner-wandeling.jpg) no-repeat center center / auto 100%;"></a>
 			<a href="#spel" style="background: #acacac url(img/banner-spel.jpg) no-repeat center center / auto 100%;"></a>
@@ -81,7 +72,7 @@
 		<h1>Scouting IJsselgroep Gorssel</h1>
 		<h2>Jongens scoutinggroep in Gorssel</h2>
 		<h3>Al meer dan 70 jaar</h3>
-		<?= str_repeat('Content 123<br>', 1000) ?>
+		<?= str_repeat('Content 123<br>', 100) ?>
 	</div>
 	<div class="footer">
 		<span class="legal">Dit is de offici&euml;le website van de vereniging Scouting IJsselgroep. Copyright &copy; 2016 - {{ date('Y') }}</span>
@@ -114,6 +105,24 @@
 			} else {
 				document.body.addClass('menu-open');
 			}
+		});
+		
+		var slideshow = document.id('header-slideshow');
+		var currentSlide = Number.random(0, slideshow.getChildren().length);
+		slideshow.getChildren().each(function(slide, i) {
+			if(i != currentSlide) {
+				slide.setStyle('opacity', 0);
+			}
+		});
+		/* worker */
+		var show = function() {
+			var images = slideshow.getChildren();
+			images[currentSlide].fade('out');
+			images[currentSlide = currentSlide < images.length - 1 ? currentSlide + 1 : 0].fade('in');
+		};
+		/* start once the page is finished loading */
+		window.addEvent('load',function(){
+			interval = show.periodical(5000);
 		});
 	</script>
 </body>
