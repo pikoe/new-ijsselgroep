@@ -9,9 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+	<meta name="description" content="">
 	
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
-    <link href="css/app.css" rel="stylesheet">
+    <link href="css/web.css" rel="stylesheet">
 </head>
 <body>
 	<div class="header">
