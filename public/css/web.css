@@ -50,7 +50,7 @@ body {
 }
 
 a {
-	color: #fff;
+	color: #1A368D;
 	text-decoration: none;
 }
 a:hover,
@@ -79,9 +79,34 @@ img {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
 	font-family: 'Myriad Pro', Myriad, 'PT Sans', sans-serif;
 	font-weight: normal;
+	margin: 1em 0 0.2em 0;
+}
+p {
+	margin: 1em 0 0 0;
+}
+p:first-child,
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child {
+	margin-top: 0;
+}
+h1 {
+	font-weight: bold;
+	font-size: 30px;
+}
+h2 {
+	font-size: 28px;
+}
+h3 {
+	font-size: 21px;
+}
+h4 {
+	font-size: 18px;
 }
 
 .header {
@@ -93,6 +118,11 @@ h3 {
 	left: 0;
 	z-index: 999;
 	
+	background: #eee;
+	-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+
 	-webkit-transition: top 0.2s, padding-top 0.2s, padding-bottom 0.2s; /* Safari */
 	transition: top 0.2s, padding-top 0.2s, padding-bottom 0.2s;
 }
@@ -257,6 +287,13 @@ h3 {
 
 .content {
 	margin: 440px 0 0 0;
+}
+.content::before {
+	clear: both;
+	display: table;
+	width: 100%;
+	height: 0px;
+	content: ' ';
 }
 @media screen and (max-width: 789px) {
 	.header #menu-toggle {
@@ -596,4 +633,73 @@ h3 {
 	top:2px;
 	font-size: 26px;
 	content: "\e902";
+}
+
+.breadcrumbs {
+	background: #fff url(../img/background-sand.png) no-repeat right -440px;
+	margin: 15px 0 0 0;
+	padding: 0 10px 0 0;
+	list-style: none;
+}
+.breadcrumbs > li {
+	display: block;
+	float: left;
+	margin: 0 0 0 10px;
+	padding: 0 0 0 20px;
+	position: relative;
+}
+.breadcrumbs > li > * {
+	display: block;
+	font-size: 15px;
+	padding: 10px 5px;
+	color: #aaa;
+}
+
+.breadcrumbs > li.home a::before,
+.breadcrumbs > li::before {
+	font-size: 15px;
+	display: block;
+	color: #aaa;
+	content: '\f105';
+	position: absolute;
+	left: 5px;
+	top: 10px;
+	
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.breadcrumbs > li.home {
+	padding-left: 0;
+}
+.breadcrumbs > li.home a {
+	padding-left: 30px;
+}
+@media screen and (max-width: 789px) {
+	.breadcrumbs > li.home {
+		text-indent: -999px;
+		width: 25px;
+	}
+}
+.breadcrumbs > li.home::before {
+	display: none;
+}
+.breadcrumbs > li.home a::before {
+	text-indent: 0;
+	content: '\e91e';
+}
+
+.article-page {
+	background: #fff url(../img/background-sand.png) no-repeat right top;
+	background-image: url(../img/background-sand.png), url(../img/background-sand.png);
+	background-repeat: no-repeat, no-repeat;
+	background-position: right -225px, left 0px bottom -375px;
+	margin: 15px;
+	padding: 25px;
 }

@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@index');
 Route::get('/admin', function () {
 	return view('admin');
 });
+Route::get('/article', function () {
+	return view('article');
+});
