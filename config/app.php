@@ -162,6 +162,11 @@ return [
 		Illuminate\View\ViewServiceProvider::class,
 		
 		/*
+		 * Vendor Service Providers...
+		 */
+		Barryvdh\Snappy\ServiceProvider::class,
+		
+		/*
 		 * Application Service Providers...
 		 */
 		App\Providers\AppServiceProvider::class,
@@ -214,5 +219,6 @@ return [
 		'URL' => Illuminate\Support\Facades\URL::class,
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View' => Illuminate\Support\Facades\View::class,
+		'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
 	]
 ];
