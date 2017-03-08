@@ -9,7 +9,7 @@
 </head>
 <body>
     <img src="{{ env('APP_URL', 'http://localhost') }}/img/ijsselgroep-logo.svg" alt="Scouting IJsselgroep Gorssel" style="float:left; width:5cm">
-	<div style="float:right;">{{ date('n F Y') }}</div>
+	<div style="float:right;">{{ strftime('%e %B %Y') }}</div>
 	<h1>Overeenkomst</h1>
 </body>
 </html>

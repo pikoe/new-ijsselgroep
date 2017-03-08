@@ -9,6 +9,9 @@
 	<h2>Jongens scoutinggroep in Gorssel</h2>
 	<h3>Al meer dan 70 jaar</h3>
 	<p><a href="article">Leiding gezocht</a></p>
-	<p><?= str_repeat('Content 123<br>', 100) ?></p>
+	<p><a href="pdf">PDF maken</a></p>
+	<p>{{ strftime('%e %B %Y') }}</p>
+	<p>{!! str_repeat('Content 123<br>', 100) !!}</p>
+	
 </div>
 @endsection
