@@ -8,7 +8,7 @@
     <link href="/css/pdf.css" rel="stylesheet">
 </head>
 <body>
-    <img src="{{ env('APP_URL', 'http://localhost') }}/img/ijsselgroep-logo.svg" alt="Scouting IJsselgroep Gorssel" width="5cm" style="float:left;">
+    <img src="{{ env('APP_URL', 'http://localhost') }}/img/ijsselgroep-logo.svg" alt="Scouting IJsselgroep Gorssel" style="float:left; width:5cm">
 	<h1>Overeenkomst</h1>
 </body>
 </html>
