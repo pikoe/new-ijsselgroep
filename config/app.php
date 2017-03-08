@@ -1,6 +1,6 @@
 <?php
 
-setlocale(LC_TIME, 'Dutch');
+setlocale(LC_TIME, 'nld_nld');
 
 return [
 
