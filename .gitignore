@@ -3,6 +3,7 @@
 /storage/*
 /vendor
 /.idea
+.composer.lock
 .env
 .htaccess
 public/.htaccess
