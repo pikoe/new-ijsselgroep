@@ -51,7 +51,7 @@
 			<li class="menu has-sub">
 				<a class="icon activities" href="activiteiten">Activiteiten <em>wat doen we?</em></a>
 				<ul>
-					<li><a href="kalender">Kalender <em>komende activiteiten</em></a></li>
+					<li><a href="activiteiten/kalender">Kalender <em>komende activiteiten</em></a></li>
 					<li><a href="fotos">Foto&#39;s <em>van de programma&#39;s</em></a></li>
 				</ul>
 			</li>

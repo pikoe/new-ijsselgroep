@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:	url('../fonts/icons.eot?jgwfkg');
-	src:	url('../fonts/icons.eot?jgwfkg#iefix') format('embedded-opentype'),
-		url('../fonts/icons.ttf?jgwfkg') format('truetype'),
-		url('../fonts/icons.woff?jgwfkg') format('woff'),
-		url('../fonts/icons.svg?jgwfkg#icomoon') format('svg');
+	src:	url('../fonts/icons.eot?jgwfkh');
+	src:	url('../fonts/icons.eot?jgwfkh#iefix') format('embedded-opentype'),
+		url('../fonts/icons.ttf?jgwfkh') format('truetype'),
+		url('../fonts/icons.woff?jgwfkh') format('woff'),
+		url('../fonts/icons.svg?jgwfkh#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -92,7 +92,12 @@ p:first-child,
 h1:first-child,
 h2:first-child,
 h3:first-child,
-h4:first-child {
+h4:first-child,
+img.right-into-image:first-child + p,
+img.right-into-image:first-child + h1,
+img.right-into-image:first-child + h2,
+img.right-into-image:first-child + h3,
+img.right-into-image:first-child + h4 {
 	margin-top: 0;
 }
 h1 {
@@ -699,7 +704,116 @@ h4 {
 	background: #fff url(../img/background-sand.png) no-repeat right top;
 	background-image: url(../img/background-sand.png), url(../img/background-sand.png);
 	background-repeat: no-repeat, no-repeat;
-	background-position: right -225px, left 0px bottom -375px;
-	margin: 15px;
+	background-position: left 0px bottom -375px, right -225px;
+	margin: 15px 15px 0 15px;
 	padding: 25px;
+	position: relative;
 }
+
+@media screen and (max-width: 789px) {
+}
+@media screen and (min-width: 790px) {
+	.article-area {
+		margin: 0 0 -15px 0;
+		display: table;
+		table-layout: fixed;
+		border-collapse: separate;
+		border-spacing: 15px;
+	}
+	.article-area > .article-row {
+		display: table-row;
+	}
+	.article-area > .article-row > .article-page {
+		display: table-cell;
+		width: 50%;
+		vertical-align: top;
+	}
+}
+
+table.calendar {
+	width: 100%;
+	table-layout: fixed;
+}
+table.calendar th.week {
+	width: 25px;
+}
+
+img.right-into-image {
+	float: right;
+	max-width: 100%;
+	display: block;
+	margin: 0 0 25px 25px;
+}
+h1.icon,
+h2.icon {
+	position: relative;
+	padding-left: 40px;
+}
+h1.icon:before,
+h2.icon:before {
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	
+	position: absolute;
+	
+	left: 0;
+	top: 0;
+	text-align: left;
+	font-size: 1em;
+	text-indent: 0;
+	color: #0042df;
+}
+.icon.info-list:before {
+	content: '\e9b8';
+}
+.icon.calendar:before {
+	content: '\e953';
+}
+
+
+a.continue {
+	position: relative;
+	padding: 0 25px;
+	display: block;
+	margin: 1em 0 0 0;
+	width: auto;
+	font-size: 18px;
+	font-family: 'Myriad Pro', Myriad, 'PT Sans', sans-serif;
+}
+a.continue:before,
+a.continue:after {
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	
+	position: absolute;
+	
+	text-align: left;
+	font-size: 22px;
+	line-height: 1;
+	text-indent: 0;
+	content: '\f0da';
+	top: 0;
+	left: 0;
+}
+a.continue:after {
+	left: 5px;
+}
+a.continue:hover:before {
+	left: 1px;
+}
+a.continue:hover:after {
+	left: 8px;
+}
+
