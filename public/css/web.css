@@ -558,10 +558,6 @@ h4 {
 .footer .memberships {
 	white-space: nowrap;
 	line-height: 45px;
-	display: inline-block;
-}
-.footer .legal {
-	display: inline-block;
 }
 .footer a {
 	display: inline-block;
@@ -638,6 +634,17 @@ h4 {
 	top:2px;
 	font-size: 26px;
 	content: "\e902";
+}
+
+@media screen and (min-width: 981px) {
+	.footer > span {
+		display: inline-block;
+	}
+}
+@media screen and (max-width: 980px) {
+	.footer > span {
+		display: block;
+	}
 }
 
 .breadcrumbs {

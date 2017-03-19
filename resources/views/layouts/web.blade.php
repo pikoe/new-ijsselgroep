@@ -73,21 +73,12 @@
 @yield('content')
 	</div>
 	<div class="footer">
+		<span class="memberships"><a class="ijsselgroep" href="/" title="Scouting IJsselgroep Gorssel">Scouting IJsselgroep Gorssel</a><a class="scouting-nl" href="https://www.scouting.nl/" target="_blank" title="Scouting Nederland">Scouting Nederland</a><a class="scout" href="https://www.scout.org/" target="_blank" title="World Organization of the Scout Movement">World Organization of the Scout Movement</a><a class="wagggs" href="https://www.wagggs.org/en/" target="_blank" title="World Association of Girl Guides and Girl Scouts">World Association of Girl Guides and Girl Scouts</a></span>
 		<span class="legal">Dit is de offici&euml;le website van de vereniging Scouting IJsselgroep. Copyright &copy; 2016 - {{ date('Y') }}</span>
-		<span class="memberships">
-			<a class="ijsselgroep" href="/" title="Scouting IJsselgroep Gorssel">Scouting IJsselgroep Gorssel</a>
-			<a class="scouting-nl" href="https://www.scouting.nl/" target="_blank" title="Scouting Nederland">Scouting Nederland</a>
-			<a class="scout" href="https://www.scout.org/" target="_blank" title="World Organization of the Scout Movement">World Organization of the Scout Movement</a>
-			<a class="wagggs" href="https://www.wagggs.org/en/" target="_blank" title="World Association of Girl Guides and Girl Scouts">World Association of Girl Guides and Girl Scouts</a>
-		</span>
-		<span class="social">
-			<a class="fb" href="https://www.facebook.com/ScoutingIJsselgroep/" target="_blank" title="Volg ons op Facebook">Volg ons op Facebook</a>
-			<a class="yt" href="https://www.youtube.com/user/IJsselgroep" target="_blank" title="Bekijk onze video's op Youtube">Bekijk onze video's op Youtube</a>
-			<a class="ig" href="https://www.instagram.com/ijsselgroep/" target="_blank" title="Volg ons op Instagram">Volg ons op Instagram</a>
-			<a class="tw" href="https://twitter.com/scoutingijssel" target="_blank" title="Volg ons op Twitter">Volg ons op Twitter</a>
-		</span>
+		<span class="social"><a class="fb" href="https://www.facebook.com/ScoutingIJsselgroep/" target="_blank" title="Volg ons op Facebook">Volg ons op Facebook</a><a class="yt" href="https://www.youtube.com/user/IJsselgroep" target="_blank" title="Bekijk onze video's op Youtube">Bekijk onze video's op Youtube</a><a class="ig" href="https://www.instagram.com/ijsselgroep/" target="_blank" title="Volg ons op Instagram">Volg ons op Instagram</a><a class="tw" href="https://twitter.com/scoutingijssel" target="_blank" title="Volg ons op Twitter">Volg ons op Twitter</a></span>
 	</div>
 	<script type="text/javascript" src="js/MooTools-More-1.6.0-compressed.js"></script>
+	<script type="text/javascript" src="js/Slider.js"></script>
 	<script>
 		window.addEvent('scroll:pause(100)', function() {
 			if(window.getScroll().y) {
@@ -105,23 +96,7 @@
 			}
 		});
 		
-		var slideshow = document.id('header-slideshow');
-		var currentSlide = Number.random(0, slideshow.getChildren().length);
-		slideshow.getChildren().each(function(slide, i) {
-			if(i != currentSlide) {
-				slide.setStyle('opacity', 0);
-			}
-		});
-		/* worker */
-		var show = function() {
-			var images = slideshow.getChildren();
-			images[currentSlide].fade('out');
-			images[currentSlide = currentSlide < images.length - 1 ? currentSlide + 1 : 0].fade('in');
-		};
-		/* start once the page is finished loading */
-		window.addEvent('load',function(){
-			interval = show.periodical(5000);
-		});
+		new Slider(document.id('header-slideshow'));
 	</script>
 </body>
 </html>
