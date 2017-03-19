@@ -30,6 +30,9 @@ Route::get('/activiteiten/kalender/{yyyy?}/{mm?}/{dd?}', 'CalendarController@act
 Route::get('/admin', function () {
 	return view('admin');
 });
+Route::post('/admin/editor-upload', 'FilesController@editor_upload');
+Route::get('/admin/editor-images', 'FilesController@editor_images');
+
 Route::get('/article', function () {
 	return view('article');
 });

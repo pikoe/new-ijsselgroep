@@ -7,3 +7,4 @@
 .env
 .htaccess
 public/.htaccess
+/public/upload/
