@@ -1,10 +1,3 @@
-@font-face {
-	font-family: 'FontAwesome';
-	src: url('../fonts/fontawesome-webfont.eot?v=4.6.3');
-	src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.6.3') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.6.3') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.6.3') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
 ::selection {
 	background: #464646; /* WebKit/Blink Browsers */
 	color: #eee;
@@ -139,6 +132,7 @@ a:focus {
 #menu > ul li:hover > a {
 	text-shadow: 0px 0px 5px #000;
 }
+#menu .logout button::before,
 #menu a::before {
 	display: block;
 	position: absolute;
@@ -162,6 +156,36 @@ a:focus {
 #menu .users::before {
 	content: "\f0c0";
 }
+#menu .pages::before {
+	content: "\f0c5";
+}
+
+#menu .logout button,
+#menu .logout button::before {
+	position: absolute;
+	display: block;
+	cursor: pointer;
+	width: 20px;
+	color: #337ab7;
+}
+#menu .logout button {
+	text-indent: -999px;
+	border: none;
+	background: transparent;
+	left: 120px;
+	top: 70px;
+}
+#menu .logout button::before {
+	left: 0;
+	top: 0;
+	content: "\f13e";
+	text-indent: 0;
+}
+#menu .logout button:hover::before {
+	color: #55aaf3;
+	content: "\f023";
+}
+
 
 #top {
 	height: 40px;
@@ -242,4 +266,102 @@ header {
 	border-top: 1px solid #e7eaec;
 	border-bottom: 1px solid #e7eaec;
 	background: #fff;
+}
+header h1 {
+	margin: 0;
+	padding: 15px;
+	line-height: 28px;
+	font-size: 21px;
+}
+
+.form {
+	padding: 15px;
+}
+
+.button {
+	display: inline-block;
+	border: 1px solid #55aaf3;
+	background: #55aaf3;
+	border-radius: 2px;
+	margin: -1px 0 -1px 3px;
+	padding: 0 2px;
+	color: #fff;
+}
+.button:hover {
+	border: 1px solid #23527c;
+	background: #23527c;
+	color: #fff;
+}
+.button.delete {
+	background: #d9534f;
+	border: 1px solid #d9534f;
+}
+.button.delete:hover {
+	border: 1px solid #c9302c;
+	background: #c9302c;
+}
+/* Tree CSS */
+ul.tree,
+ul.tree li,
+ul.tree ul {
+	position: relative;
+	cursor: pointer;
+	zoom: 1;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+ul.tree li,
+li.drag,
+li.drag ul li {
+	margin: 0;
+	line-height: 20px;
+	list-style-type: none;
+}
+ul.tree ul,
+li.drag ul {
+	margin: 0;
+	padding: 0 0 0 30px;
+}
+ul.tree li span,
+li.drag span {
+	color: #111;
+	display: block;
+}
+ul.tree li {
+	cursor: move;
+}
+ul.tree li > span {
+	padding: 3px;
+}
+ul.tree li > span:hover {
+	background: #fff;
+}
+ul.tree li.nodrag span {
+	color: #999;
+}
+ul.tree li span .hover {
+	float: right;
+	display: none;
+}
+ul.tree li span:hover > .hover {
+	display: block;
+}
+div.treeIndicator {
+	margin: 0;
+	position: absolute;
+	width: 100px;
+	height: 1px;
+	background-color: #000;
+	border-top: 1px solid #999;
+	z-index: 50;
+	overflow: hidden;
+	line-height: 1px;
+}
+li.drag {
+	position: absolute;
+	z-index: 50;
+}
+li.drag span * {
+	display: none;
 }

@@ -25,13 +25,16 @@ Route::get('/activiteiten/kalender/{yyyy?}/{mm?}/{dd?}', 'CalendarController@act
 	'dd' => '(0[1-9]|[12][0-9]|3[01])'
 ]);
 
-
-
-Route::get('/admin', function () {
-	return view('admin');
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+	Route::post('editor-upload', 'FilesController@editor_upload');
+	Route::get('editor-images', 'FilesController@editor_images');
+	
+	
+	Route::get('', function () {
+		return view('admin');
+	});
+	Route::any('pages', 'PagesController@index');
 });
-Route::post('/admin/editor-upload', 'FilesController@editor_upload');
-Route::get('/admin/editor-images', 'FilesController@editor_images');
 
 Route::get('/article', function () {
 	return view('article');
