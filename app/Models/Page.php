@@ -6,6 +6,12 @@ use Kalnoy\Nestedset\NodeTrait;
 class Page extends Model {
 	use NodeTrait;
 	
+	public $fillable = [
+		'name',
+		'url'
+	];
+
+
 	public function getLftName() {
 		return 'lft';
 	}

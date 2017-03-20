@@ -2,75 +2,44 @@
 
 @section('content')
 <div class="form">
+	<div class="toolbar clearfix">
+		<h2>Pagina&#39;s</h2>
+		<div class="buttons">
+			<a class="button add" href="{{ route('pages.add') }}"><i class="fa fa-plus" aria-hidden="true"></i> Toevoegen</a>
+		</div>
+	</div>
 	<ul class="tree" id="tree">
-		<li data-page-id="1">
-			<span>
-				Test 1
+		@php
+			$traverse = function($pages) use (&$traverse) {
+				$nodes = '';
+				foreach ($pages as $page) {
+					$nodes .= '
+					<li data-page-id="' . $page->id . '">
+						<span>' . $page->name . ' (' . $page->children->count() . ')
+							<span class="hover">
+								<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
+								<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
+							</span>
+						</span>';
+						if($page->children->count() > 0) {
+							$nodes .= '<ul>' . $traverse($page->children) . '</ul>';
+						}
+					$nodes .= '
+					</li>';
+				}
+				return $nodes;
+			};
+			echo $traverse($pages);
+		@endphp
+		<li class="nodrag">
+			<span>Test 5 (You can't drag me!)
 				<span class="hover">
 					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
 					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
 				</span>
 			</span>
 		</li>
-		<li><span>Test 2
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span></span></li>
-		<li><span>Test 3
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span></span>
-			<ul>
-				<li><span>Test 3.1
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span></span>
-					<ul>
-						<li><span>Test 3.1.1
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span></span></li>
-						<li><span>Test 3.1.2
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span></span></li>
-					</ul>
-				</li>
-				<li><span>Test 3.2
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span></span></li>
-				<li><span>Test 3.3
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span></span></li>
-				<li><span>Test 3.4
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span></span></li>
-			</ul>
-		</li>
-		<li ><span>Test 4
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span></span></li>
-		<li class="nodrag"><span>Test 5 (You can't drag me!)
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span></span></li>
 	</ul>
-
-	<a id="addItem" class="go bold" href="#">Add a new item</a>
 </div>
 @endsection
 
@@ -78,11 +47,11 @@
 <script type="text/javascript" src="js/Tree.js"></script>
 <script type="text/javascript">
 	window.addEvent('domready', function(){
-		var pagetree = new Tree(document.id('tree'), {
+		new Tree(document.id('tree'), {
 			checkDrag: function(element){
 				return !element.hasClass('nodrag');
 			},
-			onChange: function(el){
+			onChange: function(){
 				console.log(this.serialize(function(el){
 					return el.getProperty('data-page-id');
 				}));
@@ -96,11 +65,11 @@
 			}
 		});
 
-		var i = 1;
+		/*var i = 1;
 		document.id('addItem').addEvent('click', function(event){
 			event.preventDefault();
 			new Element('li').adopt(new Element('span[text=New Item #' + (i++) + ']')).inject('tree');
-		});
+		});*/
 	});
 </script>
 @endsection

@@ -30,6 +30,8 @@ body {
 *:before,
 *:after {
 	box-sizing: border-box;
+	font-size: 1em;
+	line-height: 1.42857143;
 }
 img {
 	border: 0;
@@ -42,6 +44,27 @@ a:hover,
 a:focus {
 	color: #23527c;
 	outline: 0;
+}
+
+.clear {
+	clear: both;
+}
+
+.form .input:before,
+.form .input:after,
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+.form .input:after,
+.clearfix:after {
+    clear: both;
+}
+
+.form .input,
+.clearfix {
+    *zoom: 1;
 }
 
 #menu {
@@ -259,6 +282,12 @@ a:focus {
 	-ms-transform: translateY(0px) rotate(-90deg);
 	transform: translateY(0px) rotate(-90deg);
 }
+#top #server-time {
+	font-size: 10px;
+	float: right;
+	line-height: 12px;
+	padding: 14px 15px;
+}
 
 header {
 	display: block;
@@ -266,16 +295,43 @@ header {
 	border-top: 1px solid #e7eaec;
 	border-bottom: 1px solid #e7eaec;
 	background: #fff;
+	overflow: hidden;
 }
 header h1 {
 	margin: 0;
 	padding: 15px;
 	line-height: 28px;
 	font-size: 21px;
+	white-space: nowrap;
 }
 
 .form {
 	padding: 15px;
+}
+.form .toolbar {
+	margin: 0 0 15px 0;
+	clear: both;
+}
+.form .toolbar h2 {
+	float: left;
+	font-size: 18px;
+	margin: 0;
+}
+.form .toolbar .buttons {
+	float: right;
+}
+.form .toolbar .buttons.bottom {
+	float: none;
+	margin: 15px 0 0 25%;
+}
+.form .toolbar .buttons .button {
+    margin-left: 10px;
+	margin-bottom: 5px;
+	display: block;
+	float: left;
+}
+.form .toolbar .buttons .button:first-child {
+    margin-left: 0;
 }
 
 .button {
@@ -283,9 +339,9 @@ header h1 {
 	border: 1px solid #55aaf3;
 	background: #55aaf3;
 	border-radius: 2px;
-	margin: -1px 0 -1px 3px;
-	padding: 0 2px;
+	padding: 0 4px;
 	color: #fff;
+	cursor: pointer;
 }
 .button:hover {
 	border: 1px solid #23527c;
@@ -300,6 +356,43 @@ header h1 {
 	border: 1px solid #c9302c;
 	background: #c9302c;
 }
+.button.add {
+	border: 1px solid #5cb85c;
+	background: #5cb85c;
+}
+.button.add:hover {
+	border: 1px solid #449d44;
+	background: #449d44;
+}
+
+.form .input {
+	clear: both;
+	margin: 0 0 10px 0;
+}
+.form .input label {
+	width: 25%;
+	display: block;
+	float: left;
+	padding: 3px 0;
+}
+.form .input input {
+	padding: 2px;
+	border: 1px solid #969696;
+	background: #fff;
+	border-radius: 3px;
+	width: 75%;
+	display: block;
+	float: left;
+}
+.form .input input.validation-failed {
+	border-color: #d9534f;
+}
+.form .input .validation-advice {
+	color: #d9534f;
+	margin-left: 25%;
+	clear: both;
+}
+
 /* Tree CSS */
 ul.tree,
 ul.tree li,
@@ -346,6 +439,9 @@ ul.tree li span .hover {
 }
 ul.tree li span:hover > .hover {
 	display: block;
+}
+ul.tree li span .hover .button {
+	margin: -1px 0 -1px 3px;
 }
 div.treeIndicator {
 	margin: 0;

@@ -65,6 +65,7 @@
 	<div id="wrapper">
 		<div id="top">
 			<div id="menu-toggle" title="Menu in- of uitklappen"><i></i></div>
+			<div id="server-time" title="Server tijd">{{ \Carbon\Carbon::now()->format('d-m-Y H:i:s') }}</div>
 		</div>
 		<header>
 			<h1>IJsselgroep website beheer</h1>
@@ -75,6 +76,8 @@
 	<script type="text/javascript" src="js/MooTools-More-1.6.0-compressed.js"></script>
 	<script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript">
+		Locale.use('nl-NL');
+		
 		document.id('menu').addEvents({
 			mouseenter: function() {
 				document.body.addClass('menu-open');
@@ -151,6 +154,27 @@
 			},
 			imagetools_toolbar: 'editimage imageoptions'
 		});
+		
+		Form.Validator.add('pattern', {
+			errorMsg: function(input) {
+				return input.getProperty('data-pattern-msg') || 'De invoer moet voldoen aan dit patroon: ' + input.pattern;
+			},
+			test: function(input){
+				return input.value.match(new RegExp('^' + input.pattern + '$'));
+			}
+		});
+		document.getElements('form.form').each(function(form) {
+			form.getElements('[required]').addClass('required');
+			form.getElements('[pattern]').addClass('pattern');
+			form.getElements('[size]').each(function(input) {
+				input.addClass('maxLength:' + input.size);
+			});
+			
+			new Form.Validator.Inline(form);
+			form.setProperty('novalidate', true);
+			
+		});
+		
 	</script>
 	@yield('javascript')
 </body>
