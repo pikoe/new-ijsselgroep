@@ -58,7 +58,7 @@ var Tree = new Class({
 
 		var self = this;
 		this.handler = function(e){
-			self.mousedown(this, e);
+			self.mousedown(this.getParent('li'), e);
 		};
 
 		this.attach();
@@ -71,7 +71,7 @@ var Tree = new Class({
 	},
 
 	detach: function(){
-		this.element.removeEvent('mousedown:relay(li)', this.handler);
+		this.element.removeEvent('mousedown:relay(li .move)', this.handler);
 		document.removeEvent('mouseup', this.mouseup);
 		return this;
 	},

@@ -23,7 +23,7 @@ var Confirm = new Class({
 		new Element('a.button.add', {
 			html: '<i class="fa fa-check" aria-hidden="true"></i> Okay'
 		}).inject(this.box).addEvent('click', this.clickConfirm);
-		new Element('a.button.delete', {
+		new Element('a.button.cancel', {
 			html: '<i class="fa fa-reply" aria-hidden="true"></i> Grapje'
 		}).inject(this.box).addEvent('click', this.clickDecline);
 		

@@ -320,6 +320,7 @@ header h1 {
 	align-items: center;
 	justify-content: center;
 	display: flex;
+	user-select: none;
 }
 .confirm {
 	width: 245px;
@@ -330,6 +331,7 @@ header h1 {
 	padding: 15px 15px 52px 15px;
 	text-align: center;
 	position: relative;
+	cursor: default;
 }
 .confirm .button {
 	position: absolute;
@@ -339,7 +341,7 @@ header h1 {
 .confirm .button.add {
 	left: 15px;
 }
-.confirm .button.delete {
+.confirm .button.cancel {
 	right: 15px;
 }
 
