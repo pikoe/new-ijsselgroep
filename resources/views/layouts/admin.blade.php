@@ -75,6 +75,7 @@
 	</div>
 	<script type="text/javascript" src="js/MooTools-More-1.6.0-compressed.js"></script>
 	<script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript" src="js/Confirm.js"></script>
 	<script type="text/javascript">
 		Locale.use('nl-NL');
 		

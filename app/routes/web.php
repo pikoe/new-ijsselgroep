@@ -33,10 +33,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('', function () {
 		return view('admin');
 	});
-	Route::group(['prefix' => 'pages'], function () {
-		Route::any('', 'PagesController@index')->name('pages');
-		Route::any('add', 'PagesController@add')->name('pages.add');
-		Route::any('edit', 'PagesController@edit')->name('pages.edit');
+	Route::group(['prefix' => 'pages', 'as' => 'pages.'], function () {
+		Route::get('', ['uses' => 'PagesController@index', 'as' => 'index']);
+		Route::any('add', ['uses' => 'PagesController@add', 'as' => 'add']);
+		Route::any('edit/{page}', ['uses' => 'PagesController@edit', 'as' => 'edit']);
+		Route::post('delete/{page}', ['uses' => 'PagesController@delete', 'as' => 'delete']);
+		Route::post('reorder', ['uses' => 'PagesController@reorder', 'as' => 'reorder']);
 	});
 });
 

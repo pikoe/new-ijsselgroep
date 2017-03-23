@@ -15,11 +15,12 @@
 				foreach ($pages as $page) {
 					$nodes .= '
 					<li data-page-id="' . $page->id . '">
-						<span>' . $page->name . ' (' . $page->children->count() . ')
+						<span>
 							<span class="hover">
-								<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-								<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
+								<a class="button" href="' . route('pages.edit', $page->id) . '"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
+								<a class="button delete" href="' . route('pages.delete', $page->id) . '"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
 							</span>
+							<span' . (empty($page->keyname)?' class="move"':'') . '>' . $page->name . ' (' . $page->children->count() . ')</span>
 						</span>';
 						if($page->children->count() > 0) {
 							$nodes .= '<ul>' . $traverse($page->children) . '</ul>';
@@ -31,14 +32,6 @@
 			};
 			echo $traverse($pages);
 		@endphp
-		<li class="nodrag">
-			<span>Test 5 (You can't drag me!)
-				<span class="hover">
-					<a class="button" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
-					<a class="button delete" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
-				</span>
-			</span>
-		</li>
 	</ul>
 </div>
 @endsection
@@ -51,25 +44,43 @@
 			checkDrag: function(element){
 				return !element.hasClass('nodrag');
 			},
-			onChange: function(){
-				console.log(this.serialize(function(el){
-					return el.getProperty('data-page-id');
-				}));
+			onChange: function(el) {
+				el.setStyle('opacity', 0.5);
+				new Request({
+					url: '{{ route('pages.reorder') }}',
+					data: {
+						_token: '{{ csrf_token() }}',
+						tree: this.serialize(function(el){
+							return el.getProperty('data-page-id');
+						})
+					},
+					onSuccess: function() {
+						el.setStyle('opacity', 1);
+					}
+				}).post();
 			}
 		});
 
 		document.id('tree').addEvents({
 			'click:relay(.button.delete)': function(event){
 				event.preventDefault();
-				this.getParent('li').dispose();
+				var el = this.getParent('li').setStyle('opacity', 0.5);
+				var url = this.href;
+				new Confirm('Wilt u deze pagina en eventuele subpaginas verwijderen?', function() {
+					new Request({
+						url: url,
+						data: {
+							_token: '{{ csrf_token() }}'
+						},
+						onSuccess: function() {
+							el.dispose();
+						}
+					}).post();
+				}, function() {
+					el.setStyle('opacity', 1);
+				});
 			}
 		});
-
-		/*var i = 1;
-		document.id('addItem').addEvent('click', function(event){
-			event.preventDefault();
-			new Element('li').adopt(new Element('span[text=New Item #' + (i++) + ']')).inject('tree');
-		});*/
 	});
 </script>
 @endsection

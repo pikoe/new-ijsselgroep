@@ -65,7 +65,7 @@ var Tree = new Class({
 	},
 
 	attach: function(){
-		this.element.addEvent('mousedown:relay(li)', this.handler);
+		this.element.addEvent('mousedown:relay(li .move)', this.handler);
 		document.addEvent('mouseup', this.mouseup);
 		return this;
 	},
@@ -171,7 +171,7 @@ var Tree = new Class({
 			this.collapse.updateElement(drop.target);
 		}
 
-		this.fireEvent('change');
+		this.fireEvent('change', current);
 	},
 
 	setDropTarget: function(drop){
@@ -216,7 +216,7 @@ var Tree = new Class({
 
 			result[index] = {};
 			result[index].id = fn(el);
-			result[index].child = child ? this.serialize(fn, child, val) : val(el);
+			result[index].children = child ? this.serialize(fn, child, val) : val(el);
 
 		}, this);
 

@@ -305,6 +305,45 @@ header h1 {
 	white-space: nowrap;
 }
 
+
+
+.overlay {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 1000;
+	background: rgba(0,0,0,0.5);
+	top: 0;
+	left: 0;
+	
+	vertical-align: middle;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+.confirm {
+	width: 245px;
+	z-index: 1001;
+	margin: 0 auto;
+	background: #f3f3f3;
+	border-radius: 5px;
+	padding: 15px 15px 52px 15px;
+	text-align: center;
+	position: relative;
+}
+.confirm .button {
+	position: absolute;
+	bottom: 15px;
+	width: 100px;
+}
+.confirm .button.add {
+	left: 15px;
+}
+.confirm .button.delete {
+	right: 15px;
+}
+
+
 .form {
 	padding: 15px;
 }
@@ -398,7 +437,6 @@ ul.tree,
 ul.tree li,
 ul.tree ul {
 	position: relative;
-	cursor: pointer;
 	zoom: 1;
 	list-style-type: none;
 	margin: 0;
@@ -421,7 +459,7 @@ li.drag span {
 	color: #111;
 	display: block;
 }
-ul.tree li {
+ul.tree li .move {
 	cursor: move;
 }
 ul.tree li > span {
