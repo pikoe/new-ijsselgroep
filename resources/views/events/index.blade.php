@@ -3,7 +3,7 @@
 @section('content')
 <div class="form">
 	<div class="toolbar clearfix">
-		<h2>Kalender</h2>
+		<h2>Kalender {{ $start->formatLocalized('%B %Y') }}</h2>
 		<div class="buttons">
 			<a class="button add" href="{{ route('events.add') }}"><i class="fa fa-plus" aria-hidden="true"></i> Toevoegen</a>
 		</div>
@@ -36,9 +36,9 @@
 				@for($w = $date->weekOfYear; $w == $date->weekOfYear; $date->addDay())
 				<td>
 					@if($date->day == 1)
-						<div class="start-of-month">{{ $date->format('M') }}</div>
+						<div class="start-of-month">{{ $date->formatLocalized('%b') }}</div>
 					@elseif($date->daysInMonth == $date->day)
-						<div class="end-of-month">{{ $date->format('M') }}</div>
+						<div class="end-of-month">{{ $date->formatLocalized('%b') }}</div>
 					@endif
 					<div class="day">{{ $date->day }}</div>
 					<?php
