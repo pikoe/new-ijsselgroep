@@ -37,50 +37,47 @@
 @endsection
 
 @section('javascript')
-<script type="text/javascript" src="js/Tree.js"></script>
 <script type="text/javascript">
-	window.addEvent('domready', function(){
-		new Tree(document.id('tree'), {
-			checkDrag: function(element){
-				return !element.hasClass('nodrag');
-			},
-			onChange: function(el) {
-				el.setStyle('opacity', 0.5);
+	new Tree(document.id('tree'), {
+		checkDrag: function(element){
+			return !element.hasClass('nodrag');
+		},
+		onChange: function(el) {
+			el.setStyle('opacity', 0.5);
+			new Request({
+				url: '{{ route('pages.reorder') }}',
+				data: {
+					_token: '{{ csrf_token() }}',
+					tree: this.serialize(function(el){
+						return el.getProperty('data-page-id');
+					})
+				},
+				onSuccess: function() {
+					el.setStyle('opacity', 1);
+				}
+			}).post();
+		}
+	});
+
+	document.id('tree').addEvents({
+		'click:relay(.button.delete)': function(event){
+			event.preventDefault();
+			var el = this.getParent('li').setStyle('opacity', 0.5);
+			var url = this.href;
+			new Confirm('Wilt u deze pagina en eventuele subpaginas verwijderen?', function() {
 				new Request({
-					url: '{{ route('pages.reorder') }}',
+					url: url,
 					data: {
-						_token: '{{ csrf_token() }}',
-						tree: this.serialize(function(el){
-							return el.getProperty('data-page-id');
-						})
+						_token: '{{ csrf_token() }}'
 					},
 					onSuccess: function() {
-						el.setStyle('opacity', 1);
+						el.dispose();
 					}
 				}).post();
-			}
-		});
-
-		document.id('tree').addEvents({
-			'click:relay(.button.delete)': function(event){
-				event.preventDefault();
-				var el = this.getParent('li').setStyle('opacity', 0.5);
-				var url = this.href;
-				new Confirm('Wilt u deze pagina en eventuele subpaginas verwijderen?', function() {
-					new Request({
-						url: url,
-						data: {
-							_token: '{{ csrf_token() }}'
-						},
-						onSuccess: function() {
-							el.dispose();
-						}
-					}).post();
-				}, function() {
-					el.setStyle('opacity', 1);
-				});
-			}
-		});
+			}, function() {
+				el.setStyle('opacity', 1);
+			});
+		}
 	});
 </script>
 @endsection

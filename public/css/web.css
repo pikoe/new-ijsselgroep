@@ -38,6 +38,9 @@ html {
 	background-size: cover;
 	background-attachment: fixed;
 }
+@media screen and (max-width : 767px) {
+	background: #57a528 url(../img/background-mobile.png) no-repeat center bottom;
+}
 body {
 	position: relative;
 	margin-top: 100px;

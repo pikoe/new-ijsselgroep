@@ -33,13 +33,19 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('', function () {
 		return view('admin');
 	});
-	Route::group(['prefix' => 'pages', 'as' => 'pages.'], function () {
-		Route::get('', ['uses' => 'PagesController@index', 'as' => 'index']);
-		Route::any('add', ['uses' => 'PagesController@add', 'as' => 'add']);
-		Route::any('edit/{page}', ['uses' => 'PagesController@edit', 'as' => 'edit']);
-		Route::post('delete/{page}', ['uses' => 'PagesController@delete', 'as' => 'delete']);
-		Route::post('reorder', ['uses' => 'PagesController@reorder', 'as' => 'reorder']);
-	});
+
+	Route::get('pages', ['uses' => 'PagesController@index', 'as' => 'pages.index']);
+	Route::any('pages/add', ['uses' => 'PagesController@add', 'as' => 'pages.add']);
+	Route::any('pages/edit/{page}', ['uses' => 'PagesController@edit', 'as' => 'pages.edit']);
+	Route::post('pages/delete/{page}', ['uses' => 'PagesController@delete', 'as' => 'pages.delete']);
+	Route::post('pages/reorder', ['uses' => 'PagesController@reorder', 'as' => 'pages.reorder']);
+
+	Route::get('events/{yyyy?}/{mm?}/{dd?}', ['uses' => 'EventsController@index', 'as' => 'events.index'])->where([
+		'yyyy' => '[12][0-9]{3}',
+		'mm' => '(0[1-9]|1[012])',
+		'dd' => '(0[1-9]|[12][0-9]|3[01])'
+	]);
+	Route::any('events/add', ['uses' => 'EventsController@add', 'as' => 'events.add']);
 });
 
 Route::get('/article', function () {

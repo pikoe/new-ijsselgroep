@@ -24,10 +24,10 @@
 		</form>
 		<ul>
 			<li>
-				<a class="calendar" href="admin#">Kalender</a>
+				<a class="calendar" href="{{ route('events.index') }}">Kalender</a>
 			</li>
 			<li>
-				<a class="pages" href="admin/pages">Pagina&#39;s</a>
+				<a class="pages" href="{{ route('pages.index') }}">Pagina&#39;s</a>
 			</li>
 			<li>
 				<a class="settings" href="admin#">Settings</a>
@@ -75,6 +75,7 @@
 	</div>
 	<script type="text/javascript" src="js/MooTools-More-1.6.0-compressed.js"></script>
 	<script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript" src="js/Tree.js"></script>
 	<script type="text/javascript" src="js/Confirm.js"></script>
 	<script type="text/javascript">
 		Locale.use('nl-NL');

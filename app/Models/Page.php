@@ -5,7 +5,7 @@ use Kalnoy\Nestedset\NodeTrait;
 class Page extends Model {
 	use NodeTrait;
 	
-	public $fillable = [
+	protected $fillable = [
 		'name',
 		'url'
 	];

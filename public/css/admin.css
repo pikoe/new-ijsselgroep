@@ -501,3 +501,83 @@ li.drag {
 li.drag span * {
 	display: none;
 }
+
+table.calendar {
+	width: 100%;
+	table-layout: fixed;
+	user-select: none;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+table.calendar th,
+table.calendar td {
+	vertical-align: top;
+	padding: 0;
+	margin: 0;
+}
+table.calendar th.week,
+table.calendar th.week-number {
+	width: 25px;
+	text-align: left;
+}
+@media screen and (max-width : 767px) {
+	table.calendar th span {
+		display: none;
+	}
+}
+table.calendar td {
+	height: 70px;
+	position: relative;
+	overflow: hidden;
+}
+table.calendar td:hover {
+	background: #fff;
+}
+
+table.calendar td .day {
+	font-size: 11px;
+	margin: 2px;
+}
+table.calendar td .start-of-month + .day {
+	margin-left: 20px;
+}
+table.calendar td .start-of-month {
+	width: 50px;
+	height: 50px;
+	padding: 0 3px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: right;
+	-ms-transform: rotate(270deg); /* IE 9 */
+    -webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
+    transform: rotate(270deg);
+	z-index: 3;
+	pointer-events: none;
+}
+table.calendar td .end-of-month {
+	width: 50px;
+	height: 50px;
+	padding: 0 3px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-align: left;
+	-ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+	z-index: 3;
+	pointer-events: none;
+}
+table.calendar td .event {
+	position: absolute;
+	background: #55aaf3;
+	color: #fff;
+	font-size: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor: pointer;
+}
+table.calendar td .event.hover {
+	background: #23527c;
+}
