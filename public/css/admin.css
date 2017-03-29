@@ -526,7 +526,7 @@ table.calendar th.week-number {
 	}
 }
 table.calendar td {
-	height: 70px;
+	height: 120px;
 	position: relative;
 	overflow: hidden;
 }
@@ -580,4 +580,8 @@ table.calendar td .event {
 }
 table.calendar td .event.hover {
 	background: #23527c;
+}
+table.calendar td.day.selected {
+	background: #5cb85c;
+	cursor: copy;
 }

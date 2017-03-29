@@ -13,4 +13,12 @@ class Event extends Model {
 		'start',
 		'end',
 	];
+	
+	public function locations() {
+		return $this->belongsToMany(Location::class);
+	}
+	
+	public function groups() {
+		return $this->belongsToMany(Group::class);
+	}
 }

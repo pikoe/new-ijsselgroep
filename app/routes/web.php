@@ -45,7 +45,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 		'mm' => '(0[1-9]|1[012])',
 		'dd' => '(0[1-9]|[12][0-9]|3[01])'
 	]);
-	Route::any('events/add', ['uses' => 'EventsController@add', 'as' => 'events.add']);
+	Route::any('events/add/{start?}/{end?}', ['uses' => 'EventsController@add', 'as' => 'events.add'])->where([
+		'start' => '[12][0-9]{3}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])',
+		'end' => '[12][0-9]{3}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])'
+	]);
+	Route::any('events/edit/{event}', ['uses' => 'EventsController@edit', 'as' => 'events.edit']);
 });
 
 Route::get('/article', function () {

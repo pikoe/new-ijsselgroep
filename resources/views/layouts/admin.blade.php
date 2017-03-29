@@ -176,7 +176,9 @@
 			form.setProperty('novalidate', true);
 			
 		});
-		
+		@foreach($errors->all() as $key => $error)
+			alert('{{ $error }} {{ $key }}');
+		@endforeach
 	</script>
 	@yield('javascript')
 </body>
