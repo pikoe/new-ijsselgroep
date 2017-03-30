@@ -23,16 +23,26 @@
 	
 	<div class="input">
 		<label>Groepen</label>
+		<ul class="select-list">
 		@foreach($groups->get() as $group)
-			<label><input type="checkbox" name="groups[]" value="{{ $group->id }}"> {{ $group->name }}</label>
+			<li>
+				<input type="checkbox" id="group_{{ $group->id }}" name="groups[]" value="{{ $group->id }}"{{ in_array($group->id, old('groups', []))?' checked':'' }}>
+				<label for="group_{{ $group->id }}">{{ $group->name }}</label>
+			</li>
 		@endforeach
+		</ul>
 	</div>
 	
 	<div class="input">
 		<label>Locaties</label>
+		<ul class="select-list">
 		@foreach($locations->get() as $location)
-			<label><input type="checkbox" name="locations[]" value="{{ $location->id }}"> {{ $location->name }}</label>
+			<li>
+				<input type="checkbox" id="location_{{ $location->id }}" name="locations[]" value="{{ $location->id }}"{{ in_array($location->id, old('locations', []))?' checked':'' }}>
+				<label for="location_{{ $location->id }}">{{ $location->name }}</label>
+			</li>
 		@endforeach
+		</ul>
 	</div>
 	
 	<div class="toolbar clearfix">

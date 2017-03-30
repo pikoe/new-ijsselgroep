@@ -59,25 +59,23 @@
 		}
 	});
 
-	document.id('tree').addEvents({
-		'click:relay(.button.delete)': function(event){
-			event.preventDefault();
-			var el = this.getParent('li').setStyle('opacity', 0.5);
-			var url = this.href;
-			new Confirm('Wilt u deze pagina en eventuele subpaginas verwijderen?', function() {
-				new Request({
-					url: url,
-					data: {
-						_token: '{{ csrf_token() }}'
-					},
-					onSuccess: function() {
-						el.dispose();
-					}
-				}).post();
-			}, function() {
-				el.setStyle('opacity', 1);
-			});
-		}
+	document.id('tree').addEvent('click:relay(.button.delete)', function(event){
+		event.preventDefault();
+		var el = this.getParent('li').setStyle('opacity', 0.5);
+		var url = this.href;
+		new Confirm('Wilt u deze pagina en eventuele subpaginas verwijderen?', function() {
+			new Request({
+				url: url,
+				data: {
+					_token: '{{ csrf_token() }}'
+				},
+				onSuccess: function() {
+					el.dispose();
+				}
+			}).post();
+		}, function() {
+			el.setStyle('opacity', 1);
+		});
 	});
 </script>
 @endsection

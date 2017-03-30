@@ -39,8 +39,8 @@ class EventsController extends Controller {
 				return redirect()->back()->withInput()->withErrors(['Zorg dat het eind minimaal 15 minuten na de start is']);
 			}
 			if($event->save()) {
-				$event->locations()->attach($request->locations);
-				$event->groups()->attach($request->groups);
+				$event->locations()->attach((array)$request->locations);
+				$event->groups()->attach((array)$request->groups);
 				
 				return redirect()->route('events.index');
 			}
@@ -66,7 +66,7 @@ class EventsController extends Controller {
 		return view('events.add', [
 			'start' => $start,
 			'end' => $end,
-			'groups' => Group::orderBy('name'),
+			'groups' => Group::orderBy('id'),
 			'locations' => Location::orderBy('name')
 		]);
 	}
@@ -80,8 +80,8 @@ class EventsController extends Controller {
 				return redirect()->back()->withInput()->withErrors(['Zorg dat het eind minimaal 15 minuten na de start is']);
 			}
 			if($event->save()) {
-				$event->locations()->sync($request->locations);
-				$event->groups()->sync($request->groups);
+				$event->locations()->sync((array)$request->locations);
+				$event->groups()->sync((array)$request->groups);
 				
 				return redirect()->route('events.index');
 			}
@@ -89,8 +89,16 @@ class EventsController extends Controller {
 		
 		return view('events.edit', [
 			'event' => $event,
-			'groups' => Group::orderBy('name'),
+			'groups' => Group::orderBy('id'),
 			'locations' => Location::orderBy('name')
 		]);
+	}
+	
+	public function delete(Event $event) {
+		if($event->delete()) {
+			return [true];
+		} else {
+			return [false];
+		}
 	}
 }

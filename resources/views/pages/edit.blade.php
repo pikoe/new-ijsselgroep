@@ -5,6 +5,9 @@
 	<div class="toolbar clearfix">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<h2>Pagina toevoegen</h2>
+		<div class="buttons">
+			<a id="delete-page" class="button delete" href="{{ route('pages.delete', $page->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
+		</div>
 	</div>
 	
 	<div class="input">
@@ -23,4 +26,24 @@
 		</div>
 	</div>
 </form>
+@endsection
+
+@section('javascript')
+<script type="text/javascript">
+	document.id('delete-page').addEvent('click', function(event){
+		event.preventDefault();
+		event.currentTarget = this;
+		new Confirm('Wilt u deze pagina en eventuele subpaginas verwijderen?', function() {
+			new Request({
+				url: event.currentTarget.href,
+				data: {
+					_token: '{{ csrf_token() }}'
+				},
+				onSuccess: function() {
+					location.href = '{{ route('pages.index') }}';
+				}
+			}).post();
+		}, function() {});
+	});
+</script>
 @endsection

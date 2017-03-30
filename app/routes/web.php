@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 		'end' => '[12][0-9]{3}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])'
 	]);
 	Route::any('events/edit/{event}', ['uses' => 'EventsController@edit', 'as' => 'events.edit']);
+	Route::post('pages/event/{event}', ['uses' => 'EventsController@delete', 'as' => 'events.delete']);
 });
 
 Route::get('/article', function () {

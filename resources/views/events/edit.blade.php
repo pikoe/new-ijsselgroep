@@ -1,10 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-<form class="form" action="{{ route('events.add') }}" method="POST">
+<form class="form" action="{{ route('events.edit', $event->id) }}" method="POST">
 	<div class="toolbar clearfix">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<h2>Activiteit toevoegen</h2>
+		<div class="buttons">
+			<a id="delete-event" class="button delete" href="{{ route('events.delete', $event->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
+		</div>
 	</div>
 	
 	<div class="input">
@@ -23,23 +26,55 @@
 	
 	<div class="input">
 		<label>Groepen</label>
+		<ul class="select-list">
 		@foreach($groups->get() as $group)
-			<label><input type="checkbox" name="groups[]" value="{{ $group->id }}"{{ in_array($group->id, old('groups', $event->groups()->allRelatedIds()->toArray()))?' checked':'' }}> {{ $group->name }}</label>
+			<li>
+				<input type="checkbox" id="group_{{ $group->id }}" name="groups[]" value="{{ $group->id }}"{{ in_array($group->id, old('groups', $event->groups()->allRelatedIds()->toArray()))?' checked':'' }}>
+				<label for="group_{{ $group->id }}">{{ $group->name }}</label>
+			</li>
 		@endforeach
+		</ul>
 	</div>
 	
 	<div class="input">
 		<label>Locaties</label>
+		<ul class="select-list">
 		@foreach($locations->get() as $location)
-			<label><input type="checkbox" name="locations[]" value="{{ $location->id }}"{{ in_array($location->id, old('locations', $event->locations()->allRelatedIds()->toArray()))?' checked':'' }}> {{ $location->name }}</label>
+			<li>
+				<input type="checkbox" id="location_{{ $location->id }}" name="locations[]" value="{{ $location->id }}"{{ in_array($location->id, old('locations', $event->locations()->allRelatedIds()->toArray()))?' checked':'' }}>
+				<label for="location_{{ $location->id }}">{{ $location->name }}</label>
+			</li>
 		@endforeach
+		</ul>
 	</div>
 	
 	<div class="toolbar clearfix">
 		<div class="buttons bottom">
-			<button class="button add" title="Toevoegen"><i class="fa fa-plus" aria-hidden="true"></i> Toevoegen</button>
+			<button class="button add" title="Bewerken"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</button>
 			<a class="button" href="{{ route('events.index') }}"><i class="fa fa-times" aria-hidden="true"></i> Annuleren</a>
 		</div>
 	</div>
 </form>
+@endsection
+
+@section('javascript')
+<script type="text/javascript">
+	document.id('delete-event').addEvent('click', function(event){
+		event.preventDefault();
+		event.currentTarget = this;
+		new Confirm('Wilt u deze activiteit verwijderen?', function() {
+			new Request({
+				url: event.currentTarget.href,
+				data: {
+					_token: '{{ csrf_token() }}'
+				},
+				onSuccess: function() {
+					location.href = '{{ route('events.index') }}';
+				}
+			}).post();
+		}, function() {
+			console.log(event.currentTarget, event.target, event);
+		});
+	});
+</script>
 @endsection
