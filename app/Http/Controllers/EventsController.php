@@ -7,7 +7,7 @@ use App\Models\Location;
 use App\Models\Group;
 
 class EventsController extends Controller {
-	public function index(Request $request, $year = null, $month = null, $day = null) {
+	public function index(Request $request, $year = null, $month = null, $day = 1) {
 		$date = Carbon::createFromDate($year, $month, $day);
 		
 		$from = $date->copy()->startOfMonth()->previous(Carbon::SUNDAY)->addDay();
