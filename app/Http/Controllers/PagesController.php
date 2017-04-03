@@ -6,7 +6,7 @@ use App\Models\Page;
 class PagesController extends Controller {
 	public function index(Request $request) {
 		return view('pages.index', [
-			'pages' => Page::get()->toTree()
+			'pages' => Page::orderBy('pages.lft')->get()->toTree()
 		]);
 	}
 	public function add(Request $request) {

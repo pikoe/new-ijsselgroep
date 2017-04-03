@@ -6,6 +6,8 @@ class Page extends Model {
 	use NodeTrait;
 	
 	protected $fillable = [
+		'title',
+		'sub_title',
 		'name',
 		'url'
 	];

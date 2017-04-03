@@ -8,6 +8,14 @@
 	</div>
 	
 	<div class="input">
+		<label for="title">Menu titel</label>
+		<input name="title" id="title" value="{{ old('title') }}" size="45" required>
+	</div>
+	<div class="input">
+		<label for="sub_title">Ondertitel</label>
+		<input name="sub_title" id="sub_title" value="{{ old('sub_title') }}" size="45" required>
+	</div>
+	<div class="input">
 		<label for="name">Pagina naam</label>
 		<input name="name" id="name" value="{{ old('name') }}" size="45" required>
 	</div>
@@ -23,4 +31,12 @@
 		</div>
 	</div>
 </form>
+@endsection
+
+@section('javascript')
+<script type="text/javascript">
+	document.id('name').addEvent('keyup', function() {
+		document.id('url').value = this.value.toLowerCase().replace(/[^0-9a-z]+/g, '-');
+	});
+</script>
 @endsection

@@ -20,7 +20,7 @@
 								<a class="button" href="' . route('pages.edit', $page->id) . '"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
 								<a class="button delete" href="' . route('pages.delete', $page->id) . '"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
 							</span>
-							<span' . (empty($page->keyname)?' class="move"':'') . '>' . $page->name . ' (' . $page->children->count() . ')</span>
+							<span' . (empty($page->keyname)?' class="move"':'') . '>' . e($page->title) . ' <i>' . e($page->sub_title) . '</i></span>
 						</span>';
 						if($page->children->count() > 0) {
 							$nodes .= '<ul>' . $traverse($page->children) . '</ul>';

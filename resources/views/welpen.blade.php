@@ -44,6 +44,7 @@
 				<li>Rudy Brummelman (Teamleider)</li>
 				<li>Dave Schonewille</li>
 				<li>Steven Hessing</li>
+				<li><a href="#">Vacature</a></li>
 			</ul>
 			<p><strong>Contact:</strong> <a href="mailto:welpen@scouting-ijsselgroep.nl">welpen@scouting-ijsselgroep.nl</a></p>
 			<p><strong>Programma's:</strong> Iedere zaterdag van 14.00 tot 16.00 uur</p>
