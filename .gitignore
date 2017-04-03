@@ -2,6 +2,8 @@
 /public/storage
 /storage/*
 /vendor
+/nbproject
+/nbproject/*
 /.idea
 .composer.lock
 .env
