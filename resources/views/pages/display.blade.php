@@ -28,7 +28,29 @@
 		<a class="logo" href=""></a>
 		<div id="menu-toggle"><i></i></div>
 		<ul id="menu" class="clearfix">
-			<li class="menu has-sub">
+			@php
+				$traverse = function($pages) use(&$traverse) {
+					$nodes = '';
+					foreach($pages as $page) {
+						if($page->children->count() > 0) {
+							$nodes .= '
+							<li class="has-sub ' . $page->url . '">
+								<a class="icon ' . $page->url . '" href="' . $page->full_url . '">' . e($page->title) . ' <em>' . e($page->sub_title) . '</em></a>
+								<ul>' . $traverse($page->children) . '</ul>
+							</li>';
+						} else {
+							$nodes .= '
+							<li class="' . $page->url . '">
+								<a class="icon ' . $page->url . '" href="' . $page->full_url . '">' . e($page->title) . ' <em>' . e($page->sub_title) . '</em></a>
+							</li>';
+						}
+					}
+					return $nodes;
+				};
+				echo $traverse($menu);
+			@endphp
+			
+			<!--<li class="menu has-sub">
 				<a class="icon scouting" href="scouting">Scouting <em>wat is scouting?</em></a>
 				<ul>
 					<li><a href="lid-worden">Lid worden <em>of eerst eens kijken</em></a></li>
@@ -36,7 +58,7 @@
 				</ul>
 			</li>
 			
-			<li class="menu has-sub age-groups">
+			<li class="has-sub age-groups">
 				<a class="icon age-groups" href="leeftijdsgroepen">Leeftijdsgroepen <em>speltakken</em></a>
 				<ul>
 					<li class="welpen"><a href="leeftijdsgroepen/welpen">Welpen <em>7-11 jaar</em></a></li>
@@ -66,11 +88,25 @@
 			
 			<li class="menu">
 				<a class="icon contact" href="contact">Contact <em>en locatie</em></a>
-			</li>
+			</li>-->
 		</ul>
 	</div>
 	<div class="content">
-@yield('content')
+		
+		
+		<ul class="breadcrumbs clearfix">
+			
+			<li class="home"><a href="/">Home</a></li>
+			@foreach($page->getParents() as $parent)
+				<li><a href="{{ $parent->full_url }}">{{ $parent->name }}</a></li>
+			@endforeach
+			<li><a href="{{ $page->full_url }}">{{ $page->name }}</a></li>
+		</ul>
+		<div class="article-page">
+
+		</div>
+		
+		
 	</div>
 	<div class="footer">
 		<span class="memberships"><a class="ijsselgroep" href="/" title="Scouting IJsselgroep Gorssel">Scouting IJsselgroep Gorssel</a><a class="scouting-nl" href="https://www.scouting.nl/" target="_blank" title="Scouting Nederland">Scouting Nederland</a><a class="scout" href="https://www.scout.org/" target="_blank" title="World Organization of the Scout Movement">World Organization of the Scout Movement</a><a class="wagggs" href="https://www.wagggs.org/en/" target="_blank" title="World Association of Girl Guides and Girl Scouts">World Association of Girl Guides and Girl Scouts</a></span>

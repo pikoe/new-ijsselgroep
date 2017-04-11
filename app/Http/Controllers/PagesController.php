@@ -12,6 +12,7 @@ class PagesController extends Controller {
 	public function add(Request $request) {
 		if($request->isMethod('post')) {
 			$page = new Page($request->all());
+			$page->full_url = $request->url;
 			if($page->save()) {
 				return redirect()->route('pages.index');
 			}
@@ -49,9 +50,14 @@ class PagesController extends Controller {
 				throw new \Exception('Invalid tree data');
 			}
 		});
-		return Page::rebuildTree($tree);
+		
+		if(Page::rebuildTree($tree)) {
+			return [Page::setFullNames(Page::orderBy('pages.lft')->select('id', 'parent_page_id', 'lft', 'rgt', 'url')->get()->toTree())];
+		} else {
+			return [false];
+		}
 	}
-	
+
 	public function editor_images() {
 		$directory = new \RecursiveDirectoryIterator(public_path('upload'));
 		$files = [];
@@ -64,5 +70,12 @@ class PagesController extends Controller {
 			}
 		}
 		return $files;
+	}
+	
+	public function display(Page $page) {
+		return view('pages.display', [
+			'page' => $page,
+			'menu' => Page::orderBy('pages.lft')->select('id', 'title', 'sub_title', 'parent_page_id', 'lft', 'rgt', 'url', 'full_url')->get()->toTree()
+		]);
 	}
 }

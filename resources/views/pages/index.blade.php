@@ -10,9 +10,9 @@
 	</div>
 	<ul class="tree" id="tree">
 		@php
-			$traverse = function($pages) use (&$traverse) {
+			$traverse = function($pages) use(&$traverse) {
 				$nodes = '';
-				foreach ($pages as $page) {
+				foreach($pages as $page) {
 					$nodes .= '
 					<li data-page-id="' . $page->id . '">
 						<span>

@@ -29,4 +29,26 @@ class Page extends Model {
 	public function setParentAttribute($value) {
 		$this->setParentPageIdAttribute($value);
 	}
+	
+	public function getParents() {
+		$parents = [];
+		$parent = $this->parent;
+		if($parent) {
+			$parents[] = $parent;
+			while($parent = $parent->parent) {
+				array_unshift($parents, $parent);
+			}
+		}
+		return $parents;
+	}
+	
+	public static function setFullNames($children = null, $base = false) {
+		foreach($children as $page) {
+			$page->full_url = ($base ? $base . '/' : '') . $page->url;
+			if(!$page->save() || ($page->children && !self::setFullNames($page->children, $page->full_url))) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

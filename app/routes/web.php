@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
 
 Auth::routes();
 
@@ -57,3 +54,8 @@ Route::get('/article', function () {
 	return view('article');
 });
 Route::get('/leeftijdsgroepen/welpen', 'AgeGroupsController@welpen');
+
+Route::get('/', function () {
+	return view('welcome');
+});
+Route::any('{full_url}', ['uses' => 'pagesController@display'])->where('full_url', '.+');

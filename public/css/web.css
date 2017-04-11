@@ -256,40 +256,40 @@ h4 {
 		 -o-transform: scale(1.3);
 			transform: scale(1.3);
 }
-.header a.age-groups:before {
+.header a.leeftijdsgroepen:before {
 	content: "\e91d";
 }
 .header a.scouting:before {
 	content: "\e90e";
 }
-.header a.activities:before {
+.header a.activiteiten:before {
 	content: "\e904";
 }
-.header a.campsite:before {
+.header a.verhuur:before {
 	content: "\e908";
 }
 .header a.contact:before {
 	content: "\e91c";
 }
-.header li.age-groups li a:hover {
+.header li.leeftijdsgroepen li a:hover {
 	background: #333;
 }
-.header li.age-groups li.welpen a:hover {
+.header li.leeftijdsgroepen li.welpen a:hover {
 	color: #9bc459;
 }
-.header li.age-groups li.scouts a:hover {
+.header li.leeftijdsgroepen li.scouts a:hover {
 	color: #f6b135;
 }
-.header li.age-groups li.exporers a:hover {
+.header li.leeftijdsgroepen li.explorers a:hover {
 	color: #c13858;
 }
-.header li.age-groups li.roverscouts a:hover {
+.header li.leeftijdsgroepen li.roverscouts a:hover {
 	color: #ef8339;
 }
-.header li.age-groups li.leiding-en-bestuur a:hover {
+.header li.leeftijdsgroepen li.leiding-en-bestuur a:hover {
 	color: #2f66e8;
 }
-.header li.age-groups li.vrienden-van-de-ijsselgroep a:hover {
+.header li.leeftijdsgroepen li.vrienden-van-de-ijsselgroep a:hover {
 	color: #f2ca06;
 }
 
@@ -396,25 +396,25 @@ h4 {
 	.header .logo {
 		top: 54px;
 	}
-	.header li.age-groups li a {
+	.header li.leeftijdsgroepen li a {
 		padding-left: 12px;
 	}
-	.header li.age-groups li.welpen a {
+	.header li.leeftijdsgroepen li.welpen a {
 		border-left: 4px solid #9bc459;
 	}
-	.header li.age-groups li.scouts a {
+	.header li.leeftijdsgroepen li.scouts a {
 		border-left: 4px solid #f6b135;
 	}
-	.header li.age-groups li.exporers a {
+	.header li.leeftijdsgroepen li.explorers a {
 		border-left: 4px solid #c13858;
 	}
-	.header li.age-groups li.roverscouts a {
+	.header li.leeftijdsgroepen li.roverscouts a {
 		border-left: 4px solid #ef8339;
 	}
-	.header li.age-groups li.leiding-en-bestuur a {
+	.header li.leeftijdsgroepen li.leiding-en-bestuur a {
 		border-left: 4px solid #2f66e8;
 	}
-	.header li.age-groups li.vrienden-van-de-ijsselgroep a {
+	.header li.leeftijdsgroepen li.vrienden-van-de-ijsselgroep a {
 		border-left: 4px solid #f2ca06;
 	}
 	
@@ -452,17 +452,21 @@ h4 {
 	.scrolled .header > ul {
 		padding: 0 0 0 65px;
 	}
-	.header li.menu {
+	.header #menu > li {
 		float: left;
 	}
-	.header li.menu > a {
+	.header #menu > li > a {
 		float: left;
 		margin: 0 0 0 10px;
+	}
+	.header #menu > li.leeftijdsgroepen > ul > li > a {
+		float: none;
+		margin: 0;
 	}
 	.header li.has-sub a {
 		padding-right: 36px;
 	}
-	.header li.menu.has-sub > ul {
+	.header #menu > li.has-sub > ul {
 		display: none;
 		background: #fff;
 		position: absolute;
@@ -474,10 +478,10 @@ h4 {
 		border: 1px solid #999;
 		overflow: hidden;
 	}
-	.header li.menu.has-sub:hover > ul {
+	.header #menu > li.has-sub:hover > ul {
 		display: block;
 	}
-	.header li.age-groups {
+	.header li.leeftijdsgroepen {
 		padding-right: 0;
 		position: absolute;
 		top: 0;
@@ -486,26 +490,26 @@ h4 {
 		display: table;
 		table-layout: fixed;
 	}
-	.header li.age-groups::after {
+	.header li.leeftijdsgroepen::after {
 		display: none;
 	}
-	.header li.age-groups > a {
+	.header li.leeftijdsgroepen > a {
 		display: none;
 	}
-	.header li.age-groups > ul {
-		display: table-row;
-		position: relative;
-		top: auto;
-		left: auto;
-		right: auto;
+	.header li.leeftijdsgroepen > ul {
+		display: table-row !important;
+		position: relative !important;
+		top: auto !important;
+		left: auto !important;
+		right: auto !important;
 	}
-	.header li.age-groups > ul > li {
+	.header li.leeftijdsgroepen > ul > li {
 		display: table-cell;
 		float: none;
 		vertical-align: top;
 		text-align: center;
 	}
-	.header li.age-groups > ul > li > a {
+	.header li.leeftijdsgroepen > ul > li > a {
 		height: 68px;
 		padding: 10px 3px 9px 3px;
 		
@@ -518,33 +522,33 @@ h4 {
 		-webkit-transition: height 0.4s; /* Safari */
 		transition: height 0.4s;
 	}
-	.header li.age-groups li.welpen a {
+	.header li.leeftijdsgroepen li.welpen a {
 		border-bottom: 5px solid #9bc459;
 	}
-	.header li.age-groups li.scouts a {
+	.header li.leeftijdsgroepen li.scouts a {
 		border-bottom: 5px solid #f6b135;
 	}
-	.header li.age-groups li.exporers a {
+	.header li.leeftijdsgroepen li.explorers a {
 		border-bottom: 5px solid #c13858;
 	}
-	.header li.age-groups li.roverscouts a {
+	.header li.leeftijdsgroepen li.roverscouts a {
 		border-bottom: 5px solid #ef8339;
 	}
-	.header li.age-groups li.leiding-en-bestuur a {
+	.header li.leeftijdsgroepen li.leiding-en-bestuur a {
 		border-bottom: 5px solid #2f66e8;
 	}
-	.header li.age-groups li.vrienden-van-de-ijsselgroep a {
+	.header li.leeftijdsgroepen li.vrienden-van-de-ijsselgroep a {
 		border-bottom: 5px solid #f2ca06;
 	}
-	.header li.age-groups li a:hover {
+	.header li.leeftijdsgroepen li a:hover {
 		padding: 10px 3px 4px 3px;
 		border-bottom-width: 10px;
 	}
 	
-	.scrolled .header li.age-groups li a {
+	.scrolled .header li.leeftijdsgroepen li a {
 		height: 44px;
 	}
-	.scrolled .header li.age-groups li a em {
+	.scrolled .header li.leeftijdsgroepen li a em {
 		display: none;
 	}
 }
