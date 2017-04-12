@@ -33,75 +33,27 @@
 					$nodes = '';
 					foreach($pages as $page) {
 						if($page->children->count() > 0) {
-							$nodes .= '
-							<li class="has-sub ' . $page->url . '">
-								<a class="icon ' . $page->url . '" href="' . $page->full_url . '">' . e($page->title) . ' <em>' . e($page->sub_title) . '</em></a>
-								<ul>' . $traverse($page->children) . '</ul>
-							</li>';
+							$nodes .= '<li class="has-sub ' . $page->url . '"><a class="icon ' . $page->url . '" href="' . $page->full_url . '">' . e($page->title) . ' <em>' . e($page->sub_title) . '</em></a><ul>' . $traverse($page->children) . '</ul></li>';
 						} else {
-							$nodes .= '
-							<li class="' . $page->url . '">
-								<a class="icon ' . $page->url . '" href="' . $page->full_url . '">' . e($page->title) . ' <em>' . e($page->sub_title) . '</em></a>
-							</li>';
+							$nodes .= '<li class="' . $page->url . '"><a class="icon ' . $page->url . '" href="' . $page->full_url . '">' . e($page->title) . ' <em>' . e($page->sub_title) . '</em></a></li>';
 						}
 					}
 					return $nodes;
 				};
 				echo $traverse($menu);
 			@endphp
-			
-			<!--<li class="menu has-sub">
-				<a class="icon scouting" href="scouting">Scouting <em>wat is scouting?</em></a>
-				<ul>
-					<li><a href="lid-worden">Lid worden <em>of eerst eens kijken</em></a></li>
-					<li><a href="kleding">Kleding <em>de scoutfit</em></a></li>
-				</ul>
-			</li>
-			
-			<li class="has-sub age-groups">
-				<a class="icon age-groups" href="leeftijdsgroepen">Leeftijdsgroepen <em>speltakken</em></a>
-				<ul>
-					<li class="welpen"><a href="leeftijdsgroepen/welpen">Welpen <em>7-11 jaar</em></a></li>
-					<li class="scouts"><a href="leeftijdsgroepen/scouts">Scouts <em>11-15 jaar</em></a></li>
-					<li class="exporers"><a href="leeftijdsgroepen/explorers">Explorers <em>16-18 jaar</em></a>
-					<li class="roverscouts"><a href="leeftijdsgroepen/roverscouts">Rovers <em>18-21 jaar</em></a>
-					<li class="leiding-en-bestuur"><a href="leiding-en-bestuur">Leiding <em>&amp; bestuur</em></a>
-					<li class="vrienden-van-de-ijsselgroep"><a href="vrienden-van-de-ijsselgroep">Vrienden <em>oud leden</em></a></li>
-				</ul>
-			</li>
-			
-			<li class="menu has-sub">
-				<a class="icon activities" href="activiteiten">Activiteiten <em>wat doen we?</em></a>
-				<ul>
-					<li><a href="activiteiten/kalender">Kalender <em>komende activiteiten</em></a></li>
-					<li><a href="fotos">Foto&#39;s <em>van de programma&#39;s</em></a></li>
-				</ul>
-			</li>
-			
-			<li class="menu has-sub">
-				<a class="icon campsite" href="verhuur">Verhuur <em>gebouwen en terrein</em></a>
-				<ul>
-					<li><a href="verhuur/troephuis">Troephuis <em>voor je (zomer)kamp</em></a></li>
-					<li><a href="verhuur/hordehol">Hordehol <em>het vakantiehuisje</em></a></li>
-				</ul>
-			</li>
-			
-			<li class="menu">
-				<a class="icon contact" href="contact">Contact <em>en locatie</em></a>
-			</li>-->
 		</ul>
 	</div>
 	<div class="content">
-		
-		
 		<ul class="breadcrumbs clearfix">
-			
 			<li class="home"><a href="/">Home</a></li>
 			@foreach($page->getParents() as $parent)
-				<li><a href="{{ $parent->full_url }}">{{ $parent->name }}</a></li>
+			<li><a href="{{ $parent->full_url }}">{{ $parent->name }}</a></li>
 			@endforeach
 			<li><a href="{{ $page->full_url }}">{{ $page->name }}</a></li>
 		</ul>
+		
+		
 		<div class="article-page">
 
 		</div>
@@ -124,8 +76,10 @@
 			}
 		});
 		
+		var headerScroll = new Fx.Scroll(document.getElement('.header'));
 		document.id('menu-toggle').addEvent('click', function() {
 			if(document.body.hasClass('menu-open')) {
+				headerScroll.toTop();
 				document.body.removeClass('menu-open');
 			} else {
 				document.body.addClass('menu-open');

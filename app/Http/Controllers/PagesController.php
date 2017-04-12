@@ -73,7 +73,7 @@ class PagesController extends Controller {
 	}
 	
 	public function display(Page $page) {
-		return view('pages.display', [
+		return view('layouts.display', [
 			'page' => $page,
 			'menu' => Page::orderBy('pages.lft')->select('id', 'title', 'sub_title', 'parent_page_id', 'lft', 'rgt', 'url', 'full_url')->get()->toTree()
 		]);

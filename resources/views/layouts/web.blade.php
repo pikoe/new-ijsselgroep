@@ -28,43 +28,63 @@
 		<a class="logo" href=""></a>
 		<div id="menu-toggle"><i></i></div>
 		<ul id="menu" class="clearfix">
-			<li class="menu has-sub">
-				<a class="icon scouting" href="scouting">Scouting <em>wat is scouting?</em></a>
+			<li class="has-sub scouting">
+				<a class="icon scouting" href="scouting">Scouting <em>Wat is scouting?</em></a>
 				<ul>
-					<li><a href="lid-worden">Lid worden <em>of eerst eens kijken</em></a></li>
-					<li><a href="kleding">Kleding <em>de scoutfit</em></a></li>
+					<li class="lid-worden">
+						<a class="icon lid-worden" href="scouting/lid-worden">Lid worden <em>of eerst een keer kijken</em></a>
+					</li>
+					<li class="scoutfit">
+						<a class="icon scoutfit" href="scouting/scoutfit">Kleding <em>de scoutfit</em></a>
+					</li>
 				</ul>
 			</li>
-			
-			<li class="menu has-sub age-groups">
-				<a class="icon age-groups" href="leeftijdsgroepen">Leeftijdsgroepen <em>speltakken</em></a>
+			<li class="has-sub leeftijdsgroepen">
+				<a class="icon leeftijdsgroepen" href="leeftijdsgroepen">Leeftijdsgroepen <em>de speltakken</em></a>
 				<ul>
-					<li class="welpen"><a href="leeftijdsgroepen/welpen">Welpen <em>7-11 jaar</em></a></li>
-					<li class="scouts"><a href="leeftijdsgroepen/scouts">Scouts <em>11-15 jaar</em></a></li>
-					<li class="exporers"><a href="leeftijdsgroepen/explorers">Explorers <em>16-18 jaar</em></a>
-					<li class="roverscouts"><a href="leeftijdsgroepen/roverscouts">Rovers <em>18-21 jaar</em></a>
-					<li class="leiding-en-bestuur"><a href="leiding-en-bestuur">Leiding <em>&amp; bestuur</em></a>
-					<li class="vrienden-van-de-ijsselgroep"><a href="vrienden-van-de-ijsselgroep">Vrienden <em>oud leden</em></a></li>
+					<li class="welpen">
+						<a class="icon welpen" href="leeftijdsgroepen/welpen">Welpen <em>7-11 jaar</em></a>
+					</li>
+					<li class="scouts">
+						<a class="icon scouts" href="leeftijdsgroepen/scouts">Scouts <em>11-15 jaar</em></a>
+					</li>
+					<li class="explorers">
+						<a class="icon explorers" href="leeftijdsgroepen/explorers">Explorers <em>15-18 jaar</em></a>
+					</li>
+					<li class="roverscouts">
+						<a class="icon roverscouts" href="leeftijdsgroepen/roverscouts">Rovers <em>18-21 jaar</em></a>
+					</li>
+					<li class="leiding-en-bestuur">
+						<a class="icon leiding-en-bestuur" href="leeftijdsgroepen/leiding-en-bestuur">Leiding <em>&amp; bestuur</em></a>
+					</li>
+					<li class="vrienden-van-de-ijsselgroep">
+						<a class="icon vrienden-van-de-ijsselgroep" href="leeftijdsgroepen/vrienden-van-de-ijsselgroep">Vrienden <em>oud leden</em></a>
+					</li>
 				</ul>
 			</li>
-			
-			<li class="menu has-sub">
-				<a class="icon activities" href="activiteiten">Activiteiten <em>wat doen we?</em></a>
+			<li class="has-sub activiteiten">
+				<a class="icon activiteiten" href="activiteiten">Activiteiten <em>wat doen we?</em></a>
 				<ul>
-					<li><a href="activiteiten/kalender">Kalender <em>komende activiteiten</em></a></li>
-					<li><a href="fotos">Foto&#39;s <em>van de programma&#39;s</em></a></li>
+					<li class="kalender">
+						<a class="icon kalender" href="activiteiten/kalender">Kalender <em>komende activiteiten</em></a>
+					</li>
+					<li class="fotos">
+						<a class="icon fotos" href="activiteiten/fotos">Foto's <em>van de programma's</em></a>
+					</li>
 				</ul>
 			</li>
-			
-			<li class="menu has-sub">
-				<a class="icon campsite" href="verhuur">Verhuur <em>gebouwen en terrein</em></a>
+			<li class="has-sub verhuur">
+				<a class="icon verhuur" href="verhuur">Verhuur <em>gebouwen en terrein</em></a>
 				<ul>
-					<li><a href="verhuur/troephuis">Troephuis <em>voor je (zomer)kamp</em></a></li>
-					<li><a href="verhuur/hordehol">Hordehol <em>het vakantiehuisje</em></a></li>
+					<li class="troephuis">
+						<a class="icon troephuis" href="verhuur/troephuis">Troephuis <em>voor je (zomer) kamp</em></a>
+					</li>
+					<li class="hordehol">
+						<a class="icon hordehol" href="verhuur/hordehol">Hordehol <em>het zomerhuisje</em></a>
+					</li>
 				</ul>
 			</li>
-			
-			<li class="menu">
+			<li class="contact">
 				<a class="icon contact" href="contact">Contact <em>en locatie</em></a>
 			</li>
 		</ul>

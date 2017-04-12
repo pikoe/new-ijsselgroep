@@ -15,7 +15,7 @@
 				foreach($pages as $page) {
 					$nodes .= '
 					<li data-page-id="' . $page->id . '">
-						<span>
+						<span data-href="' . route('pages.edit', $page->id) . '">
 							<span class="hover">
 								<a class="button" href="' . route('pages.edit', $page->id) . '"><i class="fa fa-cogs" aria-hidden="true"></i> Bewerken</a>
 								<a class="button delete" href="' . route('pages.delete', $page->id) . '"><i class="fa fa-trash-o" aria-hidden="true"></i> Verwijderen</a>
@@ -59,6 +59,12 @@
 		}
 	});
 
+	document.id('tree').addEvent('click:relay(li > span)', function(event){
+		if(!event.target.hasClass('button')) {
+			event.preventDefault();
+			window.location = this.getProperty('data-href');
+		}
+	});
 	document.id('tree').addEvent('click:relay(.button.delete)', function(event){
 		event.preventDefault();
 		var el = this.getParent('li').setStyle('opacity', 0.5);
