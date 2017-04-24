@@ -139,6 +139,7 @@
 				xhr.send(formData);
 			},
 			file_picker_types: 'image', 
+			document_base_url: '{{ env('APP_URL', 'http://localhost') }}/',
 			images_reuse_filename: true,
 			file_picker_callback: function(callback, value, meta) {
 				var input = document.createElement('input');

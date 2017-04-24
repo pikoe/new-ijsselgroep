@@ -40,7 +40,7 @@
 					}
 					return $nodes;
 				};
-				echo $traverse($menu);
+				echo $traverse(request()->get('menu'));
 			@endphp
 		</ul>
 	</div>

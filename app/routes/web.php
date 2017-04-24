@@ -50,12 +50,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::post('pages/event/{event}', ['uses' => 'EventsController@delete', 'as' => 'events.delete']);
 });
 
-Route::get('/article', function () {
-	return view('article');
-});
-Route::get('/leeftijdsgroepen/welpen', 'AgeGroupsController@welpen');
+Route::group(['middleware' => 'front'], function () {
+	Route::get('/article', function () {
+		return view('article');
+	});
+	Route::get('/leeftijdsgroepen/welpen', 'AgeGroupsController@welpen');
 
-Route::get('/', function () {
-	return view('welcome');
+	Route::get('/', function () {
+		return view('welcome');
+	});
+	Route::any('{full_url}', ['uses' => 'pagesController@display'])->where('full_url', '.+');
 });
-Route::any('{full_url}', ['uses' => 'pagesController@display'])->where('full_url', '.+');

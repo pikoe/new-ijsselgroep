@@ -28,16 +28,7 @@
 	</div>
 	
 	<div class="page-content">
-		<pre>
-		// TODO page-content
-		Page
-		\-> page elements
-			\-> calendar
-			\-> text
-			\-> album
-			\-> article list
-			\-> article selection
-		</pre>
+		<textarea class="editor" name="text" id="text">{{ old('text', $page->text) }}</textarea>
 	</div>
 	
 	<div class="toolbar clearfix">

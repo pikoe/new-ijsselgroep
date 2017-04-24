@@ -47,6 +47,7 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
+		'front' => \App\Http\Middleware\Front::class,
 		'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
 		'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
 		'can' => \Illuminate\Auth\Middleware\Authorize::class,

@@ -9,7 +9,8 @@ class Page extends Model {
 		'title',
 		'sub_title',
 		'name',
-		'url'
+		'url',
+		'text'
 	];
 
 

@@ -24,6 +24,10 @@
 		<input name="url" id="url" value="{{ old('url') }}" size="45" required pattern="[a-z0-9\-]+" data-pattern-msg="Gebruik alleen kleine letters, cijfers of koppelstreepjes">
 	</div>
 	
+	<div class="page-content">
+		<textarea class="editor" name="text" id="text">{{ old('text') }}</textarea>
+	</div>
+	
 	<div class="toolbar clearfix">
 		<div class="buttons bottom">
 			<button class="button add" title="Toevoegen"><i class="fa fa-plus" aria-hidden="true"></i> Toevoegen</button>
