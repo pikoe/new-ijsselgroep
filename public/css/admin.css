@@ -52,17 +52,18 @@ a:focus {
 	clear: both;
 }
 
-.form .input:before,
-.form .input:after,
-.clearfix:before,
-.clearfix:after {
-    content: "";
-    display: table;
+.clearfix:after,
+.form .input:after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0;
 }
-.form .input:after,
-.clearfix:after {
-    clear: both;
-}
+* html .clearfix,
+* html .form .input:after { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix,
+*:first-child+html .form .input:after { zoom: 1; } /* IE7 */
 
 .form .input,
 .clearfix {

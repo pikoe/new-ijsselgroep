@@ -20,7 +20,7 @@ class PageContent extends Model {
     }
 	
 	public function display() {
-		return '<div class="content-block" id="content-' . $this->id . '" data-content="' . $this->model . '-' . $this->model_id . '">' . $this->class::find($this->model_id)->display() . '</div>';
+		return '<div class="content-block clearfix" id="content-' . $this->id . '" data-content="' . $this->model . '-' . $this->model_id . '">' . $this->class::find($this->model_id)->display() . '</div>';
 	}
 	
 	public function displayEdit() {

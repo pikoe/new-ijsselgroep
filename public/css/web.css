@@ -68,17 +68,15 @@ img {
 	clear: both;
 }
 
-.clearfix:before,
 .clearfix:after {
-    content: "";
-    display: table;
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0;
 }
-.clearfix:after {
-    clear: both;
-}
-.clearfix {
-    *zoom: 1;
-}
+* html .clearfix { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
 h1,
 h2,
@@ -722,9 +720,9 @@ h4 {
 	position: relative;
 }
 
-@media screen and (max-width: 789px) {
+@media (max-width: 789px) {
 }
-@media screen and (min-width: 790px) {
+@media (min-width: 790px) {
 	.content .page-area {
 		width: 100%;
 		margin: 0 0 -15px 0;
@@ -864,6 +862,20 @@ table.calendar td .end-of-month {
 	z-index: 3;
 	pointer-events: none;
 }
+
+@media (max-width : 450px) {
+	table.calendar td .day {
+		font-size: 10px;
+	}
+	table.calendar td .start-of-month,
+	table.calendar td .end-of-month {
+		font-size: 11px;
+	}
+	table.calendar td .start-of-month + .day {
+		padding-left: 15px;
+	}
+}
+
 table.calendar td .event {
 	position: absolute;
 	z-index: 2;
@@ -888,6 +900,7 @@ table.calendar td.day.selected {
 img.right-into-image {
 	float: right;
 	max-width: 100%;
+	height: auto;
 	display: block;
 	margin: 0 0 25px 25px;
 }
