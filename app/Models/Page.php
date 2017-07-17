@@ -10,7 +10,7 @@ class Page extends Model {
 		'sub_title',
 		'name',
 		'url',
-		'text'
+		'layout'
 	];
 
 
@@ -29,6 +29,14 @@ class Page extends Model {
 	// Specify parent id attribute mutator
 	public function setParentAttribute($value) {
 		$this->setParentPageIdAttribute($value);
+	}
+	
+	public function contents($block = null) {
+		if($block) {
+			return $this->hasMany(PageContent::class)->where('block', $block)->orderBy('prio');
+		} else {
+			return $this->hasMany(PageContent::class)->orderBy('block')->orderBy('prio');
+		}
 	}
 	
 	public function getParents() {

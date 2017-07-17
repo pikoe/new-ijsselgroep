@@ -53,12 +53,7 @@
 			<li><a href="{{ $page->full_url }}">{{ $page->name }}</a></li>
 		</ul>
 		
-		
-		<div class="article-page">
-
-		</div>
-		
-		
+		@include('page-layouts/' . $page->layout)
 	</div>
 	<div class="footer">
 		<span class="memberships"><a class="ijsselgroep" href="/" title="Scouting IJsselgroep Gorssel">Scouting IJsselgroep Gorssel</a><a class="scouting-nl" href="https://www.scouting.nl/" target="_blank" title="Scouting Nederland">Scouting Nederland</a><a class="scout" href="https://www.scout.org/" target="_blank" title="World Organization of the Scout Movement">World Organization of the Scout Movement</a><a class="wagggs" href="https://www.wagggs.org/en/" target="_blank" title="World Association of Girl Guides and Girl Scouts">World Association of Girl Guides and Girl Scouts</a></span>
@@ -88,5 +83,6 @@
 		
 		new Slider(document.id('header-slideshow'));
 	</script>
+	@yield('javascript')
 </body>
 </html>

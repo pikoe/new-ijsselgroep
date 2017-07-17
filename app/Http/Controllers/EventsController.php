@@ -11,21 +11,21 @@ class EventsController extends Controller {
 		$date = Carbon::createFromDate($year, $month, $day);
 		
 		$from = $date->copy()->startOfMonth()->previous(Carbon::SUNDAY)->addDay();
-		$to = $date->copy()->endOfMonth()->next(Carbon::MONDAY)->subDay();
+		$to = $date->copy()->endOfMonth()->next(Carbon::MONDAY);
 		
 		$events = Event::whereBetween('start', [$from, $to])
 				->orWhereBetween('end', [$from, $to])
 				->orWhereRaw('"' . $from->format('Y-m-d H:i:s') . '" BETWEEN `start` AND `end`')
-				->orderBy('start')
+				->orderBy('start', 'asc')
+				->orderBy('end', 'desc')
 				->get();
 		
 		return view('events.index', [
+			'events' => $events,
+			
 			'date' => $from,
 			'start' => $date->copy()->startOfMonth(),
-			'end' => $date->copy()->endOfMonth(),
-			'events' => $events,
-			'started' => [],
-			'ended' => []
+			'end' => $date->endOfMonth()
 		]);
 	}
 	
@@ -42,7 +42,7 @@ class EventsController extends Controller {
 				$event->locations()->attach((array)$request->locations);
 				$event->groups()->attach((array)$request->groups);
 				
-				return redirect()->route('events.index');
+				return redirect()->route('events.index', [$event->start->year, $event->start->format('m')]);
 			}
 			
 		}
@@ -83,7 +83,7 @@ class EventsController extends Controller {
 				$event->locations()->sync((array)$request->locations);
 				$event->groups()->sync((array)$request->groups);
 				
-				return redirect()->route('events.index');
+				return redirect()->route('events.index', [$event->start->year, $event->start->format('m')]);
 			}
 		}
 		

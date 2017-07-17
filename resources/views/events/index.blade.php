@@ -8,9 +8,9 @@
 			<a class="button add" href="{{ route('events.add') }}"><i class="fa fa-plus" aria-hidden="true"></i> Toevoegen</a>
 		</div>
 	</div>
-	<a href="{{ route('events.index', [$date->copy()->subDay()->year, $date->copy()->subDay()->format('m')]) }}" class="button previous"><i class="fa fa-angle-double-left"></i> Previous month</a>
-	<a href="{{ route('events.index') }}" class="button now"><i class="fa fa-calendar-o"></i> This month</a>
-	<a href="{{ route('events.index', [$end->copy()->addDay()->year, $end->copy()->addDay()->format('m')]) }}" class="button next">Next month <i class="fa fa-angle-double-right"></i></a>
+	<a href="{{ route('events.index', [$date->copy()->subDay()->year, $date->copy()->subDay()->format('m')]) }}" class="button previous"><i class="fa fa-angle-double-left"></i> Vorige maand</a>
+	<a href="{{ route('events.index') }}" class="button now"><i class="fa fa-calendar-o"></i> Huidige maand</a>
+	<a href="{{ route('events.index', [$end->copy()->addDay()->year, $end->copy()->addDay()->format('m')]) }}" class="button next">Volgende maand <i class="fa fa-angle-double-right"></i></a>
 			
 	<table id="event-calendar" class="calendar">
 		<thead>
@@ -42,72 +42,50 @@
 					@endif
 					<div class="day">{{ $date->day }}</div>
 					<?php
+						$monday = $date->copy()->next(\Carbon\Carbon::MONDAY);
+						
 						foreach($events as $key => $event) {
-							if($event->start->copy()->startOfDay()->lte($date)) {
-								if($event->start->lte($date)) {
-									foreach($rows as $row => $available) {
-										if($available->lte($event->start)) {
-											$event->row = $row;
-											unset($rows[$row]);
-											break;
-										}
-									}
-									if($event->row == null) {
-										$event->row = ++$row;
-									}
+							
+							if($event->start->eq($date)) {
+								// is gestart, op 00:00:00
+								$start = $date;
+								$left = 0;
+							} else if($event->start->lt($date)) {
+								// is gestart voor deze dag
+								if($date->dayOfWeek !== \Carbon\Carbon::MONDAY) {
+									continue;
 								}
-								$started[] = $event;
-								
-								unset($events[$key]);
+								$start = $date;
+								$left = 0;
+							} else if($event->start->copy()->startOfDay()->eq($date)) {
+								// start deze dag
+								$start = $event->start;
+								$left = $start->secondsSinceMidnight()/60/60/24*100;
 							} else {
 								break;
 							}
-						}
-						foreach($started as $key => $event) {
-							if($event->end->copy()->startOfDay()->addDay()->lte($date)) {
-								$rows[$event->row] = $event->end->copy();
-								$ended[] = $event;
-								unset($started[$key]);
-							} else {
-								$pos = '';
-								$width = 100;
-								if($event->start->format('His') !== '000000' && $event->start->copy()->startOfDay()->eq($date)) {
-									$left = $event->start->secondsSinceMidnight()/60/60/24*100;
-									$width -= $left;
-									$pos .= 'left:' . round($left, 2) . '%;';
-									if($event->row == null) {
-										foreach($rows as $row => $available) {
-											if($available->lte($event->start)) {
-												$event->row = $row;
-												unset($rows[$row]);
-												break;
-											}
-										}
-										if($event->row == null) {
-											$event->row = ++$row;
-										}
-									}
+							
+							foreach($rows as $row => $available) {
+								if($available->lte($event->start)) {
+									$event->row = $row;
+									unset($rows[$row]);
+									break;
 								}
-								if($event->end->format('His') !== '000000' && $event->end->copy()->startOfDay()->eq($date)) {
-									$right = $event->end->secondsUntilEndOfDay()/60/60/24*100;
-									$width -= $right;
-									
-									$ended[] = $event;
-									unset($started[$key]);
-									$rowAssigned = false;
-									foreach($started as $startingEvent) {
-										if($startingEvent->row == null && $startingEvent->start->secondsUntilEndOfDay()/60/60/24*100 <= $right) {
-											$startingEvent->row = $event->row;
-											$rowAssigned = true;
-											break;
-										}
-									}
-									if(!$rowAssigned) {
-										$rows[$event->row] = $event->end->copy();
-									}
-								}
-								echo '<a href="' . route('events.edit', $event->id) . '" class="event" style="top:' . (19*$event->row) . 'px;width:' . round($width, 2) . '%;' . $pos . '" data-event="' . $event->id . '" title="' . e($event->name) . '">' . e($event->name) . '</div>';
 							}
+							if($event->row == null) {
+								$event->row = ++$row;
+							}
+							$rows[$event->row] = $event->end->copy();
+							
+							
+							if($event->end->gt($monday)) {
+								$width = $start->diffInSeconds($monday)/60/60/24*100;
+							} else {
+								$width = $start->diffInSeconds($event->end)/60/60/24*100;
+								unset($events[$key]);
+							}
+							
+							echo '<a href="' . route('events.edit', $event->id) . '" class="event" style="top:' . (19*$event->row) . 'px;width:' . round($width, 2) . '%;left:' . round($left, 2) . '%;" data-event="' . $event->id . '" title="' . e($event->name) . '">' . e($event->name) . '</div>';
 						}
 					?>
 				</td>
@@ -168,7 +146,7 @@
 	});
 	document.addEvent('mouseup', function() {
 		if(drag.start && drag.move) {
-			new Confirm('Wilt een nieuwe activiteit in de kalender plaatsen?', function() {
+			new Confirm('Wilt u een nieuwe activiteit in de kalender plaatsen?', function() {
 				if(drag.dates.move < drag.dates.start) {
 					location.href = '{{ route('events.add') }}/' + drag.dates.move + '/' + drag.dates.start;
 				} else {

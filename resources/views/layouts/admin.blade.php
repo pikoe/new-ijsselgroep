@@ -25,40 +25,28 @@
 		<ul>
 			<li>
 				<a class="calendar" href="{{ route('events.index') }}">Kalender</a>
+				<ul>
+					<li>
+						<a class="add" href="{{ route('events.add') }}">Activiteit toevoegen</a>
+					</li>
+				</ul>
 			</li>
 			<li>
 				<a class="pages" href="{{ route('pages.index') }}">Pagina&#39;s</a>
-			</li>
-			<li>
-				<a class="settings" href="admin#">Settings</a>
 				<ul>
 					<li>
-						<a href="admin#">Link 2.1</a>
-					</li>
-					<li>
-						<a href="admin#">Link 2.2</a>
-					</li>
-					<li>
-						<a href="admin#">Link 2.2</a>
+						<a class="add" href="{{ route('pages.add') }}">Pagina toevoegen</a>
 					</li>
 				</ul>
 			</li>
 			<li>
-				<a class="users" href="admin#">Leden</a>
-				<ul>
-					<li>
-						<a href="admin#">Link 3.1</a>
-					</li>
-					<li>
-						<a href="admin#">Link 3.2</a>
-					</li>
-					<li>
-						<a href="admin#">Link 3.2</a>
-					</li>
-				</ul>
+				<a class="settings" href="#">Settings</a>
 			</li>
 			<li>
-				<a class="map" href="admin#">Kaart</a>
+				<a class="users" href="#">Leden</a>
+			</li>
+			<li>
+				<a class="map" href="#">Kaart</a>
 			</li>
 		</ul>
 	</nav>
@@ -66,15 +54,16 @@
 		<div id="top">
 			<div id="menu-toggle" title="Menu in- of uitklappen"><i></i></div>
 			<div id="server-time" title="Server tijd">{{ \Carbon\Carbon::now()->format('d-m-Y H:i:s') }}</div>
+			<div class="crumbs">@yield('crumbs')</div>
 		</div>
 		<header>
 			<h1>IJsselgroep website beheer</h1>
 		</header>
-		
 		@yield('content')
 	</div>
-	<script type="text/javascript" src="js/MooTools-More-1.6.0-compressed.js"></script>
+	<script type="text/javascript" src="js/MooTools-More-1.6.0.js"></script>
 	<script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript" src="js/raphael.js"></script>
 	<script type="text/javascript" src="js/Tree.js"></script>
 	<script type="text/javascript" src="js/Confirm.js"></script>
 	<script type="text/javascript">

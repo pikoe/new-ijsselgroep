@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 
+@section('crumbs')
+<a href="{{ route('pages.index') }}">Pagina's</a>
+<a href="{{ route('pages.add') }}">Pagina toevoegen</a>
+@endsection
+
 @section('content')
 <form class="form" action="{{ route('pages.add') }}" method="POST">
 	<div class="toolbar clearfix">
@@ -24,8 +29,14 @@
 		<input name="url" id="url" value="{{ old('url') }}" size="45" required pattern="[a-z0-9\-]+" data-pattern-msg="Gebruik alleen kleine letters, cijfers of koppelstreepjes">
 	</div>
 	
-	<div class="page-content">
-		<textarea class="editor" name="text" id="text">{{ old('text') }}</textarea>
+	<div class="input">
+		<label for="layout">Layout</label>
+		<select name="layout" id="layout" required>
+			<option value="">Kies een layout</option>
+			@foreach($layouts as $layout)
+			<option{{ (old('layout') == $layout ? ' selected' : '') }}>{{ $layout }}</option>
+			@endforeach
+		</select>
 	</div>
 	
 	<div class="toolbar clearfix">

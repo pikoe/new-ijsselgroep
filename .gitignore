@@ -10,3 +10,4 @@
 .htaccess
 public/.htaccess
 /public/upload/
+/public/generated/

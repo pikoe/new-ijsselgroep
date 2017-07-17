@@ -24,6 +24,7 @@ class RouteServiceProvider extends ServiceProvider {
 		Route::model('user', \App\Models\User::class);
 		Route::model('page', \App\Models\Page::class);
 		Route::model('event', \App\Models\Event::class);
+		Route::model('page_content', \App\Models\PageContent::class);
 		
 		Route::bind('full_url', function ($value) {
 			return \App\Models\Page::where('full_url', '=', $value)->first();
@@ -36,19 +37,8 @@ class RouteServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function map() {
-		$this->mapWebRoutes();
-	}
-
-	/**
-	 * Define the "web" routes for the application.
-	 *
-	 * These routes all receive session state, CSRF protection, etc.
-	 *
-	 * @return void
-	 */
-	protected function mapWebRoutes() {
 		Route::middleware('web')
 			 ->namespace($this->namespace)
-			 ->group(app_path('routes/web.php'));
+			 ->group(app_path('Http/Routes.php'));
 	}
 }

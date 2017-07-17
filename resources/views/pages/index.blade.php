@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 
+
+@section('crumbs')
+<a href="{{ route('pages.index') }}">Pagina's</a>
+@endsection
+
 @section('content')
 <div class="form">
 	<div class="toolbar clearfix">

@@ -36,7 +36,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::any('pages/edit/{page}', ['uses' => 'PagesController@edit', 'as' => 'pages.edit']);
 	Route::post('pages/delete/{page}', ['uses' => 'PagesController@delete', 'as' => 'pages.delete']);
 	Route::post('pages/reorder', ['uses' => 'PagesController@reorder', 'as' => 'pages.reorder']);
-
+	
+	Route::post('pagecontents/drop/{page}', ['uses' => 'PageContentsController@drop', 'as' => 'pagecontents.drop']);
+	Route::any('pagecontents/edit/{page_content}', ['uses' => 'PageContentsController@edit', 'as' => 'pagecontents.edit']);
+	Route::post('pagecontents/delete/{page_content}', ['uses' => 'PageContentsController@delete', 'as' => 'pagecontents.delete']);
+	
 	Route::get('events/{yyyy?}/{mm?}/{dd?}', ['uses' => 'EventsController@index', 'as' => 'events.index'])->where([
 		'yyyy' => '[12][0-9]{3}',
 		'mm' => '(0[1-9]|1[012])',

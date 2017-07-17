@@ -710,6 +710,50 @@ h4 {
 	content: '\e91e';
 }
 
+
+
+.content .page-block {
+	background: #fff url(../img/background-sand.png) no-repeat right top;
+	background-image: url(../img/background-sand.png), url(../img/background-sand.png);
+	background-repeat: no-repeat, no-repeat;
+	background-position: left 0px bottom -375px, right -225px;
+	margin: 15px 15px 0 15px;
+	padding: 25px;
+	position: relative;
+}
+
+@media screen and (max-width: 789px) {
+}
+@media screen and (min-width: 790px) {
+	.content .page-area {
+		width: 100%;
+		margin: 0 0 -15px 0;
+		display: table;
+		table-layout: fixed;
+		border-collapse: separate;
+		border-spacing: 15px;
+	}
+	.content .page-area > .page-row {
+		display: table-row;
+	}
+	.content .page-area > .page-row > .page-block {
+		display: table-cell;
+		width: 50%;
+		vertical-align: top;
+		margin: 0;
+	}
+	.content .page-area > .page-row > .page-block::before {
+		content: ' ';
+		min-height: 16px;
+		display: block;
+		float: right;
+	}
+	.content .page-area > .page-row > .page-block::after {
+		clear: both;
+	}
+}
+
+
 .article-page {
 	background: #fff url(../img/background-sand.png) no-repeat right top;
 	background-image: url(../img/background-sand.png), url(../img/background-sand.png);
@@ -724,6 +768,7 @@ h4 {
 }
 @media screen and (min-width: 790px) {
 	.article-area {
+		width: 100%;
 		margin: 0 0 -15px 0;
 		display: table;
 		table-layout: fixed;
@@ -743,9 +788,101 @@ h4 {
 table.calendar {
 	width: 100%;
 	table-layout: fixed;
+	user-select: none;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-table.calendar th.week {
+table.calendar th,
+table.calendar td {
+	vertical-align: top;
+	padding: 0;
+	margin: 0;
+}
+table.calendar th.week,
+table.calendar th.week-number {
 	width: 25px;
+	text-align: left;
+}
+@media (max-width : 767px) {
+	table.calendar th span {
+		display: none;
+	}
+}
+@media (max-width : 1400px) {
+	.page-area > .page-row table.calendar th span {
+		display: none;
+	}
+}
+table.calendar td {
+	height: 38px;
+    position: relative;
+}
+table.calendar tr:nth-child(even) td:nth-child(even),
+table.calendar tr:nth-child(odd) td:nth-child(odd) {
+    background: #eee;
+	background: -moz-linear-gradient(top, rgba(239,239,239,0) 0%, rgba(239,239,239,0.65) 100%);
+	background: -webkit-linear-gradient(top, rgba(239,239,239,0) 0%,rgba(239,239,239,0.65) 100%);
+	background: linear-gradient(to bottom, rgba(239,239,239,0) 0%,rgba(239,239,239,0.65) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00efefef', endColorstr='#a6efefef',GradientType=0 );
+}
+
+table.calendar td .day {
+	font-size: 11px;
+	padding: 2px;
+	position: relative;
+	z-index: 1;
+	height: 100%;
+}
+table.calendar td .start-of-month + .day {
+	padding-left: 20px;
+}
+table.calendar td .start-of-month {
+	width: 50px;
+	height: 50px;
+	padding: 0 3px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: right;
+	-ms-transform: rotate(270deg); /* IE 9 */
+    -webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
+    transform: rotate(270deg);
+	z-index: 3;
+	pointer-events: none;
+}
+table.calendar td .end-of-month {
+	width: 50px;
+	height: 50px;
+	padding: 0 3px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-align: left;
+	-ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+	z-index: 3;
+	pointer-events: none;
+}
+table.calendar td .event {
+	position: absolute;
+	z-index: 2;
+	background: #0042df;
+	color: #fff;
+	font-size: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor: pointer;
+	
+	border-left: 1px solid #fff;
+	padding-left: 2px;
+}
+table.calendar td .event.hover {
+	background: #23527c;
+}
+table.calendar td.day.selected {
+	background: #5cb85c;
+	cursor: copy;
 }
 
 img.right-into-image {
