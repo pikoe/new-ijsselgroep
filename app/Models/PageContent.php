@@ -7,7 +7,8 @@ class PageContent extends Model {
 		'Text',
 		'Image',
 		'Map',
-		'Calendar'
+		'Calendar',
+		'ArticleSlot'
 	];
 	
 	public function page() {

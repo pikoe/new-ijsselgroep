@@ -8,7 +8,7 @@
 	
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') | Scouting IJsselgroep Gorssel</title>
 	<meta name="description" content="">
 	
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
@@ -28,65 +28,20 @@
 		<a class="logo" href=""></a>
 		<div id="menu-toggle"><i></i></div>
 		<ul id="menu" class="clearfix">
-			<li class="has-sub scouting">
-				<a class="icon scouting" href="scouting">Scouting <em>Wat is scouting?</em></a>
-				<ul>
-					<li class="lid-worden">
-						<a class="icon lid-worden" href="scouting/lid-worden">Lid worden <em>of eerst een keer kijken</em></a>
-					</li>
-					<li class="scoutfit">
-						<a class="icon scoutfit" href="scouting/scoutfit">Kleding <em>de scoutfit</em></a>
-					</li>
-				</ul>
-			</li>
-			<li class="has-sub leeftijdsgroepen">
-				<a class="icon leeftijdsgroepen" href="leeftijdsgroepen">Leeftijdsgroepen <em>de speltakken</em></a>
-				<ul>
-					<li class="welpen">
-						<a class="icon welpen" href="leeftijdsgroepen/welpen">Welpen <em>7-11 jaar</em></a>
-					</li>
-					<li class="scouts">
-						<a class="icon scouts" href="leeftijdsgroepen/scouts">Scouts <em>11-15 jaar</em></a>
-					</li>
-					<li class="explorers">
-						<a class="icon explorers" href="leeftijdsgroepen/explorers">Explorers <em>15-18 jaar</em></a>
-					</li>
-					<li class="roverscouts">
-						<a class="icon roverscouts" href="leeftijdsgroepen/roverscouts">Rovers <em>18-21 jaar</em></a>
-					</li>
-					<li class="leiding-en-bestuur">
-						<a class="icon leiding-en-bestuur" href="leeftijdsgroepen/leiding-en-bestuur">Leiding <em>&amp; bestuur</em></a>
-					</li>
-					<li class="vrienden-van-de-ijsselgroep">
-						<a class="icon vrienden-van-de-ijsselgroep" href="leeftijdsgroepen/vrienden-van-de-ijsselgroep">Vrienden <em>oud leden</em></a>
-					</li>
-				</ul>
-			</li>
-			<li class="has-sub activiteiten">
-				<a class="icon activiteiten" href="activiteiten">Activiteiten <em>wat doen we?</em></a>
-				<ul>
-					<li class="kalender">
-						<a class="icon kalender" href="activiteiten/kalender">Kalender <em>komende activiteiten</em></a>
-					</li>
-					<li class="fotos">
-						<a class="icon fotos" href="activiteiten/fotos">Foto's <em>van de programma's</em></a>
-					</li>
-				</ul>
-			</li>
-			<li class="has-sub verhuur">
-				<a class="icon verhuur" href="verhuur">Verhuur <em>gebouwen en terrein</em></a>
-				<ul>
-					<li class="troephuis">
-						<a class="icon troephuis" href="verhuur/troephuis">Troephuis <em>voor je (zomer) kamp</em></a>
-					</li>
-					<li class="hordehol">
-						<a class="icon hordehol" href="verhuur/hordehol">Hordehol <em>het zomerhuisje</em></a>
-					</li>
-				</ul>
-			</li>
-			<li class="contact">
-				<a class="icon contact" href="contact">Contact <em>en locatie</em></a>
-			</li>
+			@php
+				$traverse = function($pages) use(&$traverse) {
+					$nodes = '';
+					foreach($pages as $page) {
+						if($page->children->count() > 0) {
+							$nodes .= '<li class="has-sub ' . $page->url . '"><a class="icon ' . $page->url . '" href="' . $page->full_url . '">' . e($page->title) . ' <em>' . e($page->sub_title) . '</em></a><ul>' . $traverse($page->children) . '</ul></li>';
+						} else {
+							$nodes .= '<li class="' . $page->url . '"><a class="icon ' . $page->url . '" href="' . $page->full_url . '">' . e($page->title) . ' <em>' . e($page->sub_title) . '</em></a></li>';
+						}
+					}
+					return $nodes;
+				};
+				echo $traverse(request()->get('menu'));
+			@endphp
 		</ul>
 	</div>
 	<div class="content">

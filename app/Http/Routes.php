@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	
 	
 	Route::get('', function () {
-		return view('admin');
+		return redirect()->route('articles.index');
 	});
 
 	Route::get('pages', ['uses' => 'PagesController@index', 'as' => 'pages.index']);
@@ -56,9 +56,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 });
 
 Route::group(['middleware' => 'front'], function () {
-	
-	Route::get('/leeftijdsgroepen/welpen', 'AgeGroupsController@welpen');
-
 	Route::get('/', ['uses' => 'PagesController@home', 'as' => 'home']);
 	
 	Route::get('/artikelen', ['uses' => 'PagesController@articles', 'as' => 'articles']);

@@ -149,7 +149,58 @@
 				};
 				input.click();
 			},
-			imagetools_toolbar: 'editimage imageoptions'
+			imagetools_toolbar: 'editimage imageoptions',
+			setup: function(editor) {
+				editor.addMenuItem('agegroups', {
+					text: 'Speltakteken',
+					context: 'insert',
+					menu: [
+					{
+						text: 'Bevers',
+						onclick: function() {
+							editor.insertContent('<img class="right-into-image" src="img/speltaktekens/bevers.png" alt="Speltakteken bevers">');
+						}
+					},
+					{
+						text: 'Welpen',
+						onclick: function() {
+							editor.insertContent('<img class="right-into-image" src="img/speltaktekens/welpen.png" alt="Speltakteken welpen">');
+						}
+					},
+					{
+						text: 'Scouts',
+						onclick: function() {
+							editor.insertContent('<img class="right-into-image" src="img/speltaktekens/scouts.png" alt="Speltakteken scouts">');
+						}
+					},
+					{
+						text: 'Exporers',
+						onclick: function() {
+							editor.insertContent('<img class="right-into-image" src="img/speltaktekens/exporers.png" alt="Speltakteken exporers">');
+						}
+					},
+					{
+						text: 'Roverscouts',
+						onclick: function() {
+							editor.insertContent('<img class="right-into-image" src="img/speltaktekens/roverscouts.png" alt="Speltakteken roverscouts">');
+						}
+					}]
+				});
+				editor.addMenuItem('gameareas', {
+					text: 'Activiteitengebieden',
+					context: 'insert',
+					menu: [
+						@foreach(\App\Models\ActivityArea::$list as $activity_area => $name)
+						{
+							text: '{{ $name }}',
+							onclick: function() {
+								editor.insertContent('<img class="right-into-image" src="img/activiteitengebieden/{{ $activity_area }}.png" alt="{{ $name }}">');
+							}
+						},
+						@endforeach
+					]
+				});
+			},
 		});
 		
 		Form.Validator.add('pattern', {

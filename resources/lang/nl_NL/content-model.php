@@ -10,5 +10,6 @@ return [
 	'Text' => 'Tekstvlak',
 	'Image' => 'Afbeelding',
 	'Map' => 'Kaart',
-	'Calendar' => 'Kalender'
+	'Calendar' => 'Kalender',
+	'ArticleSlot' => 'Artikel slot'
 ];

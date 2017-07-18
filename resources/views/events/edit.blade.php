@@ -72,9 +72,7 @@
 					location.href = '{{ route('events.index') }}';
 				}
 			}).post();
-		}, function() {
-			console.log(event.currentTarget, event.target, event);
-		});
+		}, function() {});
 	});
 </script>
 @endsection

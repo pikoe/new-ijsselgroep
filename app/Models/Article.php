@@ -5,6 +5,11 @@ class Article extends Model {
 		'title',
 		'url',
 		'intro',
-		'text'
+		'text',
+		'activity_area',
+		
+		'group_id',
+		'event_id',
+		'location_id'
 	];
 }

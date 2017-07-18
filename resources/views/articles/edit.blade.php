@@ -2,7 +2,7 @@
 
 @section('crumbs')
 <a href="{{ route('articles.index') }}">Artikelen</a>
-<a href="{{ route('articles.edit', [$article->id]) }}">{{ $article->name }}</a>
+<a href="{{ route('articles.edit', [$article->id]) }}">{{ $article->title }}</a>
 @endsection
 
 @section('content')
@@ -22,6 +22,47 @@
 	<div class="input">
 		<label for="url">Artikel url</label>
 		<input name="url" id="url" value="{{ old('url', $article->url) }}" size="45" required pattern="[a-z0-9\-]+" data-pattern-msg="Gebruik alleen kleine letters, cijfers of koppelstreepjes">
+	</div>
+	
+	<div class="input">
+		<label for="event_id">Activiteit</label>
+		<select name="event_id" id="event_id">
+			<option value="">Kies een activiteit</option>
+			@foreach($events->get() as $event)
+			<option value="{{ $event->id }}"{{ ($event->id == old('event_id', $article->event_id) ? ' selected' : '') }}>{{ $event->name }}</option>
+			@endforeach
+		</select>
+	</div>
+	<div class="input">
+		<label for="activity_area">Activiteitengebied</label>
+		<select name="activity_area" id="activity_area">
+			<option value="">Kies een activiteitengebied</option>
+			@foreach(\App\Models\ActivityArea::$list as $activity_area => $name)
+			<option value="{{ $activity_area }}"{{ ($activity_area == old('activity_area', $article->activity_area) ? ' selected' : '') }}>{{ $name }}</option>
+			@endforeach
+		</select>
+	</div>
+	<div class="input">
+		<label>Groep</label>
+		<ul class="radio-list">
+		@foreach($groups->get() as $group)
+			<li>
+				<input type="radio" id="group_{{ $group->id }}" name="group_id" value="{{ $group->id }}"{{ $group->id == old('group_id', $article->group_id)?' checked':'' }}>
+				<label for="group_{{ $group->id }}">{{ $group->name }}</label>
+			</li>
+		@endforeach
+		</ul>
+	</div>
+	<div class="input">
+		<label>Locatie</label>
+		<ul class="radio-list">
+		@foreach($locations->get() as $location)
+			<li>
+				<input type="radio" id="location_{{ $location->id }}" name="location_id" value="{{ $location->id }}"{{ $location->id == old('location_id', $article->location_id)?' checked':'' }}>
+				<label for="location_{{ $location->id }}">{{ $location->name }}</label>
+			</li>
+		@endforeach
+		</ul>
 	</div>
 	
 	<div class="input textarea">

@@ -486,6 +486,7 @@ header h1 {
 	margin-left: 25%;
 	clear: both;
 }
+.form .input ul.radio-list,
 .form .input ul.select-list {
 	-webkit-columns: 100px 3; /* Chrome, Safari, Opera */
     -moz-columns: 100px 3; /* Firefox */
@@ -500,19 +501,23 @@ header h1 {
 	list-style: none;
 	padding: 1px 0;
 }
+.form .input ul.radio-list li,
 .form .input ul.select-list li {
 	list-style: none;
 	position: relative;
 }
+.form .input ul.radio-list li input,
 .form .input ul.select-list li input {
 	position: absolute;
 	left: -9999px;
 }
+.form .input ul.radio-list li label,
 .form .input ul.select-list li label {
 	display: block;
 	cursor: pointer;
 	padding: 2px 0 2px 20px;
 }
+.form .input ul.radio-list li label:before,
 .form .input ul.select-list li label:before {
 	font: normal normal normal 14px/1 FontAwesome;
 	text-rendering: auto;
@@ -532,13 +537,30 @@ header h1 {
 	background: #fff;
 	border-radius: 3px;
 }
+
+.form .input ul.radio-list li label:before {
+	border-radius: 8px;
+}
+.form .input ul.radio-list li input:checked + label:after {
+	content: "";
+	display: block;
+	position: absolute;
+	background: #666;
+	left: 4px;
+	top: 8px;
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+}
 .form .input ul.select-list li input:checked + label:before {
 	content: "\f00c";
 	color: inherit;
 }
+.form .input ul.radio-list li label:hover,
 .form .input ul.select-list li label:hover {
 	text-shadow: 0px 0px 1px #55aaf3;
 }
+.form .input ul.radio-list li label:hover:before,
 .form .input ul.select-list li label:hover:before {
 	border-color: #55aaf3;
 	box-shadow: 0px 0px 1px #55aaf3;
@@ -549,6 +571,9 @@ table.list {
 	border-collapse: collapse;
 	border-spacing: 0;
 	margin: 0 -3px;
+}
+table.list tbody tr {
+	cursor: pointer;
 }
 table.list th {
 	text-align: left;
@@ -562,6 +587,33 @@ table.list td.actions {
 }
 table.list tbody tr:hover td {
 	background: #fff;
+}
+
+ul.pagination {
+	list-style: none;
+	display: block;
+	margin: 0 0 0 -5px;
+	padding: 0;
+}
+ul.pagination li {
+	list-style: none;
+	display: block;
+	float: left;
+	margin: 15px 0 0 5px;
+}
+ul.pagination li > * {
+	display: block;
+	text-align: center;
+	min-width: 22px;
+	border: 1px solid #55aaf3;
+	background: #55aaf3;
+	border-radius: 2px;
+	padding: 0 4px;
+	color: #fff;
+}
+ul.pagination li > span {
+	border: 1px solid #D3E2F0;
+	background: #D3E2F0;
 }
 
 /* Tree CSS */

@@ -36,6 +36,7 @@ class PagesController extends Controller {
 		if($request->isMethod('post')) {
 			$page->fill($request->all());
 			if($page->save()) {
+				Page::setFullNames(Page::orderBy('pages.lft')->select('id', 'parent_page_id', 'lft', 'rgt', 'url')->get()->toTree());
 				return redirect()->route('pages.edit', [$page->id]);
 			}
 		}
@@ -99,13 +100,14 @@ class PagesController extends Controller {
 	
 	public function home() {
 		return view('pages-fixed.home', [
-			'articles' => Article::orderBy('created_at', 'desc')->take(5)->get()
+			'articles' => Article::orderBy('created_at', 'desc')->take(5)->get(),
+			'older_articles' => Article::orderBy('created_at', 'desc')->skip(5)->take(5)->get()
 		]);
 	}
 	
 	public function articles() {
 		return view('pages-fixed.articles', [
-			'articles' => Article::orderBy('created_at', 'desc')->paginate(3)
+			'articles' => Article::orderBy('created_at', 'desc')->paginate(10)
 		]);
 	}
 	

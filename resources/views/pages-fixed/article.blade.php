@@ -1,5 +1,7 @@
 @extends('layouts.web')
 
+@section('title', $article->title)
+
 @section('content')
 <ul class="breadcrumbs clearfix">
 	<li class="home"><a href="/">Home</a></li>
