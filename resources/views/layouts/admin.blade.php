@@ -24,6 +24,14 @@
 		</form>
 		<ul>
 			<li>
+				<a class="articles" href="{{ route('articles.index') }}">Artikelen</a>
+				<ul>
+					<li>
+						<a class="add" href="{{ route('articles.add') }}">Artiekel toevoegen</a>
+					</li>
+				</ul>
+			</li>
+			<li>
 				<a class="calendar" href="{{ route('events.index') }}">Kalender</a>
 				<ul>
 					<li>
@@ -40,13 +48,10 @@
 				</ul>
 			</li>
 			<li>
-				<a class="settings" href="#">Settings</a>
+				<a class="rental" href="#">Verhuur</a>
 			</li>
 			<li>
 				<a class="users" href="#">Leden</a>
-			</li>
-			<li>
-				<a class="map" href="#">Kaart</a>
 			</li>
 		</ul>
 	</nav>

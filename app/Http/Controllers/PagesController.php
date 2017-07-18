@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\PageContent;
+use App\Models\Article;
 
 class PagesController extends Controller {
 	public function index(Request $request) {
@@ -93,6 +94,24 @@ class PagesController extends Controller {
 	public function display(Page $page) {
 		return view('layouts.display', [
 			'page' => $page
+		]);
+	}
+	
+	public function home() {
+		return view('pages-fixed.home', [
+			'articles' => Article::orderBy('created_at', 'desc')->take(5)->get()
+		]);
+	}
+	
+	public function articles() {
+		return view('pages-fixed.articles', [
+			'articles' => Article::orderBy('created_at', 'desc')->paginate(3)
+		]);
+	}
+	
+	public function article(Article $article) {
+		return view('pages-fixed.article', [
+			'article' => $article
 		]);
 	}
 }

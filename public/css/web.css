@@ -751,37 +751,11 @@ h4 {
 	}
 }
 
-
-.article-page {
-	background: #fff url(../img/background-sand.png) no-repeat right top;
-	background-image: url(../img/background-sand.png), url(../img/background-sand.png);
-	background-repeat: no-repeat, no-repeat;
-	background-position: left 0px bottom -375px, right -225px;
-	margin: 15px 15px 0 15px;
-	padding: 25px;
-	position: relative;
+.content-block > img {
+	max-width: 100%;
+	height: auto;
 }
 
-@media screen and (max-width: 789px) {
-}
-@media screen and (min-width: 790px) {
-	.article-area {
-		width: 100%;
-		margin: 0 0 -15px 0;
-		display: table;
-		table-layout: fixed;
-		border-collapse: separate;
-		border-spacing: 15px;
-	}
-	.article-area > .article-row {
-		display: table-row;
-	}
-	.article-area > .article-row > .article-page {
-		display: table-cell;
-		width: 50%;
-		vertical-align: top;
-	}
-}
 
 table.calendar {
 	width: 100%;
@@ -936,6 +910,37 @@ h2.icon:before {
 	content: '\e953';
 }
 
+ul.pagination {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin: 15px 15px 0 15px;
+	padding: 0;
+}
+ul.pagination li {
+	list-style: none;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+ul.pagination li a,
+ul.pagination li span {
+	display: block;
+	line-height: 30px;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	background: #fff;
+	margin: 0 7px;
+}
+ul.pagination li:first-child > *,
+ul.pagination li:last-child > * {
+	text-indent: -999999px;
+	position: relative;
+}
+ul.pagination li a:hover {
+	font-weight: bold;
+}
 
 a.continue {
 	position: relative;
@@ -946,6 +951,13 @@ a.continue {
 	font-size: 18px;
 	font-family: 'Myriad Pro', Myriad, 'PT Sans', sans-serif;
 }
+a.continue:first-child {
+	margin: 0;
+}
+ul.pagination li:first-child > *:before,
+ul.pagination li:first-child > *:after,
+ul.pagination li:last-child > *:before,
+ul.pagination li:last-child > *:after,
 a.continue:before,
 a.continue:after {
 	font-family: 'icomoon' !important;
@@ -975,5 +987,40 @@ a.continue:hover:before {
 }
 a.continue:hover:after {
 	left: 8px;
+}
+
+ul.pagination li:first-child > *:before,
+ul.pagination li:first-child > *:after {
+	content: '\f0d9';
+}
+ul.pagination li:first-child > *:before {
+	top: 4px;
+	left: 9px;
+}
+ul.pagination li:last-child > *:before {
+	top: 4px;
+	right: 9px;
+	left: auto;
+}
+ul.pagination li:first-child > *:after {
+	top: 4px;
+	left: 14px;
+}
+ul.pagination li:last-child > *:after {
+	top: 4px;
+	right: 14px;
+	left: auto;
+}
+ul.pagination li:first-child > a:hover:before {
+	left: 6px;
+}
+ul.pagination li:first-child > a:hover:after {
+	left: 13px;
+}
+ul.pagination li:last-child > a:hover:before {
+	right: 6px;
+}
+ul.pagination li:last-child > a:hover:after {
+	right: 13px;
 }
 

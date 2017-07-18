@@ -168,8 +168,14 @@ a:focus {
 	top: 10px;
 	content: "\f1db";
 }
+#menu .articles::before {
+	content: "\f1ea";
+}
 #menu .calendar::before {
 	content: "\f133";
+}
+#menu .rental::before {
+	content: "\f084";
 }
 #menu .settings::before {
 	content: "\f085";
@@ -215,6 +221,7 @@ a:focus {
 	height: 40px;
 	margin-left: 40px;
 	-webkit-transition: 750ms margin-left;
+	overflow: hidden;
 }
 #top #menu-toggle {
 	cursor: pointer;
@@ -451,6 +458,10 @@ header h1 {
 	float: left;
 	padding: 3px 0;
 }
+.form .input.textarea > label {
+	float: none;
+	width: 100%;
+}
 .form .input > input,
 .form .input > select {
 	padding: 2px;
@@ -533,6 +544,26 @@ header h1 {
 	box-shadow: 0px 0px 1px #55aaf3;
 }
 
+table.list {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0 -3px;
+}
+table.list th {
+	text-align: left;
+}
+table.list th,
+table.list td {
+	padding: 3px;
+}
+table.list td.actions {
+	text-align: right;
+}
+table.list tbody tr:hover td {
+	background: #fff;
+}
+
 /* Tree CSS */
 ul.tree,
 ul.tree li,
@@ -542,6 +573,9 @@ ul.tree ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+}
+ul.tree {
+	margin: 0 -3px;
 }
 ul.tree li,
 li.drag,

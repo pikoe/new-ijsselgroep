@@ -11,7 +11,6 @@
 	<p><a href="article">Leiding gezocht</a></p>
 	<p><a href="pdf">PDF maken</a></p>
 	<p>{{ strftime('%e %B %Y') }}</p>
-	<p>{!! str_repeat('Content 123<br>', 100) !!}</p>
 	
 </div>
 @endsection

@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 
 class PageContent extends Model {
-	
 	public static $contentModels = [
 		'Text',
 		'Image',

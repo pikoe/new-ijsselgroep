@@ -37,7 +37,7 @@ function initMap() {
 	var marker = new google.maps.Marker({
 		position: pointLatLng,
 		map: map,
-		title: 'Punt'
+		title: {{ $map->name }}
 	});
 }
 </script>

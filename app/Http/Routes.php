@@ -14,13 +14,7 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
 Route::get('/pdf', 'RentalController@pdf');
-Route::get('/activiteiten/kalender/{yyyy?}/{mm?}/{dd?}', 'CalendarController@activeties')->where([
-	'yyyy' => '[12][0-9]{3}',
-	'mm' => '(0[1-9]|1[012])',
-	'dd' => '(0[1-9]|[12][0-9]|3[01])'
-]);
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::post('editor-upload', 'FilesController@editor_upload');
@@ -51,17 +45,24 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 		'end' => '[12][0-9]{3}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])'
 	]);
 	Route::any('events/edit/{event}', ['uses' => 'EventsController@edit', 'as' => 'events.edit']);
-	Route::post('pages/event/{event}', ['uses' => 'EventsController@delete', 'as' => 'events.delete']);
+	Route::post('events/event/{event}', ['uses' => 'EventsController@delete', 'as' => 'events.delete']);
+
+	Route::get('articles', ['uses' => 'ArticlesController@index', 'as' => 'articles.index']);
+	Route::any('articles/add', ['uses' => 'ArticlesController@add', 'as' => 'articles.add']);
+	Route::any('articles/edit/{article}', ['uses' => 'ArticlesController@edit', 'as' => 'articles.edit']);
+	Route::post('articles/delete/{article}', ['uses' => 'ArticlesController@delete', 'as' => 'articles.delete']);
+	
+	Route::get('rental', ['uses' => 'RentalController@index', 'as' => 'rental.index']);
 });
 
 Route::group(['middleware' => 'front'], function () {
-	Route::get('/article', function () {
-		return view('article');
-	});
+	
 	Route::get('/leeftijdsgroepen/welpen', 'AgeGroupsController@welpen');
 
-	Route::get('/', function () {
-		return view('welcome');
-	});
+	Route::get('/', ['uses' => 'PagesController@home', 'as' => 'home']);
+	
+	Route::get('/artikelen', ['uses' => 'PagesController@articles', 'as' => 'articles']);
+	Route::get('/artikelen/{article_url}', ['uses' => 'PagesController@article', 'as' => 'article']);
+	
 	Route::any('{full_url}', ['uses' => 'pagesController@display'])->where('full_url', '.+');
 });

@@ -26,6 +26,9 @@ class RouteServiceProvider extends ServiceProvider {
 		Route::model('event', \App\Models\Event::class);
 		Route::model('page_content', \App\Models\PageContent::class);
 		
+		Route::bind('article_url', function ($value) {
+			return \App\Models\Article::where('url', '=', $value)->first();
+		});
 		Route::bind('full_url', function ($value) {
 			return \App\Models\Page::where('full_url', '=', $value)->first();
 		});

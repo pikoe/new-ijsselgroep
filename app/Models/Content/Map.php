@@ -2,14 +2,17 @@
 
 use Illuminate\Http\Request;
 use App\Models\PageContent;
+use App\Models\Location;
 
-class Map extends Model {
+class Map extends Location {
+	public $table = 'locations';
+	
 	public static function createDefault() {
 		$map = new static();
 		$map->lat = 52.199797;
 		$map->lng = 6.215269;
 		$map->zoom = 12;
-		$map->label = 'Locatie';
+		$map->name = 'Locatie';
 		$map->save();
 		return $map;
 	}
