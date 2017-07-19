@@ -416,7 +416,9 @@ header h1 {
 .form .toolbar .buttons .button:first-child {
     margin-left: 0;
 }
-
+.form .toolbar .buttons .button.back {
+	float: right;
+}
 .button {
 	display: inline-block;
 	border: 1px solid #55aaf3;

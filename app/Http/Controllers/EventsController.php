@@ -42,7 +42,11 @@ class EventsController extends Controller {
 				$event->locations()->attach((array)$request->locations);
 				$event->groups()->attach((array)$request->groups);
 				
-				return redirect()->route('events.index', [$event->start->year, $event->start->format('m')]);
+				if($request->return == 'index') {
+					return redirect()->route('events.index', [$event->start->year, $event->start->format('m')]);
+				} else {
+					return redirect()->route('events.edit', [$event->id]);
+				}
 			}
 			
 		}
@@ -83,7 +87,11 @@ class EventsController extends Controller {
 				$event->locations()->sync((array)$request->locations);
 				$event->groups()->sync((array)$request->groups);
 				
-				return redirect()->route('events.index', [$event->start->year, $event->start->format('m')]);
+				if($request->return == 'index') {
+					return redirect()->route('events.index', [$event->start->year, $event->start->format('m')]);
+				} else {
+					return redirect()->route('events.edit', [$event->id]);
+				}
 			}
 		}
 		

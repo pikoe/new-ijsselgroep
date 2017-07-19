@@ -16,6 +16,14 @@
 		<img id="preview" src="{{ $image->src }}" alt="{{ $image->alt }}">
 		<input type="file" id="upload">
 	</div>
+	
+	<div class="toolbar clearfix">
+		<div class="buttons bottom">
+			<button class="button add" title="Bewerken" name="return" value="index"><i class="fa fa-reply" aria-hidden="true"></i> Opslaan en terug naar pagina</button>
+			<button class="button add" title="Bewerken"><i class="fa fa-cogs" aria-hidden="true"></i> Opslaan</button>
+			<a class="button back" href="{{ route('pages.edit', [$pageContent->page_id]) }}"><i class="fa fa-times" aria-hidden="true"></i> Terug</a>
+		</div>
+	</div>
 </form>
 @endsection
 

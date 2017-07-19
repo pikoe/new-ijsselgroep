@@ -1,4 +1,4 @@
-<table id="event-calendar" class="calendar">
+<table id="event-calendar-{{ $calendar->id }}" class="calendar">
 	<thead>
 		<tr>
 			<th class="week" title="Weeknummer">&nbsp;</th>
@@ -71,7 +71,7 @@
 							unset($events[$key]);
 						}
 
-						echo '<a href="' . route('events.edit', $event->id) . '" class="event" style="top:' . (19*$event->row) . 'px;width:' . round($width, 2) . '%;left:' . round($left, 2) . '%;" data-event="' . $event->id . '" title="' . e($event->name) . '">' . e($event->name) . '</div>';
+						echo '<a href="#' . $event->id . '" class="event" style="top:' . (19*$event->row) . 'px;width:' . round($width, 2) . '%;left:' . round($left, 2) . '%;" data-event="' . $event->id . '" title="' . e($event->name) . '">' . e($event->name) . '</div>';
 					}
 				?>
 			</td>
@@ -80,3 +80,12 @@
 		@endwhile
 	</tbody>
 </table>
+
+@section('javascript')
+@parent
+<script type="text/javascript">
+	document.getElements('#event-calendar-{{ $calendar->id }} .event').addEvent('click', function(e) {
+		e.preventDefault();
+	});
+</script>
+@endsection

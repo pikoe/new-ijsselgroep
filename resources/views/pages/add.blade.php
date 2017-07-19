@@ -41,8 +41,9 @@
 	
 	<div class="toolbar clearfix">
 		<div class="buttons bottom">
+			<button class="button add" title="Toevoegen" name="return" value="index"><i class="fa fa-reply" aria-hidden="true"></i> Toevoegen en terug naar overzicht</button>
 			<button class="button add" title="Toevoegen"><i class="fa fa-plus" aria-hidden="true"></i> Toevoegen</button>
-			<a class="button" href="{{ route('pages.index') }}"><i class="fa fa-times" aria-hidden="true"></i> Annuleren</a>
+			<a class="button back" href="{{ route('pages.index') }}"><i class="fa fa-times" aria-hidden="true"></i> Annuleren</a>
 		</div>
 	</div>
 </form>

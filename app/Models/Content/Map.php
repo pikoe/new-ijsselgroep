@@ -31,8 +31,6 @@ class Map extends Location {
 	}
 	
 	public function saveEdit(Request $request, PageContent $pageContent) {
-		if($this->save()) {
-			return $this->displayEdit($pageContent);
-		}
+		return $this->save();
 	}
 }

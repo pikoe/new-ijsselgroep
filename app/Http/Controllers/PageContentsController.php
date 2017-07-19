@@ -35,11 +35,13 @@ class PageContentsController extends Controller {
 	}
 	
 	public function edit(Request $request, PageContent $pageContent) {
-		if($request->isMethod('post')) {
-			return $pageContent->saveEdit($request);
+		if($request->isMethod('post') && $pageContent->saveEdit($request)) {
+			if($request->return == 'index') {
+				return redirect()->route('pages.edit', [$pageContent->page_id]);
+			} else {
+				return redirect()->route('pagecontents.edit', [$pageContent->id]);
+			}
 		}
-		
-		View::share('key', 'value');
 		
 		return $pageContent->displayEdit();
 	}

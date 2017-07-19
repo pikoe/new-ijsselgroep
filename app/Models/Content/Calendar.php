@@ -74,7 +74,7 @@ class Calendar extends Model {
 		if($this->save()) {
 			$this->locations()->sync((array)$request->locations);
 			$this->groups()->sync((array)$request->groups);
-			return $this->displayEdit($pageContent);
+			return true;
 		}
 	}
 }

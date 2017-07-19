@@ -45,6 +45,10 @@
 	<div class="input">
 		<label>Groep</label>
 		<ul class="radio-list">
+			<li>
+				<input type="radio" id="group_0" name="group_id" value=""{{ null == old('group_id', $article->group_id)?' checked':'' }}>
+				<label for="group_0">Geen</label>
+			</li>
 		@foreach($groups->get() as $group)
 			<li>
 				<input type="radio" id="group_{{ $group->id }}" name="group_id" value="{{ $group->id }}"{{ $group->id == old('group_id', $article->group_id)?' checked':'' }}>
@@ -56,6 +60,10 @@
 	<div class="input">
 		<label>Locatie</label>
 		<ul class="radio-list">
+			<li>
+				<input type="radio" id="location_0" name="location_id" value=""{{ null == old('location_id', $article->location_id)?' checked':'' }}>
+				<label for="location_0">Geen</label>
+			</li>
 		@foreach($locations->get() as $location)
 			<li>
 				<input type="radio" id="location_{{ $location->id }}" name="location_id" value="{{ $location->id }}"{{ $location->id == old('location_id', $article->location_id)?' checked':'' }}>
@@ -76,8 +84,9 @@
 	
 	<div class="toolbar clearfix">
 		<div class="buttons bottom">
+			<button class="button add" title="Bewerken" name="return" value="index"><i class="fa fa-reply" aria-hidden="true"></i> Opslaan en terug naar overzicht</button>
 			<button class="button add" title="Bewerken"><i class="fa fa-cogs" aria-hidden="true"></i> Opslaan</button>
-			<a class="button" href="{{ route('articles.index') }}"><i class="fa fa-times" aria-hidden="true"></i> Terug</a>
+			<a class="button back" href="{{ route('articles.index') }}"><i class="fa fa-times" aria-hidden="true"></i> Terug</a>
 		</div>
 	</div>
 </form>

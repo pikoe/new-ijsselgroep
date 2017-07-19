@@ -20,7 +20,11 @@ class ArticlesController extends Controller {
 			$article = new Article;
 			$article->fill($request->all());
 			if($article->save()) {
-				return redirect()->route('articles.index');
+				if($request->return == 'index') {
+					return redirect()->route('articles.index');
+				} else {
+					return redirect()->route('articles.edit', [$article->id]);
+				}
 			}
 			
 		}
@@ -36,7 +40,11 @@ class ArticlesController extends Controller {
 		if($request->isMethod('post')) {
 			$article->fill($request->all());
 			if($article->save()) {
-				return redirect()->route('articles.index');
+				if($request->return == 'index') {
+					return redirect()->route('articles.index');
+				} else {
+					return redirect()->route('articles.edit', [$article->id]);
+				}
 			}
 		}
 		

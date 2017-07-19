@@ -28,10 +28,6 @@ class ArticleSlot extends Model {
 		]);
 	}
 	public function saveEdit(Request $request, PageContent $pageContent) {
-		if($this->save()) {
-			return $this->displayEdit($pageContent);
-		}
+		return $this->save();
 	}
 }
-
-// http://html5demos.com/dnd-upload

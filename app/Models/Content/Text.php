@@ -24,8 +24,6 @@ class Text extends Model {
 	
 	public function saveEdit(Request $request, PageContent $pageContent) {
 		$this->text = $request->text;
-		if($this->save()) {
-			return $this->displayEdit($pageContent);
-		}
+		return $this->save();
 	}
 }

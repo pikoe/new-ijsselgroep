@@ -24,7 +24,7 @@ class Image extends Model {
 		]);
 	}
 	public function saveEdit(Request $request, PageContent $pageContent) {
-		if($request->image->isValid()) {
+		if($request->image && $request->image->isValid()) {
 			$extentension = strtolower($request->image->getClientOriginalExtension());
 			$basename = basename(strtolower($request->image->getClientOriginalName()), '.' . $extentension);
 
@@ -34,6 +34,8 @@ class Image extends Model {
 			if($request->image->move(public_path('upload'), $basename . '.' . $extentension) && $this->save()) {
 				return $this->toArray();
 			}
+		} else {
+			return true;
 		}
 	}
 }

@@ -16,7 +16,11 @@ class PagesController extends Controller {
 			$page = new Page($request->all());
 			$page->full_url = $request->url;
 			if($page->save()) {
-				return redirect()->route('pages.edit', [$page->id]);
+				if($request->return == 'index') {
+					return redirect()->route('pages.index');
+				} else {
+					return redirect()->route('pages.edit', [$page->id]);
+				}
 			}
 		}
 		
@@ -37,7 +41,11 @@ class PagesController extends Controller {
 			$page->fill($request->all());
 			if($page->save()) {
 				Page::setFullNames(Page::orderBy('pages.lft')->select('id', 'parent_page_id', 'lft', 'rgt', 'url')->get()->toTree());
-				return redirect()->route('pages.edit', [$page->id]);
+				if($request->return == 'index') {
+					return redirect()->route('pages.index');
+				} else {
+					return redirect()->route('pages.edit', [$page->id]);
+				}
 			}
 		}
 		
