@@ -12,7 +12,6 @@
 */
 
 
-Auth::routes();
 
 Route::get('/pdf', 'RentalController@pdf');
 
@@ -56,10 +55,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 });
 
 Route::group(['middleware' => 'front'], function () {
+	Auth::routes();
+
 	Route::get('/', ['uses' => 'PagesController@home', 'as' => 'home']);
 	
-	Route::get('/artikelen', ['uses' => 'PagesController@articles', 'as' => 'articles']);
-	Route::get('/artikelen/{article_url}', ['uses' => 'PagesController@article', 'as' => 'article']);
+	Route::get('/activiteiten/verslagen-en-foto-s', ['uses' => 'PagesController@articles', 'as' => 'articles']);
+	Route::get('/activiteiten/verslagen-en-foto-s/{article_url}', ['uses' => 'PagesController@article', 'as' => 'article']);
 	
 	Route::any('{full_url}', ['uses' => 'pagesController@display'])->where('full_url', '.+');
 });

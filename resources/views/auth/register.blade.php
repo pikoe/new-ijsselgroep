@@ -4,7 +4,7 @@
 <ul class="breadcrumbs clearfix">
 	<li class="home"><a href="/">Home</a></li>
 </ul>
-<div class="article-page">
+<div class="page-block">
 	<h1>Registreer</h1>
 	<form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
 		{{ csrf_field() }}

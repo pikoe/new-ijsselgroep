@@ -6,11 +6,11 @@
 	<li><a href="login">Login</a></li>
 </ul>
 @if(session('status'))
-	<div class="article-page">
+	<div class="page-block">
 		{{ session('status') }}
 	</div>
 @endif
-<div class="article-page">
+<div class="page-block">
 	<h1>Wachtwoord vergeten?</h1>
 	<form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
 		{{ csrf_field() }}

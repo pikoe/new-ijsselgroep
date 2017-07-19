@@ -37,7 +37,7 @@
 				<h2>Oudere artikelen</h2>
 				
 				@foreach($older_articles as $article)
-				<div><a href="' . route('article', [$article->url]) . '">{{ $article->title }}</a></div>
+				<div><a href="{{ route('article', [$article->url]) }}">{{ $article->title }}</a></div>
 				@endforeach
 				
 				<a class="continue" href="{{ route('articles') }}">Lees alle artikelen</a>
