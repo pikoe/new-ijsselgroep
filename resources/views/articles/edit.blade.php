@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<form class="form" action="{{ route('articles.edit', [$article->id]) }}" method="POST">
+<form id="article-form" class="form" action="{{ route('articles.edit', [$article->id]) }}" method="POST">
 	<div class="toolbar clearfix">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<h2>Artikel bewerken</h2>
@@ -89,28 +89,132 @@
 			<a class="button back" href="{{ route('articles.index') }}"><i class="fa fa-times" aria-hidden="true"></i> Terug</a>
 		</div>
 	</div>
+	
+	<div class="images">
+		<input type="file" id="upload" class="file_input" multiple>
+		<label class="button" for="upload"><i class="fa fa-upload" aria-hidden="true"></i> Upload foto's</label>
+		
+		<div class="image-list clearfix"></div>
+	</div>
+	
+	<div class="preview-area">
+		<img id="preview">
+	</div>
 </form>
 @endsection
 
 @section('javascript')
 <script type="text/javascript">
-	document.id('delete-article').addEvent('click', function(e) {
-		e.preventDefault();
-		e.currentTarget = this;
-		new Confirm('Wilt u dit artikel verwijderen?', function() {
-			new Request({
-				url: e.currentTarget.href,
-				data: {
-					_token: '{{ csrf_token() }}'
-				},
-				onSuccess: function() {
-					location.href = '{{ route('articles.index') }}';
+document.id('delete-article').addEvent('click', function(e) {
+	e.preventDefault();
+	e.currentTarget = this;
+	new Confirm('Wilt u dit artikel verwijderen?', function() {
+		new Request({
+			url: e.currentTarget.href,
+			data: {
+				_token: '{{ csrf_token() }}'
+			},
+			onSuccess: function() {
+				location.href = '{{ route('articles.index') }}';
+			}
+		}).post();
+	}, function() {});
+});
+document.id('title').addEvent('keyup', function() {
+	document.id('url').value = this.value.toLowerCase().replace(/[^0-9a-z]+/g, '-');
+});
+
+var holder = document.id('article-form'),
+    fileupload = document.id('upload');
+
+function readfiles(files) {
+	Array.each(files, function(file) {
+		if(['image/png','image/jpeg','image/gif'].contains(file.type)) {
+			var tile = new Element('div.image_tile');
+			var image = new Element('img', {
+				styles: {
+					opacity: 0.5
 				}
-			}).post();
-		}, function() {});
+			}).inject(tile, 'bottom');
+			var reader = new FileReader();
+			reader.onload = function(event) {
+				image.src = event.target.result;
+			};
+			reader.readAsDataURL(file);
+			
+			var progressDiv = new Element('div.progress').inject(tile, 'bottom');
+			var r = Raphael(progressDiv, 20, 20);
+			// Custom Attribute
+			r.customAttributes.arc = function (value) {
+				var alpha = 360 * value,
+					a = (90 - alpha) * Math.PI / 180,
+					x = 10 + 7 * Math.cos(a),
+					y = 10 - 7 * Math.sin(a),
+					path;
+				if (value == 1) {
+					path = [["M", 10, 3], ["A", 7, 7, 0, 1, 1, 9.999, 3]];
+				} else {
+					path = [["M", 10, 3], ["A", 7, 7, 0, +(alpha > 180), 1, x, y]];
+				}
+				return {path: path};
+			};
+			r.path().attr({
+				stroke: "#f3f3f3",
+				"stroke-width": 6,
+				arc: 1
+			});
+			var progress = r.path().attr({
+				stroke: "#55aaf3",
+				"stroke-width": 6,
+				arc: 0
+			});
+			
+			new Upload(file, '{{ route('files.upload') }}', '{{ csrf_token() }}', {
+				progress: function(part) {
+					if(part == 1) {
+						progressDiv.fade('out');
+						image.fade('in');
+					} else {
+						progress.attr({
+							arc: part
+						});
+					}
+				}
+			});
+			
+			tile.inject(document.getElement('.image-list'), 'bottom');
+		}
 	});
-	document.id('title').addEvent('keyup', function() {
-		document.id('url').value = this.value.toLowerCase().replace(/[^0-9a-z]+/g, '-');
-	});
+}
+
+holder.ondragover = function () {
+	holder.addClass('hover');
+	return false;
+};
+holder.ondragleave = function () {
+	holder.removeClass('hover');
+	return false;
+};
+holder.ondragend = function () {
+	holder.removeClass('hover');
+	return false;
+};
+holder.ondragexit = function () {
+	holder.removeClass('hover');
+	return false;
+};
+holder.ondrop = function (e) {
+	e.preventDefault();
+	holder.removeClass('hover');
+	readfiles(e.dataTransfer.files);
+};
+
+fileupload.onchange = function () {
+	readfiles(this.files);
+	this.value = null;
+};
+
 </script>
 @endsection
+
+https://github.com/ZiTAL/html5-file-upload-chunk

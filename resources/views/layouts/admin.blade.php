@@ -69,6 +69,7 @@
 	<script type="text/javascript" src="js/MooTools-More-1.6.0.js"></script>
 	<script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript" src="js/raphael.js"></script>
+	<script type="text/javascript" src="js/Upload.js"></script>
 	<script type="text/javascript" src="js/Tree.js"></script>
 	<script type="text/javascript" src="js/Confirm.js"></script>
 	<script type="text/javascript">
@@ -105,12 +106,13 @@
 			min_height: 300,
 			plugins: [
 				'advlist autolink lists link image imagetools charmap print preview anchor',
-				'searchreplace visualblocks code fullscreen',
+				'autoresize searchreplace visualblocks code fullscreen',
 				'insertdatetime media table contextmenu paste code'
 			],
 			toolbar: 'undo redo | insert | styleselect | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | table | link image | code',
 			image_list: 'admin/editor-images',
 			image_title: true,
+			autoresize_bottom_margin: 10,
 			automatic_uploads: true,
 			images_upload_handler: function (blobInfo, success, failure) {
 				var xhr = new XMLHttpRequest();

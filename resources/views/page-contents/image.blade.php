@@ -31,17 +31,6 @@
 @section('javascript')
 <script type="text/javascript">
 var holder = document.id('image-form'),
-    /*tests = {
-      filereader: typeof FileReader != 'undefined',
-      dnd: 'draggable' in document.createElement('span'),
-      formdata: !!window.FormData,
-      progress: "upload" in new XMLHttpRequest
-    },*/
-    acceptedTypes = {
-      'image/png': true,
-      'image/jpeg': true,
-      'image/gif': true
-    },
     fileupload = document.id('upload'),
 	preview = document.id('preview');
 
@@ -74,7 +63,7 @@ var progress = r.path().attr({
 
 
 function readfiles(file) {
-    if (acceptedTypes[file.type] === true) {
+    if(['image/png','image/jpeg','image/gif'].contains(file.type)) {
 		preview.setStyle('opacity', 0.5);
 		progressDiv.setStyle('display', 'block');
 		var reader = new FileReader();
@@ -88,7 +77,7 @@ function readfiles(file) {
 		formData.append('image', file);
 
 		var xhr = new XMLHttpRequest();
-		xhr.open('POST', '{{ route('pagecontents.edit', [$pageContent->id]) }}');
+		xhr.open('POST', '{{ route('pagecontents.edit', [$pageContent->id]) }}', true);
 		xhr.onload = function() {
 			progress.attr({
 				arc: 1

@@ -51,6 +51,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::any('articles/edit/{article}', ['uses' => 'ArticlesController@edit', 'as' => 'articles.edit']);
 	Route::post('articles/delete/{article}', ['uses' => 'ArticlesController@delete', 'as' => 'articles.delete']);
 	
+	Route::post('files/upload', ['uses' => 'FilesController@upload', 'as' => 'files.upload']);
+	
 	Route::get('rental', ['uses' => 'RentalController@index', 'as' => 'rental.index']);
 });
 

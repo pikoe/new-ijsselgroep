@@ -916,3 +916,50 @@ table.calendar td.day.selected {
 #map {
 	height: 300px;
 }
+.image-list {
+	margin: 5px -5px -5px 0;
+}
+.image-list .image_tile {
+	float: left;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	margin: 0 5px 5px 0;
+	background: #464646;
+	border: 2px solid #464646;
+	border-radius: 2px;
+}
+.image-list .image_tile img {
+	max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}
+.image-list .image_tile div.progress {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.file_input {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.file_input + label {
+	cursor: pointer; /* "hand" cursor */
+}
+.file_input:focus + label,
+.file_input + label:hover {
+    border: 1px solid #23527c;
+    background: #23527c;
+    color: #fff;
+}
