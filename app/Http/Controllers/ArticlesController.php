@@ -48,12 +48,26 @@ class ArticlesController extends Controller {
 			}
 		}
 		
+	$maxChunkSize = trim(ini_get('post_max_size'));
+    switch(strtolower($maxChunkSize[strlen($maxChunkSize)-1])) {
+        // The 'G' modifier is available since PHP 5.1.0
+        case 'g':
+            $maxChunkSize *= 1024;
+        case 'm':
+            $maxChunkSize *= 1024;
+        case 'k':
+            $maxChunkSize *= 1024;
+    }
+	
+		
 		return view('articles.edit', [
 			'article' => $article,
 			
 			'groups' => Group::orderBy('id'),
 			'events' => Event::whereBetween('start', [Carbon::now()->subDays(30), Carbon::now()->addDays(50)])->orWhere('id', $article->event_id)->orderBy('start', 'desc'),
-			'locations' => Location::orderBy('name')
+			'locations' => Location::orderBy('name'),
+			
+			'maxChunkSize' => $maxChunkSize - 500
 		]);
 	}
 	

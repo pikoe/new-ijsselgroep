@@ -179,7 +179,8 @@ function readfiles(files) {
 							arc: part
 						});
 					}
-				}
+				},
+				chunkSize: {{ $maxChunkSize }}
 			});
 			
 			tile.inject(document.getElement('.image-list'), 'bottom');
