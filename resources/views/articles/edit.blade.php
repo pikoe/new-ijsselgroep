@@ -82,23 +82,30 @@
 		<textarea class="editor" name="text">{{ old('text', $article->text) }}</textarea>
 	</div>
 	
+	<div class="images">
+		<input type="file" id="upload" class="file_input" multiple>
+		<label class="button" for="upload"><i class="fa fa-upload" aria-hidden="true"></i> Upload foto's</label>
+		
+		<div class="image-list clearfix">
+			@foreach($article->images()->get() as $image)
+				<div class="image_tile">
+					<img src="{{ $image->src }}">
+					<textarea name="image_descriptions[]">{{ $image->title }}</textarea>
+					<input type="hidden" name="image_tmp_id[]" value="">
+					<input type="hidden" name="image_id[]" value="{{ $image->id }}">
+					<input type="hidden" name="image_file_name[]" value="{{ $image->alt }}">
+					<div class="sort-handle"></div>
+				</div>
+			@endforeach
+		</div>
+	</div>
+	
 	<div class="toolbar clearfix">
 		<div class="buttons bottom">
 			<button class="button add" title="Bewerken" name="return" value="index"><i class="fa fa-reply" aria-hidden="true"></i> Opslaan en terug naar overzicht</button>
 			<button class="button add" title="Bewerken"><i class="fa fa-cogs" aria-hidden="true"></i> Opslaan</button>
 			<a class="button back" href="{{ route('articles.index') }}"><i class="fa fa-times" aria-hidden="true"></i> Terug</a>
 		</div>
-	</div>
-	
-	<div class="images">
-		<input type="file" id="upload" class="file_input" multiple>
-		<label class="button" for="upload"><i class="fa fa-upload" aria-hidden="true"></i> Upload foto's</label>
-		
-		<div class="image-list clearfix"></div>
-	</div>
-	
-	<div class="preview-area">
-		<img id="preview">
 	</div>
 </form>
 @endsection
@@ -123,9 +130,18 @@ document.id('delete-article').addEvent('click', function(e) {
 document.id('title').addEvent('keyup', function() {
 	document.id('url').value = this.value.toLowerCase().replace(/[^0-9a-z]+/g, '-');
 });
-
-var holder = document.id('article-form'),
-    fileupload = document.id('upload');
+		
+var holder = document.getElement('.image-list'),
+    fileupload = document.id('upload'),
+	sortable = new Sortables(holder, {
+		handle: 'div.sort-handle',
+		onStart: function(el){
+			el.addClass('dragging');
+		},
+		onComplete: function(el){
+			el.removeClass('dragging');
+		}
+	});
 
 function readfiles(files) {
 	Array.each(files, function(file) {
@@ -171,23 +187,43 @@ function readfiles(files) {
 			
 			new Upload(file, '{{ route('files.upload') }}', '{{ csrf_token() }}', {
 				progress: function(part) {
-					if(part == 1) {
-						progressDiv.fade('out');
-						image.fade('in');
-					} else {
-						progress.attr({
-							arc: part
-						});
-					}
+					progress.attr({
+						arc: part
+					});
+				},
+				ready: function() {
+					progressDiv.fade('out');
+					image.fade('in');
+					
+					new Element('textarea', {
+						name: 'image_descriptions[]',
+						value: this.file.name.replace(/\.[a-zA-Z]{2,4}$/,'')
+					}).inject(tile, 'bottom');
+					new Element('input', {
+						type: 'hidden',
+						name: 'image_id[]'
+					}).inject(tile, 'bottom');
+					new Element('input', {
+						type: 'hidden',
+						name: 'image_tmp_id[]',
+						value: this.tmpId
+					}).inject(tile, 'bottom');
+					new Element('input', {
+						type: 'hidden',
+						name: 'image_file_name[]',
+						value: this.file.name
+					}).inject(tile, 'bottom');
+					new Element('div.sort-handle').inject(tile, 'bottom');
 				},
 				chunkSize: {{ $maxChunkSize }}
 			});
 			
-			tile.inject(document.getElement('.image-list'), 'bottom');
+			tile.inject(holder, 'bottom');
+			sortable.addItems(tile);
 		}
 	});
 }
-
+/*
 holder.ondragover = function () {
 	holder.addClass('hover');
 	return false;
@@ -208,7 +244,7 @@ holder.ondrop = function (e) {
 	e.preventDefault();
 	holder.removeClass('hover');
 	readfiles(e.dataTransfer.files);
-};
+};*/
 
 fileupload.onchange = function () {
 	readfiles(this.files);

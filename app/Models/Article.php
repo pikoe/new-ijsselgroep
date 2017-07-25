@@ -12,4 +12,8 @@ class Article extends Model {
 		'event_id',
 		'location_id'
 	];
+	
+	public function images() {
+		return $this->belongsToMany(Content\Image::class)->orderBy('article_image.prio');
+	}
 }

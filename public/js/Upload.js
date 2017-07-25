@@ -10,7 +10,8 @@ var Upload = new Class({
 	
 	options: {
 		chunkSize: 25000, // 1024 * 1024 // 1MB chunk sizes.
-		progress: Function.from(true)
+		progress: Function.from(true),
+		ready: Function.from(true)
 	},
 	
 	errors: 0,
@@ -50,18 +51,20 @@ var Upload = new Class({
 	},
 	progressChunk: function(e) {
 		if (e.lengthComputable) {
-			this.options.progress((this.start + e.loaded) / this.file.size);
+			this.options.progress.apply(this, [(this.start + e.loaded) / this.file.size]);
 		}
 	},
 	responseChunk: function() {
 		if(this.xhr.readyState == 4) {
-			this.options.progress(this.end / this.file.size);
+			this.options.progress.apply(this, [this.end / this.file.size]);
 			if(this.xhr.status == 200) {
 				this.errors = 0;
 				if(this.end < this.file.size) {
 					this.start = this.end;
 					this.end = Math.min(this.end + this.options.chunkSize, this.file.size);
 					this.sendChunk();
+				} else {
+					this.options.ready.apply(this);
 				}
 			} else if(this.xhr.status == 500 && this.errors < 3) {
 				this.errors++;

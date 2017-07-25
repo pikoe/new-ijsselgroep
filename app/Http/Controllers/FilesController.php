@@ -61,7 +61,7 @@ class FilesController extends Controller {
 				'error' => 'Filesize not matching endsize'
 			], 400);
 		} else if($request->header('X-Bites-end', 0) == $request->header('X-Bites-total', 1)) {
-			
+			// file complete
 		}
 		
 		return response()->json([

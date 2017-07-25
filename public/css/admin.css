@@ -9,7 +9,6 @@
 
 html,
 body {
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -25,7 +24,9 @@ body {
 	background: #464646;
 	color: #333333;
 }
-
+* {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 *,
 *:before,
 *:after {
@@ -921,13 +922,31 @@ table.calendar td.day.selected {
 }
 .image-list .image_tile {
 	float: left;
-	width: 100px;
-	height: 100px;
+	width: 160px;
+	height: 160px;
 	position: relative;
 	margin: 0 5px 5px 0;
 	background: #464646;
 	border: 2px solid #464646;
 	border-radius: 2px;
+}
+.image-list .image_tile.dragging {
+	background: #000;
+	border: 2px solid #000;
+}
+.image-list .image_tile .sort-handle {
+	position: absolute;
+	right: -5px;
+	top: -5px;
+	
+	width: 16px;
+	height: 16px;
+	background: #464646;
+	border-radius: 8px;
+	cursor: move;
+}
+.image-list .image_tile.dragging .sort-handle {
+	background: #000;
 }
 .image-list .image_tile img {
 	max-height: 100%;  
@@ -946,6 +965,25 @@ table.calendar td.day.selected {
 	left: 0;
 	top: 0;
 }
+.image-list .image_tile textarea {
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	width: 160px;
+	height: 160px;
+	
+	background: rgba(255,255,255,0);
+	border: 0;
+	resize:none;
+	overflow: auto;
+	transition: background 0.5s;
+	padding: 3px 8px;
+	border-radius: 2px;
+}
+.image-list .image_tile textarea:hover {
+	background: rgba(255,255,255,0.8);
+}
+
 .file_input {
 	width: 0.1px;
 	height: 0.1px;
