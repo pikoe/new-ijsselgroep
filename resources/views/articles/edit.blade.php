@@ -90,7 +90,7 @@
 			@foreach($article->images()->get() as $image)
 				<div class="image_tile">
 					<img src="{{ $image->src }}">
-					<textarea name="image_descriptions[]">{{ $image->title }}</textarea>
+					<textarea maxlength="255" name="image_descriptions[]">{{ $image->title }}</textarea>
 					<input type="hidden" name="image_tmp_id[]" value="">
 					<input type="hidden" name="image_id[]" value="{{ $image->id }}">
 					<input type="hidden" name="image_file_name[]" value="{{ $image->alt }}">
@@ -197,6 +197,7 @@ function readfiles(files) {
 					
 					new Element('textarea', {
 						name: 'image_descriptions[]',
+						maxlength: 255,
 						value: this.file.name.replace(/\.[a-zA-Z]{2,4}$/,'')
 					}).inject(tile, 'bottom');
 					new Element('input', {
