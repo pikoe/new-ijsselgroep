@@ -878,6 +878,85 @@ img.right-into-image {
 	display: block;
 	margin: 0 0 25px 25px;
 }
+a.article-image {
+	float: left;
+	width: 25%;
+	display: block;
+}
+a.article-image + div {
+	float: left;
+	width: 75%;
+	padding: 0 0 0 20px;
+}
+a.article-image img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+@media (min-width: 790px) and (max-width: 899px) {
+	.content .page-area > .page-row > .page-block a.article-image {
+		width: 100%;
+		float: none;
+		margin: 0 0 20px 0;
+	}
+	.content .page-area > .page-row > .page-block a.article-image + div {
+		width: 100%;
+		float: none;
+		padding: 0;
+	}
+}
+@media (min-width: 900px) and (max-width: 1200px) {
+	.content .page-area > .page-row > .page-block a.article-image {
+		width: 40%;
+	}
+	.content .page-area > .page-row > .page-block a.article-image + div {
+		width: 60%;
+	}
+}
+@media (max-width: 499px) {
+	a.article-image {
+		width: 100%;
+		float: none;
+		margin: 0 0 20px 0;
+	}
+	a.article-image + div {
+		width: 100%;
+		float: none;
+		padding: 0;
+	}
+}
+@media (min-width: 300px) and (max-width: 499px) {
+	.image-gallery a.article-image {
+		width: 50%;
+		float: left;
+	}
+}
+@media (min-width: 500px) and (max-width: 789px) {
+	.image-gallery a.article-image {
+		width: 33.33333%;
+	}
+}
+@media (min-width: 1200px) and (max-width: 1300px) {
+	.image-gallery a.article-image {
+		width: 20%;
+	}
+}
+@media (min-width: 1300px) {
+	.image-gallery a.article-image {
+		width: 16.666666666%;
+	}
+}
+
+.image-gallery {
+	margin: 0 0 -25px -25px;
+}
+.image-gallery a.article-image {
+	padding: 0 0 25px 25px;
+	margin: 0;
+	position: relative;
+}
+
 h1.icon,
 h2.icon {
 	position: relative;
@@ -1023,4 +1102,3 @@ ul.pagination li:last-child > a:hover:before {
 ul.pagination li:last-child > a:hover:after {
 	right: 13px;
 }
-

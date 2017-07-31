@@ -920,7 +920,7 @@ table.calendar td.day.selected {
 .image-list {
 	margin: 5px -5px -5px 0;
 }
-.image-list .image_tile {
+.image-list .image-tile {
 	float: left;
 	width: 160px;
 	height: 160px;
@@ -930,11 +930,11 @@ table.calendar td.day.selected {
 	border: 2px solid #464646;
 	border-radius: 2px;
 }
-.image-list .image_tile.dragging {
+.image-list .image-tile.dragging {
 	background: #000;
 	border: 2px solid #000;
 }
-.image-list .image_tile .sort-handle {
+.image-list .image-tile .sort-handle {
 	position: absolute;
 	right: -5px;
 	top: -5px;
@@ -945,10 +945,10 @@ table.calendar td.day.selected {
 	border-radius: 8px;
 	cursor: move;
 }
-.image-list .image_tile.dragging .sort-handle {
+.image-list .image-tile.dragging .sort-handle {
 	background: #000;
 }
-.image-list .image_tile img {
+.image-list .image-tile img {
 	max-height: 100%;  
     max-width: 100%; 
     width: auto;
@@ -960,12 +960,12 @@ table.calendar td.day.selected {
     right: 0;  
     margin: auto;
 }
-.image-list .image_tile div.progress {
+.image-list .image-tile div.progress {
 	position: absolute;
 	left: 0;
 	top: 0;
 }
-.image-list .image_tile textarea {
+.image-list .image-tile textarea {
 	position: absolute;
 	left: -2px;
 	top: -2px;
@@ -980,11 +980,11 @@ table.calendar td.day.selected {
 	padding: 3px 8px;
 	border-radius: 2px;
 }
-.image-list .image_tile textarea:hover {
+.image-list .image-tile textarea:hover {
 	background: rgba(255,255,255,0.8);
 }
 
-.file_input {
+.file-input {
 	width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
@@ -992,11 +992,11 @@ table.calendar td.day.selected {
 	position: absolute;
 	z-index: -1;
 }
-.file_input + label {
+.file-input + label {
 	cursor: pointer; /* "hand" cursor */
 }
-.file_input:focus + label,
-.file_input + label:hover {
+.file-input:focus + label,
+.file-input + label:hover {
     border: 1px solid #23527c;
     background: #23527c;
     color: #fff;

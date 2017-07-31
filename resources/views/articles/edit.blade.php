@@ -83,12 +83,12 @@
 	</div>
 	
 	<div class="images">
-		<input type="file" id="upload" class="file_input" multiple>
+		<input type="file" id="upload" class="file-input" multiple>
 		<label class="button" for="upload"><i class="fa fa-upload" aria-hidden="true"></i> Upload foto's</label>
 		
 		<div class="image-list clearfix">
 			@foreach($article->images()->get() as $image)
-				<div class="image_tile">
+				<div class="image-tile">
 					<img src="{{ $image->src }}">
 					<textarea maxlength="255" name="image_descriptions[]">{{ $image->title }}</textarea>
 					<input type="hidden" name="image_tmp_id[]" value="">
@@ -146,7 +146,7 @@ var holder = document.getElement('.image-list'),
 function readfiles(files) {
 	Array.each(files, function(file) {
 		if(['image/png','image/jpeg','image/gif'].contains(file.type)) {
-			var tile = new Element('div.image_tile');
+			var tile = new Element('div.image-tile');
 			var image = new Element('img', {
 				styles: {
 					opacity: 0.5

@@ -19,13 +19,24 @@
 			<div class="page-row">
 		@endif
 		<div class="page-block">
-			@if($article->activity_area)
-			<img class="right-into-image" src="img/activiteitengebieden/{{ $article->activity_area }}.png" alt="{{ \App\Models\ActivityArea::$list[$article->activity_area] }}">
+			@if($article->images()->count())
+				<a class="article-image" href="{{ route('article', [$article->url]) }}">
+					@php
+					$image = $article->images()->first();
+					@endphp
+					<img src="{{ $image->src }}" alt="{{ $image->alt }}" title="{{ $image->title }}">
+				</a>
 			@endif
-			<h2>{{ $article->title }}</h2>
-			{{ $article->created_at->formatLocalized('%e %B %Y') }}
-			{!! $article->intro !!}
-			{!! $article->text !== null ? '<a class="continue" href="' . route('article', [$article->url]) . '">Lees verder</a>' : '' !!}
+			<div>
+				@if($article->activity_area)
+				<img class="right-into-image" src="img/activiteitengebieden/{{ $article->activity_area }}.png" alt="{{ \App\Models\ActivityArea::$list[$article->activity_area] }}">
+				@endif
+				<h2>{{ $article->title }}</h2>
+				{{ $article->created_at->formatLocalized('%e %B %Y') }}
+				{!! $article->intro !!}
+				{!! $article->text !== null || $article->images()->count() ? '<a class="continue" href="' . route('article', [$article->url]) . '">Lees verder</a>' : '' !!}
+			</div>
+			<div class="clearfix"></div>
 		</div>
 		@if($key %2 == 1)
 			</div>
