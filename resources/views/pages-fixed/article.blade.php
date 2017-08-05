@@ -13,15 +13,16 @@
 	<div class="page-block">
 		<div class="clearfix image-gallery">
 			@foreach($article->images()->get() as $image)
-				<a class="article-image" href="{{ $image->src }}" data-width="{{ $image->getWidht() }}" data-height="{{ $image->getHeight() }}">
+				<a class="article-image" href="{{ $image->resize(800, 800, false) }}" data-width="{{ $image->getWidht() }}" data-height="{{ $image->getHeight() }}">
 					<img src="{{ $image->resize(250, 250, true) }}" alt="{{ $image->alt }}" title="{{ $image->title }}">
+					<span class="text">{{ $image->title }}</span>
 				</a>
 			@endforeach
 		</div>
 	</div>
 @endif
 <div class="page-block">
-	<a class="continue" href="{{ route('articles') }}">Lees alle artikelen</a>
+	<a class="continue" href="{{ route('articles') }}">Lees alle berichten en verslagen</a>
 </div>
 @endsection
 

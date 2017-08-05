@@ -24,7 +24,7 @@
 					@php
 					$image = $article->images()->first();
 					@endphp
-					<img src="{{ $image->src }}" alt="{{ $image->alt }}" title="{{ $image->title }}">
+					<img src="{{ $image->resize(370, 370, true) }}" alt="{{ $image->alt }}" title="{{ $image->title }}">
 				</a>
 			@endif
 			<div>
@@ -45,13 +45,13 @@
 	@endforeach
 	@if(count($articles) && count($articles) %2 == 1)
 			<div class="page-block">
-				<h2>Oudere artikelen</h2>
+				<h2>Oudere berichten</h2>
 				
 				@foreach($older_articles as $article)
 				<div><a href="{{ route('article', [$article->url]) }}">{{ $article->title }}</a></div>
 				@endforeach
 				
-				<a class="continue" href="{{ route('articles') }}">Lees alle artikelen</a>
+				<a class="continue" href="{{ route('articles') }}">Lees alle berichten en verslagen</a>
 			</div>
 		</div>
 	</div>
