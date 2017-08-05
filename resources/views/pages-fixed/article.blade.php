@@ -5,7 +5,8 @@
 @section('content')
 <ul class="breadcrumbs clearfix">
 	<li class="home"><a href="/">Home</a></li>
-	<li><a href="{{ route('articles') }}">Artikelen</a></li>
+	<li><a href="{{ url('activiteiten') }}">Activiteiten</a></li>
+	<li><a href="{{ route('articles') }}">Berichten en verslagen</a></li>
 	<li><a href="{{ route('article', [$article->url]) }}">{{ $article->title }}</a></li>
 </ul>
 <div class="page-block">{!! $article->text !== null ? $article->text : '<h2>' . $article->title . '</h2>' . $article->intro !!}</div>

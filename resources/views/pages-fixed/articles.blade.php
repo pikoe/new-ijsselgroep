@@ -5,7 +5,8 @@
 @section('content')
 <ul class="breadcrumbs clearfix">
 	<li class="home"><a href="/">Home</a></li>
-	<li><a href="{{ route('articles') }}">Artikelen</a></li>
+	<li><a href="{{ url('activiteiten') }}">Activiteiten</a></li>
+	<li><a href="{{ route('articles') }}">Berichten en verslagen</a></li>
 </ul>
 	@foreach($articles as $key => $article)
 		<div class="page-block">
@@ -14,7 +15,7 @@
 					@php
 					$image = $article->images()->first();
 					@endphp
-					<img src="{{ $image->src }}" alt="{{ $image->alt }}" title="{{ $image->title }}">
+					<img src="{{ $image->resize(370, 370, true) }}" alt="{{ $image->alt }}" title="{{ $image->title }}">
 				</a>
 			@endif
 			<div>

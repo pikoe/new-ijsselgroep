@@ -59,7 +59,7 @@ class Image extends Model {
 		return $this->height;
 	}
 	
-	function resize($w, $h, $crop = false) {
+	function resize($w, $h, $crop = false, $stamps = null) {
 		$target = 'files/' . ($crop ? 'c-' : 'r-') . $w . 'x' . $h . '-' . basename($this->src);
 		if(file_exists(public_path($target))) {
 			return $target;
@@ -104,15 +104,24 @@ class Image extends Model {
 		$dst = imagecreatetruecolor($newwidth, $newheight);
 		imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 		
+		if(($stamps === null && ($w >= 600 || $h >= 600)) || $stamps) {
+			// dan stempels erop
+			$stamp_left = imagecreatefrompng(public_path('img/stamp-left.png'));
+			imagecopy($dst, $stamp_left, 0, $newheight - 116, 0, 0, 141, 116);
+			
+			$stamp_right = imagecreatefrompng(public_path('img/stamp-right.png'));
+			imagecopy($dst, $stamp_right, $newwidth - 155, $newheight - 179, 0, 0, 155, 179);
+		}
+		
 		switch($this->type){
 			case IMAGETYPE_JPEG:
-				imagejpeg($dst, public_path($target)); //jpeg file
+				imagejpeg($dst, public_path($target), 100); //jpeg file
 				break;
 			case IMAGETYPE_GIF:
 				imagegif($dst, public_path($target)); //gif file
 				break;
 			case IMAGETYPE_PNG:
-				imagepng($dst, public_path($target)); //png file
+				imagepng($dst, public_path($target), 0); //png file
 				break;
 		}
 		
