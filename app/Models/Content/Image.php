@@ -60,7 +60,7 @@ class Image extends Model {
 	}
 	
 	function resize($w, $h, $crop = false) {
-		$target = 'generated/' . ($crop ? 'c-' : 'r-') . $w . 'x' . $h . '-' . basename($this->src);
+		$target = 'files/' . ($crop ? 'c-' : 'r-') . $w . 'x' . $h . '-' . basename($this->src);
 		if(file_exists(public_path($target))) {
 			return $target;
 		}
