@@ -28,8 +28,12 @@ class Calendar extends Model {
 		$locations = $this->locations()->allRelatedIds()->toArray();
 		$groups = $this->groups()->allRelatedIds()->toArray();
 		
-		$date = Carbon::createFromDate(null, null, null);
-		
+		if(request()->has('kalender') && request()->kalender && preg_match('/\d{4}-\d{1,2}/', request()->kalender)) {
+			$input = explode('-', request()->kalender);
+			$date = Carbon::createFromDate($input[0], $input[1], null);
+		} else {
+			$date = Carbon::createFromDate(null, null, null);
+		}
 		$from = $date->copy()->startOfMonth()->previous(Carbon::SUNDAY)->addDay();
 		$to = $date->copy()->endOfMonth()->next(Carbon::MONDAY);
 		

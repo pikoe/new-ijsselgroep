@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title') | Scouting IJsselgroep Gorssel</title>
-	<meta name="description" content="">
+	<meta name="description" content="@yield('description', '')">
 	
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="js/PhotoSwipe/photoswipe.css?v=4.1.1-1.0.4" rel="stylesheet" />
@@ -114,8 +114,27 @@
 		
 		new Slider(document.id('header-slideshow'));
 		
-		// execute above function
 		initPhotoSwipeFromDOM('.image-gallery');
+		
+		document.getElements('.content').addEvent('click:relay(.content-block a[data-content-block-href])', function(e) {
+			e.preventDefault();
+			var block = this.getParent('.content-block');
+			new Request({
+				url: '{{ url('block') }}' + block.id.replace('content-', '/') + '?' + this.getProperty('data-content-block-href'),
+				method: 'get',
+				onRequest: function(){
+					block.addClass('loading');
+				},
+				onSuccess: function(response){
+					var els = Elements.from(response);
+					els[0].replaces(block);
+				},
+				onFailure: function(){
+					block.set('text', 'Sorry, er ging iets fout');
+				}
+			}).send();
+		});
 	</script>
+	@yield('javascript', '')
 </body>
 </html>

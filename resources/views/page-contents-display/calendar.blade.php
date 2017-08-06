@@ -1,3 +1,5 @@
+<a data-content-block-href="kalender={{ $start->copy()->subMonth()->format('Y-m') }}" href="{{ request()->url() }}?kalender={{ $start->copy()->subMonth()->format('Y-m') }}">Vorige maand</a>
+<a data-content-block-href="kalender={{ $start->copy()->addMonth()->format('Y-m') }}" href="{{ request()->url() }}?kalender={{ $end->copy()->addMonth()->format('Y-m') }}">Volgende maand</a>
 <table id="event-calendar-{{ $calendar->id }}" class="calendar">
 	<thead>
 		<tr>

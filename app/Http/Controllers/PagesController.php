@@ -105,6 +105,9 @@ class PagesController extends Controller {
 			'page' => $page
 		]);
 	}
+	public function displayBlock(PageContent $pageContent) {
+		return $pageContent->display();
+	}
 	
 	public function home() {
 		return view('pages-fixed.home', [

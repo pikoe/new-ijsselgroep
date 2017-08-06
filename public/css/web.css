@@ -755,6 +755,9 @@ h4 {
 	max-width: 100%;
 	height: auto;
 }
+.content-block.loading {
+	opacity: 0.3;
+}
 
 
 table.calendar {

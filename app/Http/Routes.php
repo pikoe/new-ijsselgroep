@@ -61,6 +61,8 @@ Route::group(['middleware' => 'front'], function () {
 
 	Route::get('/', ['uses' => 'PagesController@home', 'as' => 'home']);
 	
+	Route::any('block/{page_content}', ['uses' => 'PagesController@displayBlock'])->where('full_url', '.+');
+	
 	Route::get('/activiteiten/verslagen-en-foto-s', ['uses' => 'PagesController@articles', 'as' => 'articles']);
 	Route::get('/activiteiten/verslagen-en-foto-s/{article_url}', ['uses' => 'PagesController@article', 'as' => 'article']);
 	
