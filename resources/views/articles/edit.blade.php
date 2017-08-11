@@ -89,7 +89,7 @@
 		<div class="image-list clearfix">
 			@foreach($article->images()->get() as $image)
 				<div class="image-tile">
-					<img src="{{ $image->src }}">
+					<img src="{{ $image->resize(156, 156) }}">
 					<textarea maxlength="255" name="image_descriptions[]">{{ $image->title }}</textarea>
 					<input type="hidden" name="image_tmp_id[]" value="">
 					<input type="hidden" name="image_id[]" value="{{ $image->id }}">

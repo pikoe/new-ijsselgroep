@@ -126,7 +126,11 @@ class Image extends Model {
 			case IMAGETYPE_JPEG:
 				imagejpeg($dst, public_path($target . '.tmp'), 100); //jpeg file
 				exec('jpegtran -copy none -optimize -progressive "' . public_path($target . '.tmp') . '" > "' . public_path($target) . '"');
-				unlink(public_path($target . '.tmp'));
+				if(file_exists(public_path($target))) {
+					unlink(public_path($target . '.tmp'));
+				} else {
+					rename(public_path($target . '.tmp'), public_path($target));
+				}
 				break;
 			case IMAGETYPE_PNG:
 				imagepng($dst, public_path($target), 0); //png file
