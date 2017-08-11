@@ -95,6 +95,7 @@
 					<input type="hidden" name="image_id[]" value="{{ $image->id }}">
 					<input type="hidden" name="image_file_name[]" value="{{ $image->alt }}">
 					<div class="sort-handle"></div>
+					<div class="delete"></div>
 				</div>
 			@endforeach
 		</div>
@@ -142,7 +143,9 @@ var holder = document.getElement('.image-list'),
 			el.removeClass('dragging');
 		}
 	});
-
+holder.addEvent('click:relay(.delete)', function() {
+	this.getParent('.image-tile').dispose();
+});
 function readfiles(files) {
 	Array.each(files, function(file) {
 		if(['image/png','image/jpeg','image/gif'].contains(file.type)) {

@@ -939,14 +939,61 @@ table.calendar td.day.selected {
 	right: -5px;
 	top: -5px;
 	
-	width: 16px;
-	height: 16px;
+	width: 20px;
+	height: 20px;
 	background: #464646;
-	border-radius: 8px;
+	border-radius: 10px;
 	cursor: move;
 }
 .image-list .image-tile.dragging .sort-handle {
 	background: #000;
+}
+.image-list .image-tile .sort-handle::before {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 20px;
+	height: 20px;
+	
+	font: normal normal normal 14px/20px FontAwesome;
+	text-rendering: auto;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: block;
+	content: "\f047";
+	color: #fff;
+}
+.image-list .image-tile .delete {
+	position: absolute;
+	right: -5px;
+	bottom: -5px;
+	
+	width: 20px;
+	height: 20px;
+	background: #c9302c;
+	border-radius: 10px;
+	display: none;
+	cursor: pointer;
+}
+.image-list .image-tile:hover .delete {
+	display: block;
+}
+.image-list .image-tile .delete::before {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 20px;
+	height: 20px;
+	
+	font: normal normal normal 14px/20px FontAwesome;
+	text-rendering: auto;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: block;
+	content: "\f00d";
+	color: #fff;
 }
 .image-list .image-tile img {
 	max-height: 100%;  
