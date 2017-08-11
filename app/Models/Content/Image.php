@@ -14,7 +14,7 @@ class Image extends Model {
 	}
 	
 	public function display() {
-		return '<img src="' . $this->src . '" alt="' . $this->alt . '"' . ($this->title?' title="' . $this->title . '"':'') . '>';
+		return '<img src="' . $this->src . '"  width="' . $this->getWidht() . '" height="' . $this->getHeight() . '" alt="' . $this->alt . '"' . ($this->title?' title="' . $this->title . '"':'') . '>';
 	}
 	
 	public function displayEdit(PageContent $pageContent) {
@@ -44,7 +44,9 @@ class Image extends Model {
 	private $type = null;
 	
 	public function getSize() {
-		list($this->width, $this->height, $this->type) = getimagesize(public_path($this->src));
+		if(file_exists(public_path($this->src))) {
+			list($this->width, $this->height, $this->type) = getimagesize(public_path($this->src));
+		}
 	}
 	public function getWidht() {
 		if(!$this->width) {

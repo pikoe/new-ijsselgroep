@@ -15,7 +15,7 @@
 					@php
 					$image = $article->images()->first();
 					@endphp
-					<img src="{{ $image->resize(370, 370, true) }}" alt="{{ $image->alt }}" title="{{ $image->title }}">
+					<img src="{{ $image->resize(370, 370, true) }}" width="370" height="370" alt="{{ $image->alt }}" title="{{ $image->title }}">
 				</a>
 			@endif
 			<div>

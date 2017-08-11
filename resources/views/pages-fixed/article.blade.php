@@ -15,7 +15,7 @@
 		<div class="clearfix image-gallery">
 			@foreach($article->images()->get() as $image)
 				<a class="article-image" href="{{ $image->resize(800, 800, false) }}" data-width="{{ $image->getWidht() }}" data-height="{{ $image->getHeight() }}">
-					<img src="{{ $image->resize(250, 250, true) }}" alt="{{ $image->alt }}" title="{{ $image->title }}">
+					<img src="{{ $image->resize(250, 250, true) }}" width="250" height="250" alt="{{ $image->alt }}" title="{{ $image->title }}">
 					<span class="text">{{ $image->title }}</span>
 				</a>
 			@endforeach
