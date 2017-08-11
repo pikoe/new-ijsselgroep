@@ -254,5 +254,3 @@ fileupload.onchange = function () {
 
 </script>
 @endsection
-
-https://github.com/ZiTAL/html5-file-upload-chunk
