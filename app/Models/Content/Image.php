@@ -88,23 +88,30 @@ class Image extends Model {
 			}
 		}
 		
+		$dst = imagecreatetruecolor($newwidth, $newheight);
 		switch($this->type){
 			case IMAGETYPE_JPEG:
 				$src = imagecreatefromjpeg(public_path($this->src)); //jpeg file
 				break;
 			case IMAGETYPE_PNG:
 				$src = imagecreatefrompng(public_path($this->src)); //png file
+				imagealphablending($dst, false);
+				imagesavealpha($dst, true);
 				break;
 			case IMAGETYPE_GIF:
 				$src = imagecreatefromgif(public_path($this->src)); //gif file
+				imagealphablending($dst, false);
+				imagesavealpha($dst, true);
 				break;
 			default: 
 				return false;
 		}
-		$dst = imagecreatetruecolor($newwidth, $newheight);
 		imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 		
 		if(($stamps === null && ($w >= 600 || $h >= 600)) || $stamps) {
+			if(in_array($this->type, [IMAGETYPE_PNG, IMAGETYPE_GIF])) {
+				imagealphablending($dst, true);
+			}
 			// dan stempels erop
 			$stamp_left = imagecreatefrompng(public_path('img/stamp-left.png'));
 			imagecopy($dst, $stamp_left, 0, $newheight - 116, 0, 0, 141, 116);
