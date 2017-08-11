@@ -92,11 +92,11 @@ class Image extends Model {
 			case IMAGETYPE_JPEG:
 				$src = imagecreatefromjpeg(public_path($this->src)); //jpeg file
 				break;
-			case IMAGETYPE_GIF:
-				$src = imagecreatefromgif(public_path($this->src)); //gif file
-				break;
 			case IMAGETYPE_PNG:
 				$src = imagecreatefrompng(public_path($this->src)); //png file
+				break;
+			case IMAGETYPE_GIF:
+				$src = imagecreatefromgif(public_path($this->src)); //gif file
 				break;
 			default: 
 				return false;
@@ -115,15 +115,19 @@ class Image extends Model {
 		
 		switch($this->type){
 			case IMAGETYPE_JPEG:
-				imagejpeg($dst, public_path($target), 100); //jpeg file
+				imagejpeg($dst, public_path($target . '.tmp'), 100); //jpeg file
+				exec('jpegtran -copy none -optimize -progressive "' . public_path($target . '.tmp') . '" > "' . public_path($target) . '"');
+				unlink(public_path($target . '.tmp'));
+				break;
+			case IMAGETYPE_PNG:
+				imagepng($dst, public_path($target), 0); //png file
+				exec('optipng -o7 -strip all "' . public_path($target) . '"');
 				break;
 			case IMAGETYPE_GIF:
 				imagegif($dst, public_path($target)); //gif file
 				break;
-			case IMAGETYPE_PNG:
-				imagepng($dst, public_path($target), 0); //png file
-				break;
 		}
+		chmod(public_path($target), 0666);
 		
 		return $target;
 	}
