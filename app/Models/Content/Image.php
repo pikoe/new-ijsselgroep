@@ -125,7 +125,8 @@ class Image extends Model {
 		switch($this->type){
 			case IMAGETYPE_JPEG:
 				imagejpeg($dst, public_path($target . '.tmp'), 100); //jpeg file
-				exec('jpegtran -copy none -optimize -progressive "' . public_path($target . '.tmp') . '" > "' . public_path($target) . '"');
+				die('jpegtran -copy none -optimize -progressive -outfile "' . public_path($target) . '" "' . public_path($target . '.tmp') . '"');
+				exec('jpegtran -copy none -optimize -progressive -outfile "' . public_path($target) . '" "' . public_path($target . '.tmp') . '"');
 				if(file_exists(public_path($target))) {
 					unlink(public_path($target . '.tmp'));
 				} else {
