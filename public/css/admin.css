@@ -1027,7 +1027,8 @@ table.calendar td.day.selected {
 	padding: 3px 8px;
 	border-radius: 2px;
 }
-.image-list .image-tile textarea:hover {
+.image-list .image-tile textarea:hover,
+.image-list .image-tile textarea:focus {
 	background: rgba(255,255,255,0.8);
 }
 

@@ -8,8 +8,15 @@
 	
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>{{ config('app.name', 'Laravel') }}</title>
+	<title>{{ config('app.name', 'IJsselgroep') }}</title>
 	
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0042df">
+	<meta name="theme-color" content="#ffffff">
+
 	<link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/admin.css">
 </head>

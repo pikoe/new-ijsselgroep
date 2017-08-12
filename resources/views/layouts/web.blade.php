@@ -11,6 +11,13 @@
     <title>@yield('title') | Scouting IJsselgroep Gorssel</title>
 	<meta name="description" content="@yield('description', '')">
 	
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0042df">
+	<meta name="theme-color" content="#ffffff">
+
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href="js/PhotoSwipe/photoswipe.css?v=4.1.1-1.0.4" rel="stylesheet" />
     <link href="js/PhotoSwipe/default-skin/default-skin.css?v=4.1.1-1.0.4" rel="stylesheet" />
