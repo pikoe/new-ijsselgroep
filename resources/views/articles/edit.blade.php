@@ -75,11 +75,11 @@
 	
 	<div class="input textarea">
 		<label for="intro">Intro</label>
-		<textarea class="editor" name="intro">{{ old('intro', $article->intro) }}</textarea>
+		<textarea class="editor" name="intro" id="intro">{{ old('intro', $article->intro) }}</textarea>
 	</div>
 	<div class="input textarea">
 		<label for="text">Volledig</label>
-		<textarea class="editor" name="text">{{ old('text', $article->text) }}</textarea>
+		<textarea class="editor" name="text" id="text">{{ old('text', $article->text) }}</textarea>
 	</div>
 	
 	<div class="images">

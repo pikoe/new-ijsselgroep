@@ -33,6 +33,8 @@ class EventsController extends Controller {
 		if($request->isMethod('post')) {
 			$event = new Event;
 			$event->name = $request->name;
+			$event->public_text = empty($request->public_text) ? '' : $request->public_text;
+			$event->private_text = empty($request->private_text) ? '' : $request->private_text;
 			$event->start = Carbon::createFromFormat('d-m-Y H:i:s', $request->start . ':00');
 			$event->end = Carbon::createFromFormat('d-m-Y H:i:s', $request->end . ':00');
 			if($event->start->addMinutes(15)->gt($event->end)){
@@ -78,6 +80,8 @@ class EventsController extends Controller {
 	public function edit(Request $request, Event $event) {
 		if($request->isMethod('post')) {
 			$event->name = $request->name;
+			$event->public_text = empty($request->public_text) ? '' : $request->public_text;
+			$event->private_text = empty($request->private_text) ? '' : $request->private_text;
 			$event->start = Carbon::createFromFormat('d-m-Y H:i:s', $request->start . ':00');
 			$event->end = Carbon::createFromFormat('d-m-Y H:i:s', $request->end . ':00');
 			if($event->start->addMinutes(15)->gt($event->end)){

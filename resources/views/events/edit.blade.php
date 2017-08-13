@@ -48,6 +48,15 @@
 		</ul>
 	</div>
 	
+	<div class="input textarea">
+		<label for="public_text">Publieke tekst</label>
+		<textarea class="editor" name="public_text" id="public_text">{{ old('public_text', $event->public_text) }}</textarea>
+	</div>
+	<div class="input textarea">
+		<label for="private_text">Alleen na inloggen</label>
+		<textarea class="editor" name="private_text" id="private_text">{{ old('private_text', $event->private_text) }}</textarea>
+	</div>
+	
 	<div class="toolbar clearfix">
 		<div class="buttons bottom">
 			<button class="button add" title="Bewerken" name="return" value="index"><i class="fa fa-reply" aria-hidden="true"></i> Opslaan en terug naar overzicht</button>

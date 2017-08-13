@@ -16,4 +16,8 @@ class Article extends Model {
 	public function images() {
 		return $this->belongsToMany(Content\Image::class)->orderBy('article_image.prio');
 	}
+	
+	public function group() {
+		return $this->belongsTo(Group::class);
+	}
 }

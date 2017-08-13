@@ -72,11 +72,11 @@
 	
 	<div class="input textarea">
 		<label for="intro">Intro</label>
-		<textarea class="editor" name="intro">{{ old('intro') }}</textarea>
+		<textarea class="editor" name="intro" id="intro">{{ old('intro') }}</textarea>
 	</div>
 	<div class="input textarea">
 		<label for="text">Volledig</label>
-		<textarea class="editor" name="text">{{ old('text') }}</textarea>
+		<textarea class="editor" name="text" id="text">{{ old('text') }}</textarea>
 	</div>
 	
 	<div class="toolbar clearfix">

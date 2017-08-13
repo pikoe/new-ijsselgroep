@@ -6,7 +6,9 @@ class Event extends Model {
 		'start',
 		'end',
 		'location_id',
-		'group_id'
+		'group_id',
+		'public_text',
+		'private_text'
 	];
 	
 	protected $dates = [

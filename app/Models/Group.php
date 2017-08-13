@@ -5,4 +5,7 @@ class Group extends Model {
 		'name'
 	];
 	
+	public function page() {
+		return $this->belongsTo(Page::class);
+	}
 }

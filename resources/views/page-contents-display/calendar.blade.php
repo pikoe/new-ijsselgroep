@@ -73,7 +73,7 @@
 							unset($events[$key]);
 						}
 
-						echo '<a href="#' . $event->id . '" class="event" style="top:' . (19*$event->row) . 'px;width:' . round($width, 2) . '%;left:' . round($left, 2) . '%;" data-event="' . $event->id . '" title="' . e($event->name) . '">' . e($event->name) . '</div>';
+						echo '<a href="#' . $event->id . '" class="event" style="top:' . (19*$event->row) . 'px;width:' . round($width, 2) . '%;left:' . round($left, 2) . '%;" data-event="' . $event->id . '" title="' . e($event->name) . '">' . e($event->name) . '<div class="text">' . $event->public_text . '</div></div>';
 					}
 				?>
 			</td>

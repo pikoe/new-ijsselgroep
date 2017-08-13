@@ -14,24 +14,22 @@
 	</div>
 	
 	<div class="input">
-		<label for="activity_area">TODO:: type slot</label>
-		<select name="activity_area" id="activity_area">
-			<option value="">Kies een activiteitengebied</option>
-			@foreach(\App\Models\ActivityArea::$list as $activity_area => $name)
-			<option value="{{ $activity_area }}"{{ ($activity_area == old('activity_area') ? ' selected' : '') }}>{{ $name }}</option>
+		<label for="type">Weergave type</label>
+		<select name="type" id="type">
+			<option value="">Kies een weergave type</option>
+			@foreach(\App\Models\Content\ArticleSlot::$type as $type => $name)
+			<option value="{{ $type }}"{{ ($type == old('type', $article_slot->type) ? ' selected' : '') }}>{{ $name }}</option>
 			@endforeach
 		</select>
 	</div>
 	<div class="input">
-		<label>TODO:: Groep</label>
-		<ul class="select-list">
-		@foreach($groups->get() as $group)
-			<li>
-				<input type="checkbox" id="group_{{ $group->id }}" name="groups[]" value="{{ $group->id }}"{{ $group->id == old('groups')?' checked':'' }}>
-				<label for="group_{{ $group->id }}">{{ $group->name }}</label>
-			</li>
-		@endforeach
-		</ul>
+		<label for="group_id">Groep</label>
+		<select name="group_id" id="group_id">
+			<option value="">Geen filtering op groep</option>
+			@foreach($groups->get() as $group)
+			<option value="{{ $group->id }}"{{ ($group->id == old('group_id', $article_slot->group_id) ? ' selected' : '') }}>{{ $group->name }}</option>
+			@endforeach
+		</select>
 	</div>
 	
 	<div class="toolbar clearfix">
