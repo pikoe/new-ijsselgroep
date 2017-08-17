@@ -8,7 +8,9 @@ class PageContent extends Model {
 		'Image',
 		'Map',
 		'Calendar',
-		'ArticleSlot'
+		'ArticleSlot',
+		'ContactForm',
+		'RentalForm'
 	];
 	
 	public function page() {

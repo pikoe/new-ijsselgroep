@@ -11,5 +11,7 @@ return [
 	'Image' => 'Afbeelding',
 	'Map' => 'Kaart',
 	'Calendar' => 'Kalender',
-	'ArticleSlot' => 'Artikel slot'
+	'ArticleSlot' => 'Artikel slot',
+	'ContactForm' => 'Contact formulier',
+	'RentalForm' => 'Verhuur formulier'
 ];
