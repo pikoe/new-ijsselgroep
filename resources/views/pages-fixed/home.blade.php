@@ -34,7 +34,7 @@
 				<h2>{{ $article->title }}</h2>
 				{{ $article->created_at->formatLocalized('%e %B %Y') }}
 				{!! $article->intro !!}
-				{!! $article->text !== null || $article->images()->count() ? '<a class="continue" href="' . route('article', [$article->url]) . '">Lees verder</a>' : '' !!}
+				{!! $article->text !== null || $article->images()->count() ? '<a class="continue button" href="' . route('article', [$article->url]) . '">Lees verder</a>' : '' !!}
 			</div>
 			<div class="clearfix"></div>
 		</div>

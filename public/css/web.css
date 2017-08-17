@@ -115,6 +115,21 @@ h4 {
 	font-size: 18px;
 }
 
+.button {
+	display: inline-block;
+	border: 1px solid #0042df;
+	background: #0042df;
+	border-radius: 2px;
+	padding: 0 4px;
+	color: #fff;
+	cursor: pointer;
+}
+.button:hover {
+	border: 1px solid #0e57ff;
+	background: #0e57ff;
+	color: #fff;
+}
+
 .header {
 	font-family: 'Myriad Pro', Myriad, 'PT Sans', sans-serif;
 	position: absolute;
@@ -760,12 +775,16 @@ h4 {
 }
 
 
+.calendar-nav {
+	text-align: center;
+}
 table.calendar {
 	width: 100%;
 	table-layout: fixed;
 	user-select: none;
 	border-collapse: collapse;
 	border-spacing: 0;
+	margin-top: 5px;
 }
 table.calendar th,
 table.calendar td {
@@ -868,6 +887,9 @@ table.calendar td .event {
 }
 table.calendar td .event.hover {
 	background: #23527c;
+}
+table.calendar td .event .text {
+	display: none;
 }
 table.calendar td.day.selected {
 	background: #5cb85c;
@@ -1032,8 +1054,18 @@ ul.pagination li span {
 	height: 30px;
 	width: 30px;
 	text-align: center;
-	background: #fff;
 	margin: 0 7px;
+	
+	border: 1px solid #0042df;
+	background: #0042df;
+	border-radius: 2px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+}
+ul.pagination li span {
+	background: #ccc;
+	border: 1px solid #fff;
 }
 ul.pagination li:first-child > *,
 ul.pagination li:last-child > * {
@@ -1041,17 +1073,25 @@ ul.pagination li:last-child > * {
 	position: relative;
 }
 ul.pagination li a:hover {
+	border: 1px solid #0e57ff;
+	background: #0e57ff;
+	color: #fff;
 	font-weight: bold;
 }
 
-a.continue {
+a.continue,
+a.prev,
+a.next {
 	position: relative;
-	padding: 0 25px;
-	display: block;
+	padding: 0 10px 0 35px;
+	display: inline-block;
 	margin: 1em 0 0 0;
 	width: auto;
-	font-size: 18px;
+	font-size: 16px;
 	font-family: 'Myriad Pro', Myriad, 'PT Sans', sans-serif;
+}
+a.next {
+	padding: 0 35px 0 10px;
 }
 a.continue:first-child {
 	margin: 0;
@@ -1061,7 +1101,11 @@ ul.pagination li:first-child > *:after,
 ul.pagination li:last-child > *:before,
 ul.pagination li:last-child > *:after,
 a.continue:before,
-a.continue:after {
+a.continue:after,
+a.prev:before,
+a.prev:after,
+a.next:before,
+a.next:after {
 	font-family: 'icomoon' !important;
 	speak: none;
 	font-style: normal;
@@ -1074,21 +1118,49 @@ a.continue:after {
 	position: absolute;
 	
 	text-align: left;
-	font-size: 22px;
+	font-size: 20px;
 	line-height: 1;
 	text-indent: 0;
 	content: '\f0da';
-	top: 0;
-	left: 0;
+	top: 1px;
+	left: 10px;
 }
 a.continue:after {
-	left: 5px;
+	left: 15px;
 }
 a.continue:hover:before {
-	left: 1px;
+	left: 11px;
 }
 a.continue:hover:after {
+	left: 18px;
+}
+a.prev:before,
+a.prev:after {
+	content: '\f0d9';
 	left: 8px;
+}
+a.prev:after {
+	left: 13px;
+}
+a.prev:hover:before {
+	left: 5px;
+}
+a.prev:hover:after {
+	left: 12px;
+}
+a.next:before,
+a.next:after {
+	left: auto;
+	right: 8px;
+}
+a.next:after {
+	right: 13px;
+}
+a.next:hover:before {
+	right: 5px;
+}
+a.next:hover:after {
+	right: 12px;
 }
 
 ul.pagination li:first-child > *:before,
@@ -1124,4 +1196,39 @@ ul.pagination li:last-child > a:hover:before {
 }
 ul.pagination li:last-child > a:hover:after {
 	right: 13px;
+}
+
+.overlay {
+    box-sizing: content-box;
+    position: absolute;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 9999;
+    background: rgba(0,0,0,.5);
+}
+.overlay > * {
+	box-sizing: content-box;
+    max-width: 95%;
+    max-height: 95%;
+	overflow: auto;
+    vertical-align: middle;
+    margin: auto;  
+	position: absolute;
+	left:0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: #fff;
+}
+.overlay > .calendar-text {
+	width: 400px;
+	max-width: 95%;
+	height: 250px;
+	padding: 15px;
 }

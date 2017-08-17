@@ -123,7 +123,7 @@
 		
 		initPhotoSwipeFromDOM('.image-gallery');
 		
-		document.getElements('.content').addEvent('click:relay(.content-block a[data-content-block-href])', function(e) {
+		document.getElement('.content').addEvent('click:relay(.content-block a[data-content-block-href])', function(e) {
 			e.preventDefault();
 			var block = this.getParent('.content-block');
 			new Request({

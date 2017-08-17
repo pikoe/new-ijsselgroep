@@ -1,5 +1,7 @@
-<a data-content-block-href="kalender={{ $start->copy()->subMonth()->format('Y-m') }}" href="{{ request()->url() }}?kalender={{ $start->copy()->subMonth()->format('Y-m') }}">Vorige maand</a>
-<a data-content-block-href="kalender={{ $start->copy()->addMonth()->format('Y-m') }}" href="{{ request()->url() }}?kalender={{ $end->copy()->addMonth()->format('Y-m') }}">Volgende maand</a>
+<div class="calendar-nav">
+	<a class="button prev" data-content-block-href="kalender={{ $start->copy()->subMonth()->format('Y-m') }}" href="{{ request()->url() }}?kalender={{ $start->copy()->subMonth()->format('Y-m') }}">Vorige maand</a>
+	<a class="button next" data-content-block-href="kalender={{ $start->copy()->addMonth()->format('Y-m') }}" href="{{ request()->url() }}?kalender={{ $end->copy()->addMonth()->format('Y-m') }}">Volgende maand</a>
+</div>
 <table id="event-calendar-{{ $calendar->id }}" class="calendar">
 	<thead>
 		<tr>
@@ -73,7 +75,14 @@
 							unset($events[$key]);
 						}
 
-						echo '<a href="#' . $event->id . '" class="event" style="top:' . (19*$event->row) . 'px;width:' . round($width, 2) . '%;left:' . round($left, 2) . '%;" data-event="' . $event->id . '" title="' . e($event->name) . '">' . e($event->name) . '<div class="text">' . $event->public_text . '</div></div>';
+						echo '
+						<div class="event" style="top:' . (19*$event->row) . 'px;width:' . round($width, 2) . '%;left:' . round($left, 2) . '%;" data-event="' . $event->id . '" title="' . e($event->name) . '">' . e($event->name) . '
+							<div class="text calendar-text">
+								<h2>' . e($event->name) . '</h2>
+								<div class="moment">' . $event->start->format('d-m-Y H:i') . ' tot ' . $event->end->format('d-m-Y H:i') . '</div>
+								' . $event->public_text . '
+							</div>
+						</div>';
 					}
 				?>
 			</td>
@@ -86,8 +95,15 @@
 @section('javascript')
 @parent
 <script type="text/javascript">
-	document.getElements('#event-calendar-{{ $calendar->id }} .event').addEvent('click', function(e) {
+	document.getElement('.content').addEvent('click:relay(#event-calendar-{{ $calendar->id }} .event)', function(e) {
 		e.preventDefault();
+		
+		var overlay = new Element('div.overlay').inject(document.body).addEvent('click', function(e) {
+			if(e.target == this) {
+				this.dispose();
+			}
+		});
+		this.getElement('.text').clone().inject(overlay);
 	});
 </script>
 @endsection
