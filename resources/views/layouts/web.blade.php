@@ -141,6 +141,30 @@
 				}
 			}).send();
 		});
+		
+		document.getElement('.content').addEvent('submit:relay(.content-block form.contact-form)', function(e) {
+			e.preventDefault();
+			var block = this.getParent('.content-block');
+			new Element('input', {
+				type: 'hidden',
+				name: 'contact-form',
+				value: 2
+			}).inject(this, 'bottom');
+			new Form.Request(this, null, {
+				requestOptions: {
+					url: '{{ url('block') }}' + block.id.replace('content-', '/'),
+					onSuccess: function(responseTree){
+						responseTree[0].replaces(block);
+					}
+				},
+				onSend: function(){
+					block.addClass('loading');
+				},
+				onFailure: function(){
+					block.set('text', 'Sorry, er ging iets fout');
+				}
+			}).send();
+		});
 	</script>
 	@yield('javascript', '')
 </body>

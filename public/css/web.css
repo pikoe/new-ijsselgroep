@@ -1033,6 +1033,13 @@ h2.icon:before {
 .icon.calendar:before {
 	content: '\e953';
 }
+.icon.mail:before {
+	content: '\f003';
+}
+.icon.home:before {
+	content: '\e91e';
+}
+
 
 ul.pagination {
 	list-style: none;
@@ -1079,9 +1086,7 @@ ul.pagination li a:hover {
 	font-weight: bold;
 }
 
-a.continue,
-a.prev,
-a.next {
+.button {
 	position: relative;
 	padding: 0 10px 0 35px;
 	display: inline-block;
@@ -1100,12 +1105,8 @@ ul.pagination li:first-child > *:before,
 ul.pagination li:first-child > *:after,
 ul.pagination li:last-child > *:before,
 ul.pagination li:last-child > *:after,
-a.continue:before,
-a.continue:after,
-a.prev:before,
-a.prev:after,
-a.next:before,
-a.next:after {
+.button:before,
+.button:after {
 	font-family: 'icomoon' !important;
 	speak: none;
 	font-style: normal;
@@ -1121,9 +1122,16 @@ a.next:after {
 	font-size: 20px;
 	line-height: 1;
 	text-indent: 0;
-	content: '\f0da';
 	top: 1px;
 	left: 10px;
+}
+ul.pagination li:first-child > *:before,
+ul.pagination li:first-child > *:after,
+ul.pagination li:last-child > *:before,
+ul.pagination li:last-child > *:after,
+a.continue:before,
+a.continue:after {
+	content: '\f0da';
 }
 a.continue:after {
 	left: 15px;
@@ -1152,6 +1160,7 @@ a.next:before,
 a.next:after {
 	left: auto;
 	right: 8px;
+	content: '\f0da';
 }
 a.next:after {
 	right: 13px;
@@ -1231,4 +1240,81 @@ ul.pagination li:last-child > a:hover:after {
 	max-width: 95%;
 	height: 250px;
 	padding: 15px;
+}
+
+.content-block label {
+	display: block;
+	float: left;
+	width: 20%;
+	padding: 3px 0 0 0;
+}
+.content-block input,
+.content-block select,
+.content-block textarea {
+	display: block;
+	float: left;
+	width: 80%;
+	font: inherit;
+	padding: 2px 3px;
+	border: 1px solid #ccc;
+	margin: 0 0 3px 0;
+}
+.content-block textarea {
+	height: 150px;
+}
+.content-block button.button {
+	margin-left: 20%;
+	padding: 0 10px 0 45px;
+}
+.content-block button.button:after {
+	content: '\f003';
+	font-size: 16px;
+}
+
+@media (max-width: 499px) {
+	.content-block label {
+		width: 30%;
+	}
+	.content-block input,
+	.content-block select,
+	.content-block textarea {
+		width: 70%;
+	}
+	.content-block button.button {
+		margin-left: 30%;
+	}
+}
+@media (max-width: 399px) {
+	.content-block label {
+		width: 100%;
+		float: none;
+	}
+	.content-block input,
+	.content-block select,
+	.content-block textarea {
+		width: 100%;
+		float: none;
+	}
+	.content-block button.button {
+		margin-left: 0;
+		width: 100%;
+		text-align: left;
+	}
+}
+
+ul.messages,
+ul.messages li {
+	list-style: none;
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+ul.messages li {
+	padding: 5px;
+	border: 1px solid #c13858;
+	border-radius: 3px;
+	background: #FA577D;
+}
+ul.messages li.success {
+	border: 1px solid #9bc459;
+	background: #C6F084;
 }

@@ -118,7 +118,7 @@ class PagesController extends Controller {
 	
 	public function articles() {
 		return view('pages-fixed.articles', [
-			'articles' => Article::orderBy('created_at', 'desc')->paginate(10)
+			'articles' => Article::orderBy('created_at', 'desc')->paginate(3)
 		]);
 	}
 	

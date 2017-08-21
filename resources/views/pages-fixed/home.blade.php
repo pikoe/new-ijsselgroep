@@ -51,7 +51,7 @@
 				<div><a href="{{ route('article', [$article->url]) }}">{{ $article->title }}</a></div>
 				@endforeach
 				
-				<a class="continue" href="{{ route('articles') }}">Lees alle berichten en verslagen</a>
+				<a class="continue button" href="{{ route('articles') }}">Lees alle berichten en verslagen</a>
 			</div>
 		</div>
 	</div>
