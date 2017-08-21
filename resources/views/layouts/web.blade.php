@@ -142,12 +142,12 @@
 			}).send();
 		});
 		
-		document.getElement('.content').addEvent('submit:relay(.content-block form.contact-form)', function(e) {
+		document.getElement('.content').addEvent('submit:relay(.content-block form[data-form])', function(e) {
 			e.preventDefault();
 			var block = this.getParent('.content-block');
 			new Element('input', {
 				type: 'hidden',
-				name: 'contact-form',
+				name: this.getProperty('data-form'),
 				value: 2
 			}).inject(this, 'bottom');
 			new Form.Request(this, null, {

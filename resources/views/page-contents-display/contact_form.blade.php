@@ -1,4 +1,4 @@
-<form action="" method="post" class="contact-form">
+<form action="" method="post" data-form="contact-form">
 	<h2 class="icon mail">Contact formulier</h2>
 	@if($errors->any())
 		<ul class="messages">
@@ -15,35 +15,36 @@
 	
 	<div class="clearfix">
 		<label for="name">Naam</label>
-		<input type="text" name="name" id="name" value="{{ request()->get('name') }}">
+		<input type="text" name="name" id="name" value="{{ request()->get('name') }}" required>
 	</div>
 	<div class="clearfix">
 		<label for="email">E-mail</label>
-		<input type="email" name="email" id="email" value="{{ request()->get('email') }}">
+		<input type="email" name="email" id="email" value="{{ request()->get('email') }}" required>
 	</div>
 	<div class="clearfix">
 		<label for="to">Aan</label>
-		<select name="to" id="to">
-			<option value="info">Algemeen</option>
+		<select name="to" id="to" required>
+			<option value="">Maak een keuze</option>
+			<option value="info"{{ request()->get('to')=='info'?' selected':'' }}>Algemeen</option>
 			<optgroup label="Leeftijdsgroepen">
-				<option value="welpen">Welpen (7 - 11)</option>
-				<option value="scouts">Scouts (11 - 15)</option>
-				<option value="explorers">Explorers (15 - 18)</option>
-				<option value="roverscouts">Roverscouts (18 - 21)</option>
+				<option value="welpen"{{ request()->get('to')=='welpen'?' selected':'' }}>Welpen (7 - 11)</option>
+				<option value="scouts"{{ request()->get('to')=='scouts'?' selected':'' }}>Scouts (11 - 15)</option>
+				<option value="explorers"{{ request()->get('to')=='explorers'?' selected':'' }}>Explorers (15 - 18)</option>
+				<option value="roverscouts"{{ request()->get('to')=='roverscouts'?' selected':'' }}>Roverscouts (18 - 21)</option>
 			</optgroup>
-			<option value="verhuur">Verhuur</option>
-			<option value="bestuur">Bestuur</option>
-			<option value="vrienden">Vrienden van</option>
-			<option value="shop">Kleding</option>
+			<option value="verhuur"{{ request()->get('to')=='verhuur'?' selected':'' }}>Verhuur</option>
+			<option value="bestuur"{{ request()->get('to')=='bestuur'?' selected':'' }}>Bestuur</option>
+			<option value="vrienden"{{ request()->get('to')=='vrienden'?' selected':'' }}>Vrienden van</option>
+			<option value="shop"{{ request()->get('to')=='shop'?' selected':'' }}>Kleding</option>
 		</select>
 	</div>
 	<div class="clearfix">
 		<label for="subject">Onderwerp</label>
-		<input type="text" name="subject" id="subject" value="{{ request()->get('subject') }}">
+		<input type="text" name="subject" id="subject" value="{{ request()->get('subject') }}" required>
 	</div>
 	<div class="clearfix">
 		<label for="message">Bericht</label>
-		<textarea name="message" id="message">{{ request()->get('message') }}</textarea>
+		<textarea name="message" id="message" required>{{ request()->get('message') }}</textarea>
 	</div>
 	
 	<div class="clearfix">
