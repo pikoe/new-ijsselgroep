@@ -1242,15 +1242,15 @@ ul.pagination li:last-child > a:hover:after {
 	padding: 15px;
 }
 
-.content-block label {
+form label {
 	display: block;
 	float: left;
 	width: 20%;
 	padding: 3px 0 0 0;
 }
-.content-block input,
-.content-block select,
-.content-block textarea {
+form input,
+form select,
+form textarea {
 	display: block;
 	float: left;
 	width: 80%;
@@ -1259,43 +1259,43 @@ ul.pagination li:last-child > a:hover:after {
 	border: 1px solid #ccc;
 	margin: 0 0 3px 0;
 }
-.content-block textarea {
+form textarea {
 	height: 150px;
 }
-.content-block button.button {
+form button.button {
 	margin-left: 20%;
 	padding: 0 10px 0 45px;
 }
-.content-block button.button:after {
+form button.button:after {
 	content: '\f003';
 	font-size: 16px;
 }
 
 @media (max-width: 499px) {
-	.content-block label {
+	form label {
 		width: 30%;
 	}
-	.content-block input,
-	.content-block select,
-	.content-block textarea {
+	form input,
+	form select,
+	form textarea {
 		width: 70%;
 	}
-	.content-block button.button {
+	form button.button {
 		margin-left: 30%;
 	}
 }
 @media (max-width: 399px) {
-	.content-block label {
+	form label {
 		width: 100%;
 		float: none;
 	}
-	.content-block input,
-	.content-block select,
-	.content-block textarea {
+	form input,
+	form select,
+	form textarea {
 		width: 100%;
 		float: none;
 	}
-	.content-block button.button {
+	form button.button {
 		margin-left: 0;
 		width: 100%;
 		text-align: left;

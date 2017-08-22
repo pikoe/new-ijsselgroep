@@ -13,15 +13,15 @@
 		</ul>
 	@endif
 	
-	<div class="clearfix">
+	<div class="clearfix{{ $errors->has('name') ? ' has-error' : '' }}">
 		<label for="name">Naam</label>
 		<input type="text" name="name" id="name" value="{{ request()->get('name') }}" required>
 	</div>
-	<div class="clearfix">
+	<div class="clearfix{{ $errors->has('email') ? ' has-error' : '' }}">
 		<label for="email">E-mail</label>
 		<input type="email" name="email" id="email" value="{{ request()->get('email') }}" required>
 	</div>
-	<div class="clearfix">
+	<div class="clearfix{{ $errors->has('to') ? ' has-error' : '' }}">
 		<label for="to">Aan</label>
 		<select name="to" id="to" required>
 			<option value="">Maak een keuze</option>
@@ -38,11 +38,11 @@
 			<option value="shop"{{ request()->get('to')=='shop'?' selected':'' }}>Kleding</option>
 		</select>
 	</div>
-	<div class="clearfix">
+	<div class="clearfix{{ $errors->has('subject') ? ' has-error' : '' }}">
 		<label for="subject">Onderwerp</label>
 		<input type="text" name="subject" id="subject" value="{{ request()->get('subject') }}" required>
 	</div>
-	<div class="clearfix">
+	<div class="clearfix{{ $errors->has('message') ? ' has-error' : '' }}">
 		<label for="message">Bericht</label>
 		<textarea name="message" id="message" required>{{ request()->get('message') }}</textarea>
 	</div>

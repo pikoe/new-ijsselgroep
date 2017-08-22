@@ -11,54 +11,37 @@
 	</div>
 @endif
 <div class="page-block">
-	<h1>Wachtwoord vergeten?</h1>
-	<form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
-		{{ csrf_field() }}
+	<form method="POST" action="{{ url('/password/reset') }}">
+		<h1>Wachtwoord vergeten?</h1>
+		@if($errors->any())
+			<ul class="messages">
+				@foreach ($errors->all() as $error)
+					<li class="error">{{ $error }}</li>
+				@endforeach
+			</ul>
+		@endif
 
-		<input type="hidden" name="token" value="{{ $token }}">
-
-		<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-			<label for="email" class="col-md-4 control-label">E-mailadres</label>
-
-			<div class="col-md-6">
-				<input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
-				@if($errors->has('email'))
-					<span class="help-block">
-						<strong>{{ $errors->first('email') }}</strong>
-					</span>
-				@endif
-			</div>
+		<div class="clearfix{{ $errors->has('email') ? ' has-error' : '' }}">
+			<label for="email">E-mail</label>
+			<input id="email" type="email" name="email" value="{{ $email or old('email') }}" required autofocus>
 		</div>
 
-		<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-			<label for="password" class="col-md-4 control-label">Password</label>
-
-			<div class="col-md-6">
-				<input id="password" type="password" class="form-control" name="password" required>
-				@if($errors->has('password'))
-					<span class="help-block">
-						<strong>{{ $errors->first('password') }}</strong>
-					</span>
-				@endif
-			</div>
+		<div class="clearfix{{ $errors->has('password') ? ' has-error' : '' }}">
+			<label for="password">Wachtwoord</label>
+			<input id="password" type="password" name="password" required>
+		</div>
+		<div class="clearfix{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+			<label for="password_password">Bevestig wachtwoord</label>
+			<input id="password_password" type="password" name="password_confirmation" required>
 		</div>
 
-		<div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-			<label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-			<div class="col-md-6">
-				<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-				@if($errors->has('password_confirmation'))
-					<span class="help-block">
-						<strong>{{ $errors->first('password_confirmation') }}</strong>
-					</span>
-				@endif
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="col-md-6 col-md-offset-4">
-				<button type="submit" class="btn btn-primary">Wachtwoord resetten</button>
-			</div>
+		<div class="clearfix">
+			<input type="hidden" name="token" value="{{ $token }}">
+			
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<button class="button" title="Verzenden" type="submit">Wachtwoord resetten</button>
+			
+			<a href="{{ url('/login') }}">Terug naar login</a>
 		</div>
 	</form>
 </div>
