@@ -23,7 +23,7 @@
 	</div>
 @endif
 <div class="page-block">
-	@if($article->group_id)
+	@if($article->group_id && $article->group->page_id)
 	<a class="continue button" href="{{ url($article->group->page->full_url) }}">Meer over {{ $article->group->preposition_name }}</a>
 	@endif
 	<a class="continue button" href="{{ route('articles') }}">Lees alle berichten en verslagen</a>
