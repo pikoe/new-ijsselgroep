@@ -3,6 +3,8 @@
 use Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\MessageBag;
+use Mail;
+use App\Models\Email;
 
 /**
  * Description of ContactForm
@@ -82,7 +84,23 @@ class ContactForm extends Model {
 				} else {
 					$send = true;
 					
-					// TODO verzenden
+					$email = new Email;
+					$email->message = view('emails.contact_form')->with('data', request()->only(
+						'name',
+						'email',
+						'to',
+						'subject',
+						'message'
+					));
+					$email->subject = request()->subject;
+					$email->save();
+					
+					Mail::send('emails.layout', ['email' => $email, 'from_email' => request()->email, 'from_name' => request()->name, 'to' => request()->to], function ($mail) {
+						$mail->to('dennis_veeneman@hotmail.com', 'Dennis Veeneman')->subject('Contact formulier scouting IJsselgroep: ' . request()->subject);
+					});
+					
+					$email->send_at = \Carbon\Carbon::now();
+					$email->save();
 				}
 
 				session()->put('contact-form-token-key', uniqid() . md5(uniqid()));

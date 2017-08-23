@@ -24,6 +24,7 @@ class RouteServiceProvider extends ServiceProvider {
 		Route::model('user', \App\Models\User::class);
 		Route::model('page', \App\Models\Page::class);
 		Route::model('event', \App\Models\Event::class);
+		Route::model('email', \App\Models\Email::class);
 		Route::model('page_content', \App\Models\PageContent::class);
 		
 		Route::bind('article_url', function ($value) {

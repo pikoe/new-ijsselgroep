@@ -15,6 +15,8 @@
 
 Route::get('/pdf', 'RentalController@pdf');
 
+Route::get('/logo/{email}/{token}/ijsselgroep.png', ['uses' => 'EmailController@logo', 'as' => 'email.logo']);
+
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::post('editor-upload', 'FilesController@editor_upload');
 	Route::get('editor-images', 'FilesController@editor_images');
