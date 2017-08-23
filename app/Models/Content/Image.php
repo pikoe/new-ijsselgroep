@@ -66,8 +66,11 @@ class Image extends Model {
 		if(file_exists(public_path($target))) {
 			return $target;
 		}
-		if(!$this->width) {
+		if(!$this->height) {
 			$this->getSize();
+			if(!$this->height) {
+				return false;
+			}
 		}
 		$r = $this->width / $this->height;
 		$width = $this->width;
